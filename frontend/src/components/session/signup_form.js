@@ -44,7 +44,7 @@ class SignupForm extends React.Component {
 
   renderErrors() {
     return(
-      <ul>
+      <ul className="session-errors">
         {Object.keys(this.state.errors).map((error, i) => {
           return (<li key={`error-${i}`}>
             {this.state.errors[error]}
@@ -56,36 +56,54 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-      <div className="login-form-container">
+      <div className="modal-login">
         <form onSubmit={this.handleSubmit}>
-          <div className="login-form">
-            <br/>
+          <div className="form-container">
+
+            <h1 className="session-header">Create your account</h1>
+            <h3 className="session-header-subtext">Registration is easy.</h3>
+            {this.renderErrors()}
+            <div className="session-div-signup"/>
+            
+            <h3 className="session-input-title">Email address <span className="session-input-title-strong">*</span></h3> 
               <input type="text"
+                className="session-input-field"
                 value={this.state.email}
                 onChange={this.update('email')}
                 placeholder="Email"
+                autoFocus
               />
             <br/>
+            <h3 className="session-input-title">Username <span className="session-input-title-strong">*</span></h3> 
               <input type="text"
+                className="session-input-field"
                 value={this.state.username}
                 onChange={this.update('username')}
                 placeholder="Username"
               />
             <br/>
+            <h3 className="session-input-title">Password <span className="session-input-title-strong">*</span></h3> 
               <input type="password"
+                className="session-input-field"
                 value={this.state.password}
                 onChange={this.update('password')}
                 placeholder="Password"
               />
             <br/>
+            <h3 className="session-input-title">Confirm password <span className="session-input-title-strong">*</span></h3> 
               <input type="password"
+                className="session-input-field"
                 value={this.state.password2}
                 onChange={this.update('password2')}
                 placeholder="Confirm Password"
               />
             <br/>
-            <input type="submit" value="Submit" />
-            {this.renderErrors()}
+            <input className="session-form-submit" type="submit" value="Register" />
+            <div className="session-or-line">
+              <span className="session-or">OR</span>
+            </div>
+            <button className="session-demo-login">🐶 Continue with Demo</button>
+
           </div>
         </form>
       </div>
