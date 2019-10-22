@@ -14,7 +14,7 @@ export default class PetsIndex extends React.Component {
     return (
       <div>
         <ul className="pets-index-item-ul">
-        {petsIndexItem}
+          {petsIndexItem}
         </ul>
       </div>
     )
