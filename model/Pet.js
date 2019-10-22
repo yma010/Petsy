@@ -19,7 +19,7 @@ const PetSchema = new Schema({
     required: true
   },
   weight: {
-    type: Number,
+    type: mongoose.Decimal128,
     required: true
   },
   adoptable: {
@@ -27,7 +27,7 @@ const PetSchema = new Schema({
     default: true
   },
   price: {
-    type: Number,
+    type: mongoose.Decimal128,
     default: 0.00
   },
   owner: {

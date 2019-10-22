@@ -5,7 +5,7 @@ const PetsIndexItem = ({ pets }) => (
 
   <li className="pets-index-item">
 
-    <Link className="pets-index-item-link" to={`/api/pets/${pets.id}`}>
+    <Link className="pets-index-item-link" to={`/pets/${pets._id}`}>
 
       <div className="pets-index-item-details">
 
@@ -14,15 +14,19 @@ const PetsIndexItem = ({ pets }) => (
         </div>
 
         <div className="pets-index-item-name">
-          {pets.name}
+          Name: {pets.name}
         </div>
 
         <div className="pets-index-item-owner">
-          {pets.owner}
+          Owner: {pets.owner == true ? pets.owner : "Petsy Pound" }
         </div>
 
         <div className="pets-index-item-price">
-          {pets.price}
+          Price: {pets.price.$numberDecimal}
+        </div>
+
+        <div className="pets-index-item-price">
+          Adoptable? : {pets.adoptable == true ? "Yes" : "No"}
         </div>
 
       </div>
