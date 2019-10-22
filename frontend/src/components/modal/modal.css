@@ -1,0 +1,174 @@
+.modal-background {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 10;
+  transition: all 5s ease-in-out;
+}
+
+
+/* move login modal to respective .scss */
+.modal-login {
+  position: absolute;
+  width: 370px;
+  height: 720px;
+  left: 50%;
+  top: 30px;
+  transform: translate(-50%);
+  background: white;
+  z-index: 11;
+  border: 1px solid rgba(0, 0, 0, 0.548);
+  border-radius: 3px;
+  overflow-y: auto;
+}
+
+.form-container {
+  padding: 20px;
+}
+
+/* login form text */
+.session-header {
+  font-weight: 550;
+  font-size: 27px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.session-header-subtext {
+  font-size: 14px;
+  font-weight: 350;
+  color: rgba(0, 0, 0, 0.76);
+  margin-top: 5px;
+}
+
+.session-input-title {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 0px;
+}
+
+.session-input-title-strong {
+  color: red;
+}
+
+.session-div-signup {
+  margin-top: 22px;
+}
+
+.session-div-login {
+  margin-top: 40px;
+}
+
+
+.session-input-field {
+  width: 100%;
+  height: 45px;
+  border-radius: 5px;
+  border: 1px solid #E1E3DF;
+}
+
+.session-input-field[type=text] {
+  width: 100%;
+  padding: 15px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+.session-input-field[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+
+.session-input-field:hover {
+  border-color: rgb(187, 187, 187);
+  transition: 0.8s;
+}
+
+.session-input-field:focus {
+  border-color: black;
+  outline: none;
+}
+
+.session-form-submit {
+  width: 100%;
+  height: 55px;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  background: black;
+  border-radius: 5px;
+  margin-top: 15px;
+  border: 1px solid #E1E3DF;
+}
+
+.session-form-submit:hover {
+  background: rgba(0, 0, 0, 0.781);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+
+.session-form-submit:focus {
+  outline: none;
+}
+
+.session-errors {
+  font-size: 14px;
+  color: rgb(192, 0, 0);
+  text-decoration: none;
+  font-weight: 100;
+  /* list-style: none; */
+}
+
+.session-or-line {
+  margin-top: 25px;
+  border-bottom: 2px solid rgba(187, 187, 187, 0.24);
+}
+
+.session-or {
+  position: relative;
+  top: 10px;
+  left: calc(50% - 30px);
+  padding: 20px;
+  background: white;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.479);
+  margin-bottom: 70px;
+}
+
+.session-demo-login {
+  position: relative;
+  top: 20px;
+  margin-top: 20px;
+  width: 100%;
+  height: 55px;
+  font-size: 16px;
+  font-weight: 700;
+  color: black;
+  background: transparent;
+  border-radius: 5px;
+  margin-top: 15px;
+  border: 1px solid rgb(197, 197, 197);
+}
+
+.session-demo-login:hover {
+  border-color: rgba(0, 0, 0, 0.747);
+  transition: 0.8s;
+  cursor: pointer;
+}
+
+.session-demo-text {
+  margin-top: 40px;
+  font-size: 13px;
+  opacity: 0.6;
+}
