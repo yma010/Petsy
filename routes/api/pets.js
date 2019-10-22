@@ -9,13 +9,10 @@ router.get("/test", (req, res) => res.json({
 router.get("/index", (req, res) => {
   Pet.find({})
     .then(pets => {
-      if (!pets) {
-        errors.pets = "No Pets Found!"
-        return res.status(404).json(errors)
-      } else {
         res.json(pets);
-      }
     })
 })
+
+router.post("/register?=pet", (req, res) => {})
 
 module.exports = router;
