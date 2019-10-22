@@ -14,12 +14,16 @@ class NavBar extends React.Component {
     this.props.logout();
   }
 
-  // Selectively render links dependent on whether the user is logged in
+  // Selectively render links dependent on whether the user is logged in (NEED TO ADD WHEN WE DECIDE)
   getLinks() {
     if (this.props.loggedIn) {
       return (
-        <div>
-          {/* Same as below but the Sign in and register buttons will be missing */}
+        <div className="nav-link-container">
+          <Link className="nav-link" to={'/pet/list'}>List on Petsy</Link>
+          <span className="nav-link" onClick={this.props.register}>Register</span>
+          <button className="nav-link sign-in" onClick={this.props.login}>Sign In</button>
+          <Link className="nav-link" to={'/cart'}>Cart</Link>
+          {/* Cart icon will be changed to a kennel(?) */}
         </div>
       );
     } else {
