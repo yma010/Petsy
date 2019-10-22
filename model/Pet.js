@@ -19,17 +19,21 @@ const PetSchema = new Schema({
     required: true
   },
   weight: {
-    type: Number,
+    type: mongoose.Decimal128,
     required: true
   },
   adoptable: {
     type: Boolean,
     default: true
   },
-  owner: [{ 
-    type: Schema.Types.ObjectId, 
-    ref: 'users' 
-    }] 
+  price: {
+    type: mongoose.Decimal128,
+    default: 0.00
+  },
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'users'
+  }
 });
 
 const Pet = mongoose.model("pets", PetSchema);
