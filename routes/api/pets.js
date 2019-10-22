@@ -11,7 +11,15 @@ router.get("/index", (req, res) => {
     .then(pets => {
         res.json(pets);
     })
-})
+});
+
+router.get("/:id", (req, res) => {
+  let id = req.params.id;
+
+  Pet.findById(id, (err, pet) => {
+    res.json(pet);
+  })
+});
 
 router.post("/register", (req, res) => {
   const newPet = new Pet({
@@ -28,5 +36,6 @@ router.post("/register", (req, res) => {
   .then(pet => res.json(pet))
   .catch(err => console.log(err))
 });
+
 
 module.exports = router;

@@ -18,7 +18,7 @@ const PetsIndexItem = ({ pets }) => (
         </div>
 
         <div className="pets-index-item-owner">
-          Owner: {pets.owner == true ? pets.owner : "Petsy Pound" }
+          Owner: {pets.owner === true ? pets.owner : "Petsy Pound" }
         </div>
 
         <div className="pets-index-item-price">
@@ -26,7 +26,7 @@ const PetsIndexItem = ({ pets }) => (
         </div>
 
         <div className="pets-index-item-price">
-          Adoptable? : {pets.adoptable == true ? "Yes" : "No"}
+          Adoptable? : {pets.adoptable === true ? "Yes" : "No"}
         </div>
 
       </div>
