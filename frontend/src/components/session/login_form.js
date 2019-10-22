@@ -18,7 +18,7 @@ class LoginForm extends React.Component {
   // Once the user has been authenticated, redirect to the Tweets page
   componentWillReceiveProps(nextProps) {
     if (nextProps.currentUser === true) {
-      this.props.history.push('/tweets');
+      this.props.history.push('/');
     }
 
     // Set or clear errors
@@ -87,7 +87,7 @@ class LoginForm extends React.Component {
             <div className="session-or-line">
               <span className="session-or">OR</span>
             </div>
-            <button className="session-demo-login">🐶 Continue with Demo</button>
+            <button className="session-demo-login"><span>🐶</span> Continue with Demo</button>
             <p className="session-demo-text">
               Some of the features of Petsy require that you be logged into a session / current user to operate.
               <br/><br/>
