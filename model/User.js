@@ -14,16 +14,16 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  wallet: {
-    type: Number,
-    default: 0
-  },
+  pets: [{
+    type: Schema.Types.ObjectId,
+    ref: 'pets'
+  }],
   date: {
     type: Date,
     default: Date.now
   }
-})
 
+})
 const User = mongoose.model("users", UserSchema);
 
 module.exports = User;

@@ -3,11 +3,14 @@ import { fetchPets } from "../../actions/pets_actions";
 import PetsIndex from "./pets_index";
 
 const msp = state => ({
-  pets: state.entities.pets
+  pets: Object.values(state.entities.pets)
 });
 
 const mdp = dispatch => ({
   fetchPets: () => dispatch(fetchPets())
 });
 
-const PetsIndexContainer = connect(msp, mdp)(PetsIndex)
+export default connect(
+  msp, 
+  mdp
+)(PetsIndex)
