@@ -3,7 +3,6 @@ import PetsIndexItem from "./pets_index_item";
 
 export default class PetsIndex extends React.Component {
   componentDidMount(){
-    debugger;
     this.props.fetchPets()
   }
 

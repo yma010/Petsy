@@ -110,6 +110,11 @@ body {
   line-height: 3.5;
 }
 
+.logged-in {
+  /* adjust width when we add the icon */
+  min-width: 320px; 
+}
+
 .nav-link {
   font-size: 15px;
   text-decoration: none;
@@ -148,7 +153,6 @@ body {
   width: 100%;
   margin-top: 15px;
   border-bottom: 1px solid rgba(34, 34, 34, 0.15);
-  
 }
 
 .category {

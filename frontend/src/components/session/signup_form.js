@@ -16,14 +16,6 @@ class SignupForm extends React.Component {
     this.clearedErrors = false;
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.signedIn === true) {
-      this.props.history.push('/login');
-    }
-
-    this.setState({errors: nextProps.errors})
-  }
-
   update(field) {
     return e => this.setState({
       [field]: e.currentTarget.value
@@ -102,7 +94,7 @@ class SignupForm extends React.Component {
             <div className="session-or-line">
               <span className="session-or">OR</span>
             </div>
-            <button className="session-demo-login">🐶 Continue with Demo</button>
+            <button className="session-demo-login"><span>🐶</span> Continue with Demo</button>
 
           </div>
         </form>

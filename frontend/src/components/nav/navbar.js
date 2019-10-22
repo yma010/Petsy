@@ -18,10 +18,10 @@ class NavBar extends React.Component {
   getLinks() {
     if (this.props.loggedIn) {
       return (
-        <div className="nav-link-container">
+        <div className="nav-link-container logged-in">
           <Link className="nav-link" to={'/pet/list'}>List on Petsy</Link>
-          <span className="nav-link" onClick={this.props.register}>Register</span>
-          <button className="nav-link sign-in" onClick={this.props.login}>Sign In</button>
+          <span className="nav-link">My account</span>
+          <button className="nav-link sign-in" onClick={this.props.logout}>Logout</button>
           <Link className="nav-link" to={'/cart'}>Cart</Link>
           {/* Cart icon will be changed to a kennel(?) */}
         </div>
@@ -52,7 +52,7 @@ class NavBar extends React.Component {
   categoriesBar() {
     return (
       <div className="categories-bar">
-        <Link className="nav-link category" to="/all">
+        <Link className="nav-link category" to="/index">
           All Pets
         </Link>
         <Link className="nav-link category" to="/dogs">
