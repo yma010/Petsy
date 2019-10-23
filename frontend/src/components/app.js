@@ -17,8 +17,7 @@ const App = () => (
     <div className="nav-bar-bottom" />
     <Switch>
         <AuthRoute exact path="/" component={HomePage} />
-        <AuthRoute exact path="/login" component={LoginFormContainer} />
-        <AuthRoute exact path="/signup" component={SignupFormContainer} />
+        <ProtectedRoute path="/" component={HomePage}/>
         <Route path="/index" component={PetsIndexContainer} />
         <Route path="/pets/:petId" component={PetShowContainer} />
     </Switch>
