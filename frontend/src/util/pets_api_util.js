@@ -17,6 +17,10 @@ export const fetchPet = petId => {
 ///api/requests/:petId
 export const createPet = data => {
   return axios.post(`/api/pets/register`, data)
+    .then(function(response) {
+      // console.log(response);
+      return response;
+    })
 };
 
 ///api/requests/:petId

@@ -1,5 +1,7 @@
 import React from "react";
 // import CurrencyInput from 'react-currency-masked-input'
+import { withRouter, Redirect } from 'react-router-dom'
+
 
 export default class CreatePet extends React.Component {
   constructor(props) {
@@ -10,6 +12,7 @@ export default class CreatePet extends React.Component {
       color: '',
       weight: '',
       adoptable: '',
+      sex: '',
       price: '',
       owner: '',
       errors: {}
@@ -20,16 +23,14 @@ export default class CreatePet extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // if (document.getElementById('adoptCheckbox') && document.getElementById('adoptCheckbox').checked) {
-    //   this.setState({ adoptable: Boolean(true) })
-    // } else {
-    //   this.setState({ adoptable: Boolean(false) })
-    // }
-    console.log(this.state.adoptable);
-    // this.setState({ owner: this.props.currentUser.id, errors: this.props.errors });
-    console.log(this.props.errors);
     const petData = Object.assign({}, this.state);
-    this.props.createPet(petData);
+    let petCreation = this.props.createPet(petData).then((response) =>  {
+      if (response.pet.status === 200) {
+        // console.log("PET CREATED!");
+        // console.log(response);
+        this.props.history.push(`/pets/${response.pet.data._id}`);
+      }
+    });
   };
 
   update(field) {
@@ -58,7 +59,7 @@ export default class CreatePet extends React.Component {
           <input type="text" value={this.state.color} onChange={this.update('color')} required />
 
           <h3>Weight</h3>
-          <input type="text" value={this.state.weight} onChange={this.update('weight')} required />
+          <input type="number" value={this.state.weight} onChange={this.update('weight')} required />
 
           <h3>Sex</h3>
           <input type="text" value={this.state.sex} onChange={this.update('sex')} required />
