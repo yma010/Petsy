@@ -16,15 +16,6 @@ class SignupForm extends React.Component {
     this.clearedErrors = false;
   }
 
-  componentWillReceiveProps(nextProps) {
-    let userLogin = {
-      email: this.state.email,
-      password: this.state.password
-    };
-    this.props.login(userLogin);
-    this.setState({errors: nextProps.errors})
-  }
-
   update(field) {
     return e => this.setState({
       [field]: e.currentTarget.value
@@ -40,7 +31,15 @@ class SignupForm extends React.Component {
       password2: this.state.password2
     };
 
-    this.props.signup(user);     
+    this.props.signup(user); 
+    
+    this.setState({errors: this.props.errors})
+    console.log(this.props.errors)
+    let userLogin = {
+      email: this.state.email,
+      password: this.state.password
+    };
+    this.props.login(userLogin);
   }
 
   renderErrors() {

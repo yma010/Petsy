@@ -1,4 +1,5 @@
 import React from 'react';
+
 class HomePage extends React.Component {
 
   render() {
@@ -7,6 +8,8 @@ class HomePage extends React.Component {
         <h1>Petsy Home Page</h1>
         <footer>
           Home page test!
+
+
         </footer>
       </div>
     );

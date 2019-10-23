@@ -8,10 +8,10 @@ export const receiveAllPets = (pets) => ({
   pets
 });
 
-export const receivePet = pet => ({
+export const receivePet = (pet) => ({
   type: RECEIVE_PET,
   pet
-})
+});
 
 export const fetchPets = () => dispatch => {
   APIUtil.fetchPets()
@@ -23,4 +23,10 @@ export const fetchPet = pet => {
     APIUtil.fetchPet(pet)
       .then(pet => dispatch(receivePet(pet)));
   };
+}
+
+export const createPet = (data) => dispatch => {
+  APIUtil.createPet(data)
+    .then(pet => dispatch(receivePet(pet)))
+    .catch(err => console.log(err))
 };

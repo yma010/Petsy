@@ -8,7 +8,7 @@ import HomePage from './home/home_page';
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import PetsIndexContainer from './pets/pets_index_container';
-import PetShowContainer from './pets/pets_show_container';
+import CreatePetContainer from './pets/create_pet_container'
 
 const App = () => (
   <div>
@@ -16,10 +16,9 @@ const App = () => (
     <NavBarContainer />
     <div className="nav-bar-bottom" />
     <Switch>
-        <AuthRoute exact path="/" component={HomePage} />
-        <ProtectedRoute path="/" component={HomePage}/>
-        <Route path="/index" component={PetsIndexContainer} />
-        <Route path="/pets/:petId" component={PetShowContainer} />
+      <Route path="/" component={HomePage} exact />
+      <Route path="/index" component={PetsIndexContainer} />
+      <Route path="/pets/register" component={CreatePetContainer} />
     </Switch>
   </div>
 );
