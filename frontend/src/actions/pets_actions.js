@@ -21,4 +21,5 @@ export const fetchPets = () => dispatch => {
 export const fetchPet = pet => dispatch => {
   APIUtil.fetchPet(pet)
     .then(pet => dispatch(receivePet(pet)))
+    console.log(pet);
 };
