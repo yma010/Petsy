@@ -88,27 +88,33 @@ router.delete("/:petId",
 router.patch("/:requestId/approve",
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    Request.findOneAndUpdate({pet: req.params.requestId, owner: req.user},
+    Request.findOneAndUpdate({pet: req.params.requestId, owner: req.user, status: "pending"},
       {status: "approved"},
       {new: true})
         .then(approvedRequest => {
-          Request.updateMany({ pet: approvedRequest.pet, status: "pending" },
-            { status: "denied" })
-              .then(deniedRequests => {
+          Request.find({ pet: approvedRequest.pet, status: "pending" })
+              .then(otherRequests => {
                 let changedRequests = {};
-                deniedRequests.forEach(deniedRequest => {
-                  changedRequests[deniedRequest.id] = deniedRequest;
+                let deniedPromises = [];
+                otherRequests.forEach(otherRequest => {
+                  otherRequest.status = "denied";
+                   deniedPromises.push(otherRequest.save()
+                    .then(deniedRequest => {
+                      changedRequests[deniedRequest.id] = deniedRequest._doc;
+                    }));
                 });
-                changedRequests[approvedRequest] = approvedRequest;
-
-                return res.json(changedRequests);
+                Promise.all(deniedPromises)
+                  .then(() => {
+                    changedRequests[approvedRequest.id] = approvedRequest;
+                    res.json(changedRequests);
+                  })
               })
                 .catch(err => res.status(500).json({
                   test: "test1"
                 }))
         })
           .catch(err => res.status(500).json({
-            test: "test2"
+            request: "Something went wrong"
           }))
   });
 
