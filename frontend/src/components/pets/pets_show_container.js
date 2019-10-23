@@ -3,10 +3,9 @@ import { fetchPet } from "../../actions/pets_actions";
 import PetShow from "./pets_show";
 
 const msp = (state, ownProps)=> {
-  debugger;
   return ({
-    petId: Object.values(ownProps.match.params.petId),
-    pet: Object.values(state.entities.petId)
+    petId: ownProps.match.params.petId,
+    pet: state.entities.pets[ownProps.match.params.petId]
   });
 };
 

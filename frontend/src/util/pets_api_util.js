@@ -7,9 +7,9 @@ export const fetchPets = () => {
     })
 };
 
-export const fetchPet = petData => {
-  return axios.get("/api/pets/:id", petData)
-    .then(function(response) {
+export const fetchPet = petId => {
+  return axios.get(`/api/pets/${petId}`)
+    .then(function (response) {
       return response.data;
     })
 };

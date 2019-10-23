@@ -11,18 +11,15 @@ class PetShow extends React.Component {
   }
 
   componentDidMount(){
-    this.props.fetchPet(this.props.listingId);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.petId != this.props.match.params.petId) {
-      this.props.fetchPet(this.props.petId);
-    }
+    this.props.fetchPet(this.props.petId);
   }
 
   render(){
     const { pet } = this.props;
-
+    
+    if(!pet){
+      return <div>Loading...</div>;
+    }
     return(
       <div className="pet-show-container">
         {pet.name}

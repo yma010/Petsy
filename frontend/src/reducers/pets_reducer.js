@@ -10,7 +10,7 @@ export default function( state = {}, action ) {
     return merge({}, state, action.pets)
   case RECEIVE_PET:
     const newState = merge({}, state);
-    newState[action.pets.id] = action.pets;
+    newState[action.pet._id] = action.pet;
     return newState;
   default:
     return state;

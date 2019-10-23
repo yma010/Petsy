@@ -18,7 +18,9 @@ export const fetchPets = () => dispatch => {
     .then(pets => dispatch(receiveAllPets(pets)))
 };
 
-export const fetchPet = pet => dispatch => {
-  APIUtil.fetchPet(pet)
-    .then(pet => dispatch(receivePet(pet)))
+export const fetchPet = pet => {
+  return dispatch => {
+    APIUtil.fetchPet(pet)
+      .then(pet => dispatch(receivePet(pet)));
+  };
 };
