@@ -16,6 +16,15 @@ class SignupForm extends React.Component {
     this.clearedErrors = false;
   }
 
+  componentWillReceiveProps(nextProps) {
+    let userLogin = {
+      email: this.state.email,
+      password: this.state.password
+    };
+    this.props.login(userLogin);
+    this.setState({errors: nextProps.errors})
+  }
+
   update(field) {
     return e => this.setState({
       [field]: e.currentTarget.value
@@ -31,7 +40,7 @@ class SignupForm extends React.Component {
       password2: this.state.password2
     };
 
-    this.props.signup(user, this.props.history); 
+    this.props.signup(user);     
   }
 
   renderErrors() {
@@ -94,7 +103,7 @@ class SignupForm extends React.Component {
             <div className="session-or-line">
               <span className="session-or">OR</span>
             </div>
-            <button className="session-demo-login"><span>🐶</span> Continue with Demo</button>
+            <button className="session-demo-login"><span role="img" aria-label="temp">🐶</span> Continue with Demo</button>
 
           </div>
         </form>
