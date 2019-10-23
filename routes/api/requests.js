@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Request = require("../../model/Request");
+const Pet = require("../../model/Pet");
 const passport = require("passport");
 
 router.get("/me",
@@ -30,7 +31,7 @@ router.get("/mypets",
 router.post("/:petId",
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    Pet.findOne({ id: req.params.petId })
+    Pet.findOne({ _id: req.params.petId })
       .then(pet => {
         if (!pet) {
           return res.status(404).json({

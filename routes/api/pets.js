@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Pet = require("../../model/Pet");
+const passport = require("passport");
 
 router.get("/test", (req, res) => res.json({
   msg: "This is the pets route"
@@ -21,7 +22,9 @@ router.get("/:id", (req, res) => {
   })
 });
 
-router.post("/register", (req, res) => {
+router.post("/register",
+  passport.authenticate('jwt', { session: false }),  
+(req, res) => {
   const newPet = new Pet({
     name: req.body.name,
     species: req.body.species,
@@ -30,6 +33,7 @@ router.post("/register", (req, res) => {
     weight: req.body.weight,
     adoptable: req.body.adoptable,
     price: req.body.price,
+    owner: req.user
   });
 
   newPet.save()
