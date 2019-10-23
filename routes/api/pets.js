@@ -16,9 +16,9 @@ router.get("/index", (req, res) => {
 router.get("/:id", (req, res) => {
   let id = req.params.id;
 
-  Pet.findById(id, (err, pet) => {
-    res.json(pet);
-  })
+  Pet.findById(id, function(err, pet) {
+     res.json(pet)
+  });
 });
 
 router.post("/register", (req, res) => {
