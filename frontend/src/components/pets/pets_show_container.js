@@ -1,11 +1,14 @@
 import { connect } from "react-redux";
 import { fetchPet } from "../../actions/pets_actions";
-import PetsShow from "./pets_show";
+import PetShow from "./pets_show";
 
-const msp = (state, ownProps)=> ({
-  petId: Object.values(ownProps.match.params.petId),
-  pet: Object.values(state.entities.petId)
-});
+const msp = (state, ownProps)=> {
+  debugger;
+  return ({
+    petId: Object.values(ownProps.match.params.petId),
+    pet: Object.values(state.entities.petId)
+  });
+};
 
 const mdp = dispatch => ({
   fetchPet: id => dispatch(fetchPet(id))
@@ -14,4 +17,4 @@ const mdp = dispatch => ({
 export default connect(
   msp, 
   mdp
-)(PetsShow)
+)(PetShow)
