@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import "./stylesheets/pets_index.css";
 
 const PetsIndexItem = ({ pets }) => (
 
@@ -25,7 +26,7 @@ const PetsIndexItem = ({ pets }) => (
           Price: {pets.price.$numberDecimal}
         </div>
 
-        <div className="pets-index-item-price">
+        <div className="pets-index-item-adoptable">
           Adoptable? : {pets.adoptable === true ? "Yes" : "No"}
         </div>
 
