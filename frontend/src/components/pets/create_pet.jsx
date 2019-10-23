@@ -20,11 +20,7 @@ export default class CreatePet extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    if (document.getElementById('adoptCheckbox') && document.getElementById('adoptCheckbox').checked) {
-      this.setState({ adoptable: Boolean(true)})
-    } else {
-      this.setState({ adoptable: Boolean(false)})
-    }
+    
     console.log(this.state.adoptable);
     // this.setState({ owner: this.props.currentUser.id, errors: this.props.errors });
     console.log(this.props.errors);
