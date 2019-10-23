@@ -3,7 +3,6 @@ const router = express.Router();
 const Request = require("../../model/Request");
 const Pet = require("../../model/Pet");
 const passport = require("passport");
-const isEqual = require("lodash.isequal");
 
 router.get("/me",
   passport.authenticate('jwt', { session: false }),
@@ -57,21 +56,23 @@ router.post("/:petId",
 
               newRequest.save()
                 .then(request => res.json(request))
-                .catch(err => console.log(err))
+                .catch(err => res.status(500).json({
+                  request: "Request failed, please try again"
+                }))
             }
           })
       })
       .catch(err => res.status(404).json({
-        pet: "Pet not found"
+        request: "Pet not found"
       }))
   });
 
-router.delete("/:petId",
+router.delete("/:requestId",
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Request.findOneAndRemove({
       requestingUser: req.user,
-      pet: req.params.petId
+      _id: req.params.requestId
     })
       .then((request) => {
 
@@ -82,13 +83,15 @@ router.delete("/:petId",
 
         return res.json(response)
       })
-      .catch(err => res.status(500).json(err))
+      .catch(err => res.status(500).json({
+        request: "Request does not exist"
+      }))
   });
 
 router.patch("/:requestId/approve",
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    Request.findOneAndUpdate({pet: req.params.requestId, owner: req.user, status: "pending"},
+    Request.findOneAndUpdate({_id: req.params.requestId , owner: req.user, status: "pending"},
       {status: "approved"},
       {new: true})
         .then(approvedRequest => {
@@ -116,6 +119,22 @@ router.patch("/:requestId/approve",
           .catch(err => res.status(500).json({
             request: "Something went wrong"
           }))
+  });
+
+router.patch("/:requestId/deny",
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Request.findOneAndUpdate({_id: req.params.requestId, owner: req.user},
+      {status: "denied"},
+      {new: true})
+      .then(request => {
+        return res.json({
+          [request.id]: request
+        });
+      })
+      .catch(err => res.status(500).json({
+        request: "Something went wrong"
+      }))
   });
 
 module.exports = router;
