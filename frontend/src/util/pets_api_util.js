@@ -7,4 +7,11 @@ export const fetchPets = () => {
     })
 };
 
+export const fetchPet = petId => {
+  return axios.get(`/api/pets/${petId}`)
+    .then(function (response) {
+      return response.data;
+    })
+};
+
 ///api/requests/:petId

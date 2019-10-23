@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { fetchPets } from "../../actions/pets_actions";
+import { fetchPets, fetchPet } from "../../actions/pets_actions";
 import PetsIndex from "./pets_index";
 
 const msp = state => ({
@@ -7,7 +7,8 @@ const msp = state => ({
 });
 
 const mdp = dispatch => ({
-  fetchPets: () => dispatch(fetchPets())
+  fetchPets: () => dispatch(fetchPets()),
+  fetchPet: id => dispatch(fetchPet(id))
 });
 
 export default connect(
