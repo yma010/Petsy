@@ -22,7 +22,7 @@ class NavBar extends React.Component {
       {this.props.closeModal()} //quick fix
       return (
         <div className="nav-link-container logged-in">
-          <Link className="nav-link" to={'/pet/list'}>List on Petsy</Link>
+          <Link className="nav-link" to={'/pets/register'}>List on Petsy</Link>
           <span className="nav-link">My account</span>
           <button className="nav-link sign-in" onClick={this.props.logout}>Logout</button>
           <Link className="nav-link" to={'/cart'}>Cart</Link>
@@ -32,7 +32,7 @@ class NavBar extends React.Component {
     } else {
       return (
         <div className="nav-link-container">
-          <Link className="nav-link" to={'/pet/list'}>List on Petsy</Link>
+          <Link className="nav-link" to={'/pets/register'}>List on Petsy</Link>
           <span className="nav-link" onClick={this.props.register}>Register</span>
           <button className="nav-link sign-in" onClick={this.props.login}>Sign In</button>
           <Link className="nav-link" to={'/cart'}>Cart</Link> 
@@ -56,25 +56,25 @@ class NavBar extends React.Component {
     return (
       <div className="categories-bar">
         <Link className="nav-link category" to="/index">
-          All Pets
+          All Pets & Animals
         </Link>
         <Link className="nav-link category" to="/dogs">
-          Dogs
+          Dogs & Canines
         </Link>
         <Link className="nav-link category" to="/cats">
-          Cats
+          Cats & Felines
         </Link>
         <Link className="nav-link category" to="/pets1">
-          Pets1
+          Pets1 & Pets1
         </Link>
         <Link className="nav-link category" to="/pets2">
-          Pets2
+          Pets2 & Pets2
         </Link>
         <Link className="nav-link category" to="/pets3">
-          Pets3
+          Pets3 & Pets3
         </Link>
         <Link className="nav-link category" to="/pets4">
-          Pets4
+          Pets4 & Pets4
         </Link>
       </div>
     )

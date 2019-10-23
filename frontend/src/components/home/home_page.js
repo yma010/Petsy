@@ -1,4 +1,5 @@
 import React from 'react';
+
 class HomePage extends React.Component {
 
   render() {
@@ -6,7 +7,7 @@ class HomePage extends React.Component {
       <div>
         <h1>Petsy Home Page</h1>
         <footer>
-          Home page test!
+          Home page (ADD SPLASH)
         </footer>
       </div>
     );
