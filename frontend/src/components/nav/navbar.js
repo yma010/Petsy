@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import HomePage from '../home/home_page';
+import { Route } from 'react-router-dom';
 import './navbar.css';
 
 class NavBar extends React.Component {
@@ -17,6 +19,7 @@ class NavBar extends React.Component {
   // Selectively render links dependent on whether the user is logged in (NEED TO ADD WHEN WE DECIDE)
   getLinks() {
     if (this.props.loggedIn) {
+      {this.props.closeModal()} //quick fix
       return (
         <div className="nav-link-container logged-in">
           <Link className="nav-link" to={'/pet/list'}>List on Petsy</Link>
@@ -44,7 +47,7 @@ class NavBar extends React.Component {
       // Need to fix the button dropping to the bottom when the window size is too small horizontally
       <form className="nav-search-bar">
         <input type="text" className="nav-search-bar-input" placeholder="Search for pets"/>
-        <button className="nav-search-bar-button" value="testbutton">🔍</button>
+        <button className="nav-search-bar-button" value="testbutton"><span role="img" aria-label="temp">🔍</span></button>
       </form>
     )
   }
@@ -82,6 +85,7 @@ class NavBar extends React.Component {
       <div className="nav-container">
         <div className="nav-main">
           <Link to="/" className="nav-logo">Petsy</Link>
+          
           {this.searchBar()}
           
           {this.getLinks()}
