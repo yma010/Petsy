@@ -1,5 +1,6 @@
 import React from "react";
 import PetsIndexItem from "./pets_index_item";
+import './stylesheets/pets_index.css';
 
 export default class PetsIndex extends React.Component {
   componentDidMount(){
@@ -12,11 +13,9 @@ export default class PetsIndex extends React.Component {
     petsIndexItem = this.props.pets.map(pets => (<PetsIndexItem key={pets._id} pets={pets} />));
 
     return (
-      <div>
         <ul className="pets-index-item-ul">
           {petsIndexItem}
         </ul>
-      </div>
     )
   }
 }

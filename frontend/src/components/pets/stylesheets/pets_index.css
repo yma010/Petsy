@@ -1,0 +1,60 @@
+body {
+  margin: 1rem;
+  font: 12px system-ui;
+  font-family: "Graphik Webfont",
+  -apple-system,
+  BlinkMacSystemFont,
+  "Roboto",
+  "Droid Sans",
+  "Segoe UI",
+  "Helvetica",
+  Arial,
+  sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul>li {
+  text-decoration: none;
+  list-style: none;
+}
+
+.pets-index-item-ul{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1rem;
+  box-sizing: border-box;
+}
+
+.pets-index-item{
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: normal;
+}
+
+.pets-index-item>.pets-index-item-link {
+    display: flex;
+    padding: 1.5rem;
+}
+
+.pets-index-item-name{
+  color: #222
+}
+
+.pets-index-item-owner {
+  font-family: "Graphik Webfont",-apple-system,BlinkMacSystemFont,"Roboto","Droid Sans","Segoe UI","Helvetica",Arial,sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: normal;
+}
+
+.pets-index-item-price {
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: normal;
+}
