@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { createPet } from "../../actions/pets_actions";
 import CreatePet from "./create_pet";
-
+import {withRouter} from 'react-router-dom'
 const mapStateToProps = (state) => {
   // let petInfo = { name: '', species: '', color: '', weight: '', adoptable: Boolean(true), price: '', owner: ''};
   
@@ -18,4 +18,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreatePet);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CreatePet));
