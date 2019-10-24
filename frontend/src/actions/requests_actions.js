@@ -7,9 +7,11 @@ export const REMOVE_SENT_REQUEST = "REMOVE_SENT_REQUEST";
 export const APPROVE_RECEIVED_REQUEST = "APPROVE_RECEIVED_REQUEST";
 export const DENY_RECEIVED_REQUEST = "DENY_RECEIVED_REQUEST";
 
-export const receiveSentRequests = sentRequests => ({
+export const receiveSentRequests = ({sentRequests, pets, users}) => ({
   type: RECEIVE_SENT_REQUESTS,
-  sentRequests
+  sentRequests,
+  pets,
+  users
 });
 
 export const receiveReceivedRequests = receivedRequests => ({
@@ -36,4 +38,12 @@ export const approveReceivedRequest =({approved, denied}) ({
 export const denyRecievedRequest = deniedRequest => ({
   type: DENY_RECEIVED_REQUEST,
   deniedRequest
-})
+});
+
+export const fetchSentRequests = () => dispatch => {
+  return APIUtil.requestSentRequests()
+    .then(response => {
+      let requests = response.data;
+      dispatch(receiveSentRequests(requests))
+    })
+}
