@@ -13,6 +13,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     signup: user => dispatch(signup(user)),
+    guestLogin: user => dispatch(login({ email: "honey@thunk.com", password: "hunter2" })),
     login: user => dispatch(login(user))
   }
 }
