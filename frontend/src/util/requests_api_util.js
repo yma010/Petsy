@@ -1,5 +1,23 @@
 import axios from "axios";
 
-export const fetchMyRequests = () => {
-  return axios.get("/api/requests/")
+export const requestSentRequests = () => {
+  return axios.get("/api/requests/me")
+    .then(response => {
+      return response.data
+    });
+};
+
+export const requestReceivedRequests = () => {
+  return axios.get("/api/requests/mypets")
+    .then(response => {
+      return response.data;
+    })
+}
+
+export const sendRequest = petId => {
+  return axios.post(`/api/requests/${petId}`)
+}
+
+export const deleteRequest = petId => {
+  return axios.delete(`/api/requests/${petId}`)
 }
