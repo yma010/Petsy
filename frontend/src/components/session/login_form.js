@@ -15,32 +15,24 @@ class LoginForm extends React.Component {
     this.renderErrors = this.renderErrors.bind(this);
   }
 
-  // Once the user has been authenticated, redirect to the Tweets page
   componentWillReceiveProps(nextProps) {
-    // Set or clear errors
     this.setState({errors: nextProps.errors})
   }
-
-  // Handle field updates (called in the render method)
   update(field) {
     return e => this.setState({
       [field]: e.currentTarget.value
     });
   }
 
-  // Handle form submission
   handleSubmit(e) {
     e.preventDefault();
-
     let user = {
       email: this.state.email,
       password: this.state.password
     };
-
     this.props.login(user); 
   }
 
-  // Render the session errors if there are any
   renderErrors() {
     return(
       <ul className="session-errors">
@@ -83,7 +75,7 @@ class LoginForm extends React.Component {
             <div className="session-or-line">
               <span className="session-or">OR</span>
             </div>
-            <button className="session-demo-login"><span role="img" aria-label="temp">🐶</span> Continue with Demo</button>
+            <button className="session-demo-login" onClick={this.props.guestLogin} ><span role="img" aria-label="temp">🐶</span> Continue with Demo</button>
             <p className="session-demo-text">
               Some of the features of Petsy require that you be logged into a session / current user to operate.
               <br/><br/>
