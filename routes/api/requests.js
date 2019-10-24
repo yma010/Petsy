@@ -3,25 +3,17 @@ const router = express.Router();
 const Request = require("../../model/Request");
 const Pet = require("../../model/Pet");
 const passport = require("passport");
+const { formatPetsData, formatUsersData } = require("./api_util");
+const ObjectId = require("mongoose").Types.ObjectId;
 
 const formatRequest = data => {
   let { pet, owner, requestingUser } = data;
   return {
-  id: data.id,
-  status: data.status,
-  pet,
-  owner,
-  requestingUser
-}};
-
-const formatGetRequest = data => {
-  let { pet, owner, requestingUser } = data;
-  return {
     id: data.id,
     status: data.status,
-    pet: pet.id,
-    owner: owner.id,
-    requestingUser: requestingUser.id
+    pet: ObjectId.isValid(pet) ? pet : pet.id,
+    owner: ObjectId.isValid(owner) ? owner : owner.id,
+    requestingUser: ObjectId.isValid(requestingUser) ? requestingUser : requestingUser.id
 }};
 
 router.get("/me",
@@ -38,25 +30,10 @@ router.get("/me",
         sentRequests.users = {};
         requests.forEach(request => {
           let { pet, owner, requestingUser } = request;
-          sentRequests.sentRequests[request.id] = formatGetRequest(request);
-          sentRequests.pets[pet.id] = {
-            id: pet.id,
-            name: pet.name,
-            sex: pet.sex,
-            color: pet.color,
-            weight: parseFloat(pet.weight.toString()),
-            owner: pet.owner
-          };
-          sentRequests.users[requestingUser.id] = {
-            id: requestingUser.id,
-            username: requestingUser.username,
-            pets: requestingUser.pets
-          };
-          sentRequests.users[owner.id] = {
-            id: owner.id,
-            username: owner.username,
-            pets: owner.pets
-          };
+          sentRequests.sentRequests[request.id] = formatRequest(request);
+          sentRequests.pets[pet.id] = formatPetsData(pet);
+          sentRequests.users[requestingUser.id] = formatUsersData(requestingUser);
+          sentRequests.users[owner.id] = formatUsersData(owner);
         });
         res.json(sentRequests);
       })
@@ -74,25 +51,10 @@ router.get("/mypets",
         receivedRequests.users = {};
         requests.forEach(request => {
           let { pet, owner, requestingUser } = request;
-          receivedRequests.receivedRequests[request.id] = formatGetRequest(request);
-          receivedRequests.pets[pet.id] = {
-            id: pet.id,
-            name: pet.name,
-            sex: pet.sex,
-            color: pet.color,
-            weight: parseFloat(pet.weight.toString()),
-            owner: pet.owner
-          };
-          receivedRequests.users[requestingUser.id] = {
-            id: requestingUser.id,
-            username: requestingUser.username,
-            pets: requestingUser.pets
-          };
-          receivedRequests.users[owner.id] = {
-            id: owner.id,
-            username: owner.username,
-            pets: owner.pets
-          };
+          receivedRequests.receivedRequests[request.id] = formatRequest(request);
+          receivedRequests.pets[pet.id] = formatPetsData(pet);
+          receivedRequests.users[requestingUser.id] = formatUsersData(requestingUser);
+          receivedRequests.users[owner.id] = formatUsersData(owner);
         });
         res.json(receivedRequests);
       })
@@ -126,7 +88,13 @@ router.post("/:petId",
               });
 
               newRequest.save()
-                .then(request => res.json(formatRequest(request)))
+                .then(request => {
+                  res.json({
+                    sentRequest: formatRequest(request),
+                    pet: formatPetsData(pet),
+                    owner: formatUsersData(pet.owner)
+                  })
+                })
                 .catch(err => res.status(500).json({
                   request: "Request failed, please try again"
                 }))
