@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Pet = require("../../model/Pet");
 const passport = require("passport");
+const ObjectID = require('mongodb').ObjectID;
 
 router.get("/test", (req, res) => res.json({
   msg: "This is the pets route"
@@ -39,6 +40,22 @@ router.post("/register",
   newPet.save()
   .then(pet => res.json(pet))
   .catch(err => console.log(err))
+});
+
+
+router.put("/edit/:id", (req, res) => {
+  console.log(req.body);
+  console.log(req.params);
+  let petValues = req.body;
+  let pet_id = req.params.id;
+  Pet.updateOne({ _id: pet_id }, petValues, function(err) {
+    if (!err) {
+      console.log("Pet updated!");
+    } else {
+      console.log("Pet failed to update - check params");
+    }
+  })
+  res.json(petValues);
 });
 
 

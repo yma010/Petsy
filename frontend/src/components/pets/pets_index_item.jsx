@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import "./stylesheets/pets_index.css";
 
 const PetsIndexItem = ({ pets }) => (
-
   <li className="pets-index-item">
 
     <Link className="pets-index-item-link" to={`/pets/${pets._id}`}>

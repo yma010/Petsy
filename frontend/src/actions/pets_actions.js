@@ -1,4 +1,4 @@
-import * as APIUtil from "../util/pets_api_util";
+import * as APIPetUtil from "../util/pets_api_util";
 
 export const RECEIVE_ALL_PETS = "RECEIVE_ALL_PETS";
 export const RECEIVE_PET = "RECEIVE_PET";
@@ -14,24 +14,25 @@ export const receivePet = (pet) => ({
 });
 
 export const fetchPets = () => dispatch => {
-  APIUtil.fetchPets()
+  APIPetUtil.fetchPets()
     .then(pets => dispatch(receiveAllPets(pets)))
 };
 
 export const fetchPet = pet => {
   return dispatch => {
-    APIUtil.fetchPet(pet)
+    APIPetUtil.fetchPet(pet)
       .then(pet => dispatch(receivePet(pet)));
   };
 }
 
 export const createPet = (data) => dispatch => {
-  return APIUtil.createPet(data)
+  return APIPetUtil.createPet(data)
     .then(pet => dispatch(receivePet(pet)))
     .catch(err => console.log(err))
 };
 
-// .then(function (response) {
-//   console.log(response);
-//   return response.data;
-// })
+export const updatePet = (data) => dispatch => {
+  return APIPetUtil.updatePet(data)
+    .then(pet => dispatch(receivePet(pet)))
+    .catch(err => console.log(err))
+};
