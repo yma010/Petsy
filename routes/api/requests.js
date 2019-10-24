@@ -9,9 +9,9 @@ router.get("/me",
   (req, res) => {
     Request.find({ requestingUser: req.user })
       .then(requests => {
-        let requestsObj;
-        requests.forEach(request => requestsObj[request.id] = request);
-        res.json({requestsObj});
+        let sentRequests = {};
+        requests.forEach(request => sentRequests[request.id] = request);
+        res.json(sentRequests);
       })
   }
 );
@@ -19,11 +19,11 @@ router.get("/me",
 router.get("/mypets",
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    Request.find({ owner: req.user })
+    Request.find({ owner: req.user, status: "pending" })
       .then(requests => {
-        let requestsObj;
-        requests.forEach(request => requestsObj[request.id] = request);
-        res.json({ requestsObj });
+        let receivedRequests = {};
+        requests.forEach(request => receivedRequests[request.id] = request);
+        res.json(receivedRequests);
       })
   }
 );
