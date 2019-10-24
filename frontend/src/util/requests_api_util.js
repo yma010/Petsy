@@ -21,3 +21,11 @@ export const sendRequest = petId => {
 export const deleteRequest = petId => {
   return axios.delete(`/api/requests/${petId}`)
 }
+
+export const approveReceivedRequest = requestId => {
+  return axios.patch(`/api/requests/${requestId}`)
+}
+
+export const denyReceivedRequest = requestId => {
+  return axios.patch(`/api/requests/${requestId}`)
+}
