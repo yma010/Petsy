@@ -30,6 +30,14 @@ const PetSchema = new Schema({
     type: mongoose.Decimal128,
     default: 0.00
   },
+  fileLink:{
+    type: String,
+    required: true
+  },
+  s3_key: {
+    type: String,
+    required: true
+  },
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'users'
