@@ -21,9 +21,11 @@ export const receiveReceivedRequests = ({receivedRequests, pets, users}) => ({
   users
 });
 
-export const receiveSentRequest = sentRequest => ({
+export const receiveSentRequest = ({sentRequest, pet, owner}) => ({
   type: RECEIVE_SENT_REQUEST,
-  sentRequest
+  sentRequest,
+  pet,
+  owner
 });
 
 export const removeSentRequest = sentRequestId => ({

@@ -11,7 +11,7 @@ export default (state = {}, action) => {
       return newState;
     case APPROVE_RECEIVED_REQUEST:
       newState = merge({}, state);
-      delete newState[object.keys(action.approved)[0]];
+      delete newState[Object.keys(action.approved)[0]];
       Object.keys(action.denied).forEach(deniedId => {
         delete newState[deniedId];
       });
@@ -19,6 +19,7 @@ export default (state = {}, action) => {
     case DENY_RECEIVED_REQUEST:
       newState = merge({}, state);
       delete newState[action.deniedRequest]
+      return newState;
     default:
       return state;
   }
