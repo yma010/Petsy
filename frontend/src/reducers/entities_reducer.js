@@ -1,9 +1,13 @@
 import { combineReducers } from 'redux';
 // import usersReducer from './users_reducer';
 import petsReducer from './pets_reducer';
+import receivedRequests from "./received_requests_reducer";
+import sentRequests from "./sent_requests_reducer";
 
 
 export default combineReducers({
   // users: usersReducer,
-  pets: petsReducer 
+  pets: petsReducer,
+  receivedRequests,
+  sentRequests
 });
