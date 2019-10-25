@@ -30,6 +30,10 @@ const PetSchema = new Schema({
     type: mongoose.Decimal128,
     default: 0.00
   },
+  image: {
+    type: String,
+    required: true
+  },
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'users'
