@@ -3,15 +3,39 @@ const router = express.Router();
 const Request = require("../../model/Request");
 const Pet = require("../../model/Pet");
 const passport = require("passport");
+const { formatPetsData, formatUsersData } = require("./api_util");
+const ObjectId = require("mongoose").Types.ObjectId;
+
+const formatRequest = data => {
+  let { pet, owner, requestingUser } = data;
+  return {
+    id: data.id,
+    status: data.status,
+    pet: ObjectId.isValid(pet) ? pet : pet.id,
+    owner: ObjectId.isValid(owner) ? owner : owner.id,
+    requestingUser: ObjectId.isValid(requestingUser) ? requestingUser : requestingUser.id
+}};
 
 router.get("/me",
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Request.find({ requestingUser: req.user })
+      .populate("pet")
+      .populate("requestingUser")
+      .populate("owner")
       .then(requests => {
-        let requestsObj;
-        requests.forEach(request => requestsObj[request.id] = request);
-        res.json({requestsObj});
+        let sentRequests = {};
+        sentRequests.sentRequests = {};
+        sentRequests.pets = {};
+        sentRequests.users = {};
+        requests.forEach(request => {
+          let { pet, owner, requestingUser } = request;
+          sentRequests.sentRequests[request.id] = formatRequest(request);
+          sentRequests.pets[pet.id] = formatPetsData(pet);
+          sentRequests.users[requestingUser.id] = formatUsersData(requestingUser);
+          sentRequests.users[owner.id] = formatUsersData(owner);
+        });
+        res.json(sentRequests);
       })
   }
 );
@@ -19,11 +43,23 @@ router.get("/me",
 router.get("/mypets",
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    Request.find({ owner: req.user })
+    Request.find({ owner: req.user, status: "pending" })
+      .populate("pet")
+      .populate("requestingUser")
+      .populate("owner")
       .then(requests => {
-        let requestsObj;
-        requests.forEach(request => requestsObj[request.id] = request);
-        res.json({ requestsObj });
+        let receivedRequests = {};
+        receivedRequests.receivedRequests = {};
+        receivedRequests.pets = {};
+        receivedRequests.users = {};
+        requests.forEach(request => {
+          let { pet, owner, requestingUser } = request;
+          receivedRequests.receivedRequests[request.id] = formatRequest(request);
+          receivedRequests.pets[pet.id] = formatPetsData(pet);
+          receivedRequests.users[requestingUser.id] = formatUsersData(requestingUser);
+          receivedRequests.users[owner.id] = formatUsersData(owner);
+        });
+        res.json(receivedRequests);
       })
   }
 );
@@ -55,7 +91,13 @@ router.post("/:petId",
               });
 
               newRequest.save()
-                .then(request => res.json(request))
+                .then(request => {
+                  res.json({
+                    sentRequest: formatRequest(request),
+                    pet: formatPetsData(pet),
+                    owner: formatUsersData(pet.owner)
+                  })
+                })
                 .catch(err => res.status(500).json({
                   request: "Request failed, please try again"
                 }))
@@ -98,17 +140,19 @@ router.patch("/:requestId/approve",
           Request.find({ pet: approvedRequest.pet, status: "pending" })
               .then(otherRequests => {
                 let changedRequests = {};
+                changedRequests.approved = {};
+                changedRequests.denied = {};
+                changedRequests.approved[approvedRequest.id] = formatRequest(approvedRequest);
                 let deniedPromises = [];
                 otherRequests.forEach(otherRequest => {
                   otherRequest.status = "denied";
                    deniedPromises.push(otherRequest.save()
                     .then(deniedRequest => {
-                      changedRequests[deniedRequest.id] = deniedRequest._doc;
+                      changedRequests.denied[deniedRequest.id] = formatRequest(deniedRequest._doc);
                     }));
                 });
                 Promise.all(deniedPromises)
                   .then(() => {
-                    changedRequests[approvedRequest.id] = approvedRequest;
                     res.json(changedRequests);
                   })
               })
@@ -129,7 +173,7 @@ router.patch("/:requestId/deny",
       {new: true})
       .then(request => {
         return res.json({
-          [request.id]: request
+          [request.id]: formatRequest(request)
         });
       })
       .catch(err => res.status(500).json({
