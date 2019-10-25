@@ -44,9 +44,6 @@ class PetShow extends React.Component {
 
   render() {
     const { pet } = this.props;
-    // debugger
-    console.log(this.props)
-
 
     if (!pet) {
       return <div>Loading...</div>;
