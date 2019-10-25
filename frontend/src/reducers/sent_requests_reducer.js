@@ -13,7 +13,7 @@ export default (state = {}, action) => {
       newState = merge({}, state, {[action.sentRequest.id]: action.sentRequest});
       return newState;
     case REMOVE_SENT_REQUEST:
-      newState = merge({}, state);
+      newState = Object.assign({}, state);
       delete newState[action.sentRequestId];
       return newState;
     default:

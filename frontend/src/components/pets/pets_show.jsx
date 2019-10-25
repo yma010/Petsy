@@ -3,6 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./stylesheets/pet_show.css";
 import Slider from "react-slick";
+import { Link } from 'react-router-dom';
 import EditPetContainer from './edit_pet_container'
 
 class PetShow extends React.Component {
@@ -20,6 +21,7 @@ class PetShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchPet(this.props.petId);
+    this.props.fetchSentRequests();
     this.setState({
       clicked: false
     });
@@ -45,8 +47,8 @@ class PetShow extends React.Component {
     }
   }
 
- 
- 
+
+
   render() {
     const { pet } = this.props;
 
@@ -78,93 +80,55 @@ class PetShow extends React.Component {
       ]
     }
 
+    let optionalItem;
 
     if (!pet) {
       return <div>Loading...</div>;
-    } else if (this.props.loggedIn && this.props.currentUser
-      && (this.props.currentUser === this.props.pet.owner)) {
-      return (
-        <div className="pet-show-container">
-
-          <div className="pet-show-container">
-            <Slider {...settings}>
-              <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
-              <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
-              <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
-              <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
-              <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
-            </Slider>
-            <div className="pet-show-details">
-              <div className="pet-show-name">
-                {pet.name}
-              </div>
-              <div className="pet-show-price">
-                {pet.price.$numberDecimal}
-              </div>
-              <div className="a-lie">
-                Free shipping to United States
-          </div>
-              <div className="pet-show-color">
-                Color: {pet.color.toUpperCase()}
-              </div>
-              <div className="pet-show-weight">
-                Weight: {pet.weight.$numberDecimal} lbs
-              </div>
-
-              <div className="pet-show-adoptable">
-                Adoptable? {pet.adoptable + ''}
-              </div>
-
-            </div>
-          </div>
-    )
-      
-                Current user found, access to edit pet given!
-          <button onClick={this.handleClick}>EDIT PET TEST</button>
-          {this.state.clicked ? <EditPetContainer pet={this.props.pet} /> : null}
-        </div>
-      )
-    } else {
-      return (
-        <div className="pet-show-container">
-
-          <div className="pet-show-container">
-            <Slider {...settings}>
-              <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
-              <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
-              <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
-              <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
-              <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
-            </Slider>
-            <div className="pet-show-details">
-              <div className="pet-show-name">
-                {pet.name}
-              </div>
-              <div className="pet-show-price">
-                {pet.price.$numberDecimal}
-              </div>
-              <div className="a-lie">
-                Free shipping to United States
-          </div>
-              <div className="pet-show-color">
-                Color: {pet.color.toUpperCase()}
-              </div>
-              <div className="pet-show-weight">
-                Weight: {pet.weight.$numberDecimal} lbs
-          </div>
-
-              <div className="pet-show-adoptable">
-                Adoptable? {pet.adoptable + ''}
-              </div>
-
-            </div>
-          </div>
-    )
-        </div>
-      )
     }
-
-
+    if (this.props.loggedIn && this.props.currentUser
+      && (this.props.currentUser === this.props.pet.owner)) {
+      optionalItem =
+        <div>
+          <button onClick={this.handleClick}>Edit Pet Listing</button>
+          {this.state.clicked ? <EditPetContainer pet={this.props.pet} /> : null}
+        </div>;
+    } else if (this.props.loggedIn && this.props.currentUser
+      && (this.props.currentUser !== this.props.pet.owner)) {
+      if (!this.props.requestedPets.includes(pet.id)) {
+        optionalItem = <button onClick={this.props.requestPet}>Request Pet</button>
+      } else {
+        optionalItem = <p>{pet.name} has been added to your shopping kennel, please wait for approval.</p>
+      }
+    }
+    return (
+      <div className="pet-show-container">
+        <Slider {...settings}>
+          <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
+          <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
+          <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
+          <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
+          <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
+        </Slider>
+        <div className="pet-show-details">
+          <div className="pet-show-name">
+            {pet.name}
+          </div>
+          <div className="pet-show-price">
+            ${pet.price}
+          </div>
+          <div className="a-lie">
+            Free shipping to United States
+          </div>
+          <div className="pet-show-color">
+            Color: {pet.color.toUpperCase()}
+          </div>
+          <div className="pet-show-weight">
+            Weight: {pet.weight} lbs
+          </div>
+          {optionalItem}
+        </div>
+      </div>
+    )
   }
 }
 

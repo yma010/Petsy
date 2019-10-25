@@ -5,7 +5,7 @@ import "./stylesheets/pets_index.css";
 const PetsIndexItem = ({ pets }) => (
   <li className="pets-index-item">
 
-    <Link className="pets-index-item-link" to={`/pets/${pets._id}`}>
+    <Link className="pets-index-item-link" to={`/pets/${pets.id}`}>
 
       <div className="pets-index-item-details">
 
@@ -22,7 +22,7 @@ const PetsIndexItem = ({ pets }) => (
         </div>
 
         <div className="pets-index-item-price">
-          Price: {pets.price.$numberDecimal}
+          Price: {pets.price}
         </div>
 
         <div className="pets-index-item-adoptable">
