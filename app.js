@@ -1,15 +1,18 @@
-const express = require("express");
-const path = require('path');
+const express = require("express"),
+path = require('path'),
+app = express(),
+bodyParser = require('body-parser'),
+mongoose = require("mongoose");
+
+const db = require("./config/keys").mongoURI,
+users = require("./routes/api/users"),
+pets = require("./routes/api/pets"),
+requests = require("./routes/api/requests"),
+passport = require("passport"),
+image_upload = require("./routes/api/image_upload");
+require("./config/passport")(passport);
+
 const router = express.Router();
-const app = express();
-const mongoose = require("mongoose");
-const db = require("./config/keys").mongoURI;
-const bodyParser = require('body-parser');
-const users = require("./routes/api/users");
-const pets = require("./routes/api/pets");
-const requests = require("./routes/api/requests");
-const passport = require("passport");
-const image_upload = require("./routes/api/image_upload")
 
 mongoose
   .connect(db, { useNewUrlParser: true})
@@ -19,8 +22,8 @@ mongoose
 app.use(bodyParser.urlencoded({
   extended: false
 }));
+
 app.use(passport.initialize());
-require("./config/passport")(passport);
 app.use(bodyParser.json());
 app.use("/api/users", users);
 app.use("/api/pets", pets);
