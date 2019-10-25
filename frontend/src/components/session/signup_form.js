@@ -16,6 +16,10 @@ class SignupForm extends React.Component {
     this.clearedErrors = false;
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ errors: nextProps.errors })
+  }
+
   update(field) {
     return e => this.setState({
       [field]: e.currentTarget.value
@@ -31,15 +35,13 @@ class SignupForm extends React.Component {
       password2: this.state.password2
     };
 
-    this.props.signup(user); 
-    
     this.setState({errors: this.props.errors})
-    console.log(this.props.errors)
-    let userLogin = {
-      email: this.state.email,
-      password: this.state.password
-    };
-    this.props.login(userLogin);
+    const userData = Object.assign({}, user)
+    this.props.signup(userData).then((response) => {
+      if (response.data && response.data.status === 200) {
+        this.props.login({ email: this.state.email, password: this.state.password });
+      }
+    });
   }
 
   renderErrors() {
@@ -55,9 +57,10 @@ class SignupForm extends React.Component {
   }
 
   render() {
+    
     return (
       <div className="modal-login">
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <div className="form-container">
 
             <h1 className="session-header">Create your account</h1>
@@ -98,11 +101,11 @@ class SignupForm extends React.Component {
                 placeholder="Confirm Password"
               />
             <br/>
-            <input className="session-form-submit" type="submit" value="Register" />
+            <input className="session-form-submit" type="submit" value="Register" onClick={this.handleSubmit}/>
             <div className="session-or-line">
               <span className="session-or">OR</span>
             </div>
-            <button className="session-demo-login"><span role="img" aria-label="temp">🐶</span> Continue with Demo</button>
+            <button className="session-demo-login" onClick={this.props.guestLogin} ><span role="img" aria-label="temp">🐶</span> Continue with Demo</button>
 
           </div>
         </form>

@@ -1,20 +1,11 @@
 import React from "react";
-// import CurrencyInput from 'react-currency-masked-input'
 
-export default class CreatePet extends React.Component {
+export default class EditPet extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      name: '',
-      species: '',
-      color: '',
-      weight: '',
-      adoptable: '',
-      sex: '',
-      price: '',
-      owner: '',
-      errors: {}
-    }
+
+    
+    this.state = this.props.pet;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clearedErrors = false;
   };
@@ -22,8 +13,11 @@ export default class CreatePet extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const petData = Object.assign({}, this.state);
-    this.props.createPet(petData).then((response) =>  {
+    let petCreation = this.props.updatePet(petData).then((response) => {
       if (response.pet.status === 200) {
+        console.log("PET EDITED!");
+        console.log(response);
+        window.location.reload();
         this.props.history.push(`/pets/${response.pet.data._id}`);
       }
     });
@@ -34,6 +28,8 @@ export default class CreatePet extends React.Component {
   };
 
   render() {
+
+    // debugger
     if (document.getElementById('adoptCheckbox') && document.getElementById('adoptCheckbox').checked) {
       console.log("checked")
       this.state.adoptable = Boolean(true);
@@ -41,7 +37,7 @@ export default class CreatePet extends React.Component {
       this.state.adoptable = Boolean(false);
       console.log("unchecked")
     }
-
+    // debugger
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -55,7 +51,7 @@ export default class CreatePet extends React.Component {
           <input type="text" value={this.state.color} onChange={this.update('color')} required />
 
           <h3>Weight</h3>
-          <input type="number" value={this.state.weight} onChange={this.update('weight')} required />
+          <input type="number" value={this.state.weight.$numberDecimal} onChange={this.update('weight')} required />
 
           <h3>Sex</h3>
           <input type="text" value={this.state.sex} onChange={this.update('sex')} required />
@@ -68,9 +64,9 @@ export default class CreatePet extends React.Component {
             onChange={this.update('adoptable')} />
 
           <h3>Price</h3>
-          <input type="number" value={this.state.price} onChange={this.update('price')} />
+          <input type="number" value={this.state.price.$numberDecimal} onChange={this.update('price')} />
 
-          <input type="submit" value="Create pet listing" />
+          <input type="submit" value="Edit pet listing" />
 
         </form>
 
