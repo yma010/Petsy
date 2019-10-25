@@ -94,12 +94,11 @@ class PetShow extends React.Component {
         </div>;
     } else if (this.props.loggedIn && this.props.currentUser
       && (this.props.currentUser !== this.props.pet.owner)) {
-        if (this.props.requestedPets.includes(pet)) {
+        if (!this.props.requestedPets.includes(pet.id)) {
           optionalItem = <button onClick={ this.props.requestPet }>Request Pet</button>
         } else {
           optionalItem = <p>{ pet.name } has been added to your shopping kennel, please wait for approval.</p>
         }
-        
       }
     return (
       <div className="pet-show-container">
@@ -115,7 +114,7 @@ class PetShow extends React.Component {
             {pet.name}
           </div>
           <div className="pet-show-price">
-            {pet.price.$numberDecimal}
+            ${pet.price}
           </div>
           <div className="a-lie">
             Free shipping to United States
@@ -124,11 +123,10 @@ class PetShow extends React.Component {
             Color: {pet.color.toUpperCase()}
           </div>
           <div className="pet-show-weight">
-            Weight: {pet.weight.$numberDecimal} lbs
+            Weight: {pet.weight} lbs
           </div>
           {optionalItem}
         </div>
-        
       </div>
       )
   }

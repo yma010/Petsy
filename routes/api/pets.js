@@ -3,6 +3,7 @@ const router = express.Router();
 const Pet = require("../../model/Pet");
 const passport = require("passport");
 const ObjectID = require('mongodb').ObjectID;
+const formatPetsData = require("./api_util").formatPetsData;
 
 router.get("/test", (req, res) => res.json({
   msg: "This is the pets route"
@@ -11,7 +12,9 @@ router.get("/test", (req, res) => res.json({
 router.get("/index", (req, res) => {
   Pet.find({})
     .then(pets => {
-        res.json(pets);
+      let petsObj = {};
+      pets.forEach(pet => petsObj[pet._id] = formatPetsData(pet));
+      res.json(petsObj);
     })
 });
 
@@ -19,7 +22,8 @@ router.get("/:id", (req, res) => {
   let id = req.params.id;
 
   Pet.findById(id, function(err, pet) {
-     res.json(pet)
+    console.log(pet);
+    res.json(formatPetsData(pet))
   });
 });
 

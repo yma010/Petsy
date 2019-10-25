@@ -10,7 +10,7 @@ export default class PetsIndex extends React.Component {
   render() {
     let petsIndexItem;
     
-    petsIndexItem = this.props.pets.map(pets => (<PetsIndexItem key={pets._id} pets={pets} />));
+    petsIndexItem = this.props.pets.map(pets => (<PetsIndexItem key={pets.id} pets={pets} />));
 
 
     return (

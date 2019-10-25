@@ -25,7 +25,7 @@ export default class ShoppingKennel extends React.Component {
               { pet.name }
             </li>
             <li className="pet-show-price">
-              { pet.price }
+              ${ pet.price }
             </li>
             <li className="a-lie">
               Free shipping to United States

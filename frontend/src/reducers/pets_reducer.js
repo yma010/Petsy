@@ -11,7 +11,7 @@ export default function( state = {}, action ) {
     return merge({}, state, action.pets)
   case RECEIVE_PET:
     newState = merge({}, state);
-    newState[action.pet._id] = action.pet;
+    newState[action.pet.id] = action.pet;
     return newState;
   case RECEIVE_RECEIVED_REQUESTS:
     newState = merge({}, state, action.pets);
