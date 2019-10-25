@@ -3,7 +3,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./stylesheets/pet_show.css";
 import Slider from "react-slick";
-import { Link } from 'react-router-dom';
 import EditPetContainer from './edit_pet_container'
 
 class PetShow extends React.Component {
@@ -110,7 +109,11 @@ class PetShow extends React.Component {
               </div>
               <div className="pet-show-weight">
                 Weight: {pet.weight.$numberDecimal} lbs
-          </div>
+              </div>
+
+              <div className="pet-show-adoptable">
+                Adoptable? {pet.adoptable + ''}
+              </div>
 
             </div>
           </div>
@@ -149,6 +152,10 @@ class PetShow extends React.Component {
               <div className="pet-show-weight">
                 Weight: {pet.weight.$numberDecimal} lbs
           </div>
+
+              <div className="pet-show-adoptable">
+                Adoptable? {pet.adoptable + ''}
+              </div>
 
             </div>
           </div>

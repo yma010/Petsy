@@ -10,7 +10,7 @@ export default class CreatePet extends React.Component {
       species: '',
       color: '',
       weight: '',
-      adoptable: '',
+      adoptable: Boolean(true),
       sex: '',
       price: '',
       owner: '',
@@ -18,6 +18,7 @@ export default class CreatePet extends React.Component {
       errors: {}
     }
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleAdoptable = this.handleAdoptable.bind(this);
     this.clearedErrors = false;
   };
 
@@ -25,8 +26,11 @@ export default class CreatePet extends React.Component {
     e.preventDefault();
     const petData = Object.assign({}, this.state);
 
-    //dummy var push
-    // this.state.image = "";
+    if (document.getElementById('adoptCheckbox') && document.getElementById('adoptCheckbox').checked) {
+      this.setState({ adoptable: Boolean(true) });
+    } else {
+      this.setState({ adoptable: Boolean(false) });
+    }
     this.props.createPet(petData).then((response) =>  {
       if (response.pet.status === 200) {
         this.props.history.push(`/pets/${response.pet.data._id}`);
@@ -37,16 +41,18 @@ export default class CreatePet extends React.Component {
   update(field) {
     return (e) => { this.setState({ [field]: e.target.value }) };
   };
+
+  handleAdoptable() {
+    if (document.getElementById('adoptCheckbox') && document.getElementById('adoptCheckbox').checked) {
+      this.setState({ adoptable: Boolean(true) });
+    } else {
+
+      this.setState({ adoptable: Boolean(false) });
+    }
+  }
   
 
   render() {
-    if (document.getElementById('adoptCheckbox') && document.getElementById('adoptCheckbox').checked) {
-      console.log("checked")
-      this.state.adoptable = Boolean(true);
-    } else {
-      this.state.adoptable = Boolean(false);
-      console.log("unchecked")
-    }
 
     if (this.props.loggedIn)
     {
@@ -100,11 +106,10 @@ export default class CreatePet extends React.Component {
 
               <label className="container">
               <input type="checkbox" 
-                value="adopt"
                 id="adoptCheckbox"
-                defaultChecked="checked"
-                value="true"
-                  onChange={this.update('adoptable')} />
+                onChange={this.handleAdoptable}
+                checked={(this.state.adoptable) ? "checked" : ""}
+                     />
                 <span className="checkmark"></span>
                 </label>
 
