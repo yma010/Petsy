@@ -11,7 +11,8 @@ const msp = (state) => {
       request.owner = state.entities.users[request.owner];
       request.requestingUser = state.entities.users[request.requestingUser];
       return request;
-    })
+    }),
+    loggedIn: state.session.isAuthenticated
   }
 };
 

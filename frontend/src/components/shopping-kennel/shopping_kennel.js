@@ -6,16 +6,33 @@ export default class ShoppingKennel extends React.Component {
   }
   
   render() {
-    let { sentRequests } = this.props;
+    let { sentRequests, loggedIn } = this.props;
+    console.log(this.props);
+    if (!loggedIn) {
+      return (
+        <div className="create-pet-form">
+          You must be logged in to view the kennel
+        </div>
+      )
+    };
+
     if (!sentRequests) return (
       <div>
         Loading...
       </div>
     );
 
-    console.log(sentRequests);
     let sentRequestUls = sentRequests.map(sentRequest => {
       let { pet, owner } = sentRequest;
+      let statusInteraction;
+
+      if (sentRequest.status === "pending") {
+        statusInteraction = <button onClick={ () => this.props.deleteRequest(sentRequest.id) } >
+            Cancel Request
+          </button>
+      } else {
+        statusInteraction = <p>Your request has been { sentRequest.status }</p>
+      }
       return (
         <div className="request-listing">
           <ul className="pet-show.details">
@@ -41,9 +58,7 @@ export default class ShoppingKennel extends React.Component {
           <ul className="request-owner-listing">
             <li>Owned by: { owner.username }</li>
           </ul>
-          <button onClick={ () => this.props.deleteRequest(sentRequest.id) } >
-            Cancel Request
-          </button>
+          { statusInteraction }
         </div>
       )
     })
