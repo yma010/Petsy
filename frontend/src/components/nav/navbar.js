@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import HomePage from '../home/home_page';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import './navbar.css';
 
 class NavBar extends React.Component {
@@ -14,6 +14,8 @@ class NavBar extends React.Component {
   logoutUser(e) {
     e.preventDefault();
     this.props.logout();
+    return <Redirect to="/"/>
+
   }
 
   // Selectively render links dependent on whether the user is logged in (NEED TO ADD WHEN WE DECIDE)
