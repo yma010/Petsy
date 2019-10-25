@@ -114,6 +114,8 @@ export default class CreatePet extends React.Component {
               <p className="form-field-description-text">What are the adoption fees or sponsorship price?</p>
             </div>
 
+            <div className="form-end-spacer"/>
+
               <div className="form-field-nav-submit">
                 <p className="form-field-description-text submit-text">By clicking Create pet listing, you are agreeing to either put your pet up for adoption or make available for sponsorships. </p>
                 <input className="form-submit" type="submit" value="Create pet listing" />

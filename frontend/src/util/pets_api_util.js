@@ -22,7 +22,6 @@ export const createPet = data => {
 };
 
 export const updatePet = data => {
-  // debugger
   return axios.put(`/api/pets/edit/${data._id}`, data)
     .then(function(response) {
       return response;
