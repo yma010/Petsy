@@ -13,9 +13,8 @@ export default class ShoppingKennel extends React.Component {
       </div>
     );
 
-    let sentRequestUls;
-    if (sentRequests.length !== 0 && sentRequests[0].pet) {
-      sentRequestUls = sentRequests.map(sentRequest => {
+    console.log(sentRequests);
+    let sentRequestUls = sentRequests.map(sentRequest => {
       let { pet, owner } = sentRequest;
       return (
         <div className="request-listing">
@@ -48,9 +47,6 @@ export default class ShoppingKennel extends React.Component {
         </div>
       )
     })
-  } else {
-    this.props.fetchSentRequests();
-  }
     return (
       <div>
         { sentRequestUls }

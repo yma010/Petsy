@@ -6,10 +6,11 @@ import ShoppingKennel from "./shopping_kennel";
 const msp = (state) => {
   return {
     sentRequests: Object.values(state.entities.sentRequests).map(sentRequest => {
-      sentRequest.pet = state.entities.pets[sentRequest.pet];
-      sentRequest.owner = state.entities.users[sentRequest.owner];
-      sentRequest.requestingUser = state.entities.users[sentRequest.requestingUser];
-      return sentRequest;
+      const request = Object.assign({}, sentRequest);
+      request.pet = state.entities.pets[request.pet];
+      request.owner = state.entities.users[request.owner];
+      request.requestingUser = state.entities.users[request.requestingUser];
+      return request;
     })
   }
 };
