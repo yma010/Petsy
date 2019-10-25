@@ -14,6 +14,7 @@ export default class CreatePet extends React.Component {
       sex: '',
       price: '',
       owner: '',
+      image: '',
       errors: {}
     }
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,6 +24,9 @@ export default class CreatePet extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const petData = Object.assign({}, this.state);
+
+    //dummy var push
+    // this.state.image = "";
     this.props.createPet(petData).then((response) =>  {
       if (response.pet.status === 200) {
         this.props.history.push(`/pets/${response.pet.data._id}`);
