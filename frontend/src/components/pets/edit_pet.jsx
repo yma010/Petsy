@@ -7,15 +7,16 @@ export default class EditPet extends React.Component {
     
     this.state = this.props.pet;
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleAdoptable = this.handleAdoptable.bind(this);
     this.clearedErrors = false;
   };
 
   handleSubmit(e) {
     e.preventDefault();
     const petData = Object.assign({}, this.state);
-    let petCreation = this.props.updatePet(petData).then((response) => {
+    this.props.updatePet(petData).then((response) => {
       if (response.pet.status === 200) {
-        window.location.reload();
+        // window.location.reload();
         this.props.history.push(`/pets/${response.pet.data._id}`);
       }
     });
@@ -25,17 +26,17 @@ export default class EditPet extends React.Component {
     return (e) => { this.setState({ [field]: e.target.value }) };
   };
 
+  handleAdoptable(){
+    if (document.getElementById('adoptCheckbox') && document.getElementById('adoptCheckbox').checked) {
+      this.setState({ adoptable: Boolean(true) });
+    } else {
+
+      this.setState({ adoptable: Boolean(false) });
+    }
+  }
+
   render() {
 
-    // debugger
-    if (document.getElementById('adoptCheckbox') && document.getElementById('adoptCheckbox').checked) {
-      console.log("checked")
-      this.state.adoptable = Boolean(true);
-    } else {
-      this.state.adoptable = Boolean(false);
-      console.log("unchecked")
-    }
-    // debugger
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -55,11 +56,12 @@ export default class EditPet extends React.Component {
           <input type="text" value={this.state.sex} onChange={this.update('sex')} required />
 
           <h3>Adoptable</h3>
-          <input type="checkbox" value="adopt"
+          <input type="checkbox"
             id="adoptCheckbox"
-            defaultChecked="checked"
-            value="true"
-            onChange={this.update('adoptable')} />
+            value={this.props.adoptable}
+            onChange={this.handleAdoptable}
+            checked={ (this.state.adoptable) ? "checked" : "" }
+            />
 
           <h3>Price</h3>
           <input type="number" value={this.state.price.$numberDecimal} onChange={this.update('price')} />

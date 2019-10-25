@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import HomePage from '../home/home_page';
-import { Route, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import './navbar.css';
 
 class NavBar extends React.Component {
@@ -21,7 +20,8 @@ class NavBar extends React.Component {
   // Selectively render links dependent on whether the user is logged in (NEED TO ADD WHEN WE DECIDE)
   getLinks() {
     if (this.props.loggedIn) {
-      {this.props.closeModal()} //quick fix
+      this.props.closeModal()
+       //quick fix
       return (
         <div className="nav-link-container logged-in">
           <Link className="nav-link" to={'/pets/register'}>List on Petsy</Link>
