@@ -14,7 +14,6 @@ export default class ShoppingKennel extends React.Component {
     );
 
     let sentRequestUls;
-    console.log(sentRequests);
     if (sentRequests.length !== 0 && sentRequests[0].pet) {
       sentRequestUls = sentRequests.map(sentRequest => {
       let { pet, owner } = sentRequest;
