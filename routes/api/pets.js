@@ -4,6 +4,7 @@ const Pet = require("../../model/Pet");
 const passport = require("passport");
 const ObjectID = require('mongodb').ObjectID;
 const formatPetsData = require("./api_util").formatPetsData;
+const validatePetInput = require("../../validations/pet");
 
 router.get("/test", (req, res) => res.json({
   msg: "This is the pets route"
@@ -28,8 +29,14 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/register",
-  passport.authenticate('jwt', { session: false }),  
-(req, res) => {
+  passport.authenticate('jwt', { session: false }), (req, res) => {
+  
+  const { errors, isValid } = validatePetInput(req.body);
+
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   const newPet = new Pet({
     name: req.body.name,
     species: req.body.species,
