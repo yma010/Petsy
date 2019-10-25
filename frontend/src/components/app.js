@@ -9,6 +9,7 @@ import PetShowContainer from './pets/pets_show_container';
 import EditPetContainer from './pets/edit_pet_container';
 import ShoppingKennelContainer from './shopping-kennel/shopping_kennel_container';
 import { ProtectedRoute } from "../util/route_util";
+import ShoppingKennelReviewContainer from './shopping-kennel/shopping_kennel_review_container';
 
 const App = () => (
   <div>
@@ -21,7 +22,8 @@ const App = () => (
       <Route path="/pets/register" component={CreatePetContainer} />
       <Route path="/pets/edit/:editPetId" component={EditPetContainer} />
       <Route path="/pets/:petId" component={PetShowContainer} />
-      <ProtectedRoute path="/cart" component={ ShoppingKennelContainer } />
+      <Route path="/cart" component={ ShoppingKennelContainer } />
+      <ProtectedRoute path="/requests" component={ ShoppingKennelReviewContainer } />
     </Switch>
   </div>
 );

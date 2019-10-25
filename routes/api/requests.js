@@ -114,7 +114,8 @@ router.delete("/:requestId",
   (req, res) => {
     Request.findOneAndRemove({
       requestingUser: req.user,
-      _id: req.params.requestId
+      _id: req.params.requestId,
+      status: "pending"
     })
       .then((request) => {
 
