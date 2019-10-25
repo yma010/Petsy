@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { fetchSentRequests } from "../../actions/requests_actions";
+import { fetchSentRequests, deleteRequest } from "../../actions/requests_actions";
 import ShoppingKennel from "./shopping_kennel";
 
 
@@ -16,7 +16,8 @@ const msp = (state) => {
 
 const mdp = (dispatch) => {
   return {
-    fetchSentRequests: () => dispatch(fetchSentRequests())
+    fetchSentRequests: () => dispatch(fetchSentRequests()),
+    deleteRequest: requestId => dispatch(deleteRequest(requestId))
   }
 };
 

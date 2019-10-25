@@ -71,8 +71,8 @@ export const sendRequest = petId => dispatch => {
     .catch(err => console.log(err))
 }
 
-export const deleteRequest = petId => dispatch => {
-  return APIUtil.deleteRequest(petId)
+export const deleteRequest = requestId => dispatch => {
+  return APIUtil.deleteRequest(requestId)
     .then(response => {
       let sentRequestId = response.data.id;
       dispatch(removeSentRequest(sentRequestId))
