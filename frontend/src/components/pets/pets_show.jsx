@@ -78,29 +78,77 @@ class PetShow extends React.Component {
     };
     
 
-
+ 
+ 
   render() {
     const { pet } = this.props;
-    // debugger
-    console.log(this.props)
+
+    const settings = {
+      dots: true,
+      infinite: true,
+      centerMode: true,
+      centerPadding: '60px',
+      slidesToShow: 1,
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            arrows: true,
+            centerMode: true,
+            centerPadding: '40px',
+            slidesToShow: 1
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            arrows: true,
+            centerMode: true,
+            centerPadding: '40px',
+            slidesToShow: 1
+          }
+        }
+      ]
+    }
 
 
     if (!pet) {
       return <div>Loading...</div>;
-    } else if (this.props.loggedIn && this.props.currentUser 
-        && (this.props.currentUser === this.props.pet.owner)) {
+    } else if (this.props.loggedIn && this.props.currentUser
+      && (this.props.currentUser === this.props.pet.owner)) {
       return (
         <div className="pet-show-container">
-          
-          {/* debug */}
-          <ul>
-            <li>NAME: {pet.name}</li>
-            <li>SPECIES: {pet.species}</li>
-            <li>COLOR: {pet.color}</li>
-            <li>SEX: {pet.sex}</li>
-          
-          </ul>
-          Current user found, access to edit pet given!
+
+          <div className="pet-show-container">
+            <Slider {...settings}>
+              <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
+              <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
+              <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
+              <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
+              <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
+            </Slider>
+            <div className="pet-show-details">
+              <div className="pet-show-name">
+                {pet.name}
+              </div>
+              <div className="pet-show-price">
+                {pet.price.$numberDecimal}
+              </div>
+              <div className="a-lie">
+                Free shipping to United States
+          </div>
+              <div className="pet-show-color">
+                Color: {pet.color.toUpperCase()}
+              </div>
+              <div className="pet-show-weight">
+                Weight: {pet.weight.$numberDecimal} lbs
+          </div>
+
+            </div>
+          </div>
+    )
+      
+                Current user found, access to edit pet given!
           <button onClick={this.handleClick}>EDIT PET TEST</button>
           {this.state.clicked ? <EditPetContainer pet={this.props.pet} /> : null}
         </div>
@@ -109,18 +157,39 @@ class PetShow extends React.Component {
       return (
         <div className="pet-show-container">
 
-          {/* debug */}
-          <ul>
-            <li>NAME: {pet.name}</li>
-            <li>SPECIES: {pet.species}</li>
-            <li>COLOR: {pet.color}</li>
-            <li>SEX: {pet.sex}</li>
-          </ul>
+          <div className="pet-show-container">
+            <Slider {...settings}>
+              <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
+              <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
+              <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
+              <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
+              <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
+            </Slider>
+            <div className="pet-show-details">
+              <div className="pet-show-name">
+                {pet.name}
+              </div>
+              <div className="pet-show-price">
+                {pet.price.$numberDecimal}
+              </div>
+              <div className="a-lie">
+                Free shipping to United States
+          </div>
+              <div className="pet-show-color">
+                Color: {pet.color.toUpperCase()}
+              </div>
+              <div className="pet-show-weight">
+                Weight: {pet.weight.$numberDecimal} lbs
+          </div>
 
-
+            </div>
+          </div>
+    )
         </div>
       )
     }
+
+  }
 
     return(
       <div className="pet-show-container">
@@ -154,5 +223,6 @@ class PetShow extends React.Component {
   }
  } 
 }
+
 
 export default PetShow;

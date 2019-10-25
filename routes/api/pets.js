@@ -44,8 +44,6 @@ router.post("/register",
 
 
 router.put("/edit/:id", (req, res) => {
-  console.log(req.body);
-  console.log(req.params);
   let petValues = req.body;
   let pet_id = req.params.id;
   Pet.updateOne({ _id: pet_id }, petValues, function(err) {

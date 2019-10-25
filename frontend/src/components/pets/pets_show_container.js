@@ -3,7 +3,6 @@ import { fetchPet } from "../../actions/pets_actions";
 import PetShow from "./pets_show";
 
 const msp = (state, ownProps)=> {
-  console.log(state);
   
   return ({
     petId: ownProps.match.params.petId,
