@@ -8,7 +8,7 @@ const msp = (state, ownProps)=> {
     petId: ownProps.match.params.petId,
     pet: state.entities.pets[ownProps.match.params.petId],
     loggedIn: state.session.isAuthenticated,
-    currentUser: state.session.user.id
+    currentUser: state.session.user ? state.session.user.id : undefined
   });
 };
 

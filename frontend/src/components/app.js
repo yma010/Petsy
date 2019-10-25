@@ -11,6 +11,7 @@ import PetsIndexContainer from './pets/pets_index_container';
 import CreatePetContainer from './pets/create_pet_container'
 import PetShowContainer from './pets/pets_show_container';
 import EditPetContainer from './pets/edit_pet_container';
+import ShoppingKennelContainer from './shopping-kennel/shopping_kennel_container';
 
 const App = () => (
   <div>
@@ -23,7 +24,7 @@ const App = () => (
       <Route path="/pets/register" component={CreatePetContainer} />
       <Route path="/pets/edit/:editPetId" component={EditPetContainer} />
       <Route path="/pets/:petId" component={PetShowContainer} />
-      
+      <ProtectedRoute path="/cart" component={ ShoppingKennelContainer } />
     </Switch>
   </div>
 );
