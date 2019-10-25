@@ -6,26 +6,29 @@ export default class ShoppingKennel extends React.Component {
   }
   
   render() {
-    console.log(this.props);
     let { sentRequests } = this.props;
     if (!sentRequests) return (
       <div>
         Loading...
       </div>
     );
-    let sentRequestUls = sentRequests.map(sentRequest => {
+
+    let sentRequestUls;
+    console.log(sentRequests);
+    if (sentRequests.length !== 0 && sentRequests[0].pet) {
+      sentRequestUls = sentRequests.map(sentRequest => {
       let { pet, owner } = sentRequest;
       return (
         <div className="request-listing">
           <ul className="pet-show.details">
             <li>
-              <img href={ pet.image } />
+              <img href="" />
             </li>
             <li className="pet-show-name">
               { pet.name }
             </li>
             <li className="pet-show-price">
-              { pet.price }
+              ${ pet.price }
             </li>
             <li className="a-lie">
               Free shipping to United States
@@ -44,10 +47,11 @@ export default class ShoppingKennel extends React.Component {
             Cancel Request
           </button>
         </div>
-        
-        
       )
     })
+  } else {
+    this.props.fetchSentRequests();
+  }
     return (
       <div>
         { sentRequestUls }

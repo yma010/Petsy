@@ -25,9 +25,11 @@ class NavBar extends React.Component {
       return (
         <div className="nav-link-container logged-in">
           <Link className="nav-link" to={'/pets/register'}>List on Petsy</Link>
-          <span className="nav-link">My account</span>
+          <Link className="nav-link" to={"/requests"}>Requests</Link>
           <button className="nav-link sign-in" onClick={this.props.logout}>Logout</button>
-          <Link className="nav-link" to={'/cart'}>Cart</Link>
+          <Link className="nav-link" to={'/cart'}>
+            cart
+          </Link>
           {/* Cart icon will be changed to a kennel(?) */}
         </div>
       );
