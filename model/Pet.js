@@ -30,14 +30,14 @@ const PetSchema = new Schema({
     type: mongoose.Decimal128,
     default: 0.00
   },
+  image: {
+    type: String,
+    required: true
+  },
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'users'
-  },
-  pet_images: [{
-    type: Schema.Types.ObjectId,
-    ref: 'images'
-  }]
+  }
 });
 
 const Pet = mongoose.model("pets", PetSchema);
