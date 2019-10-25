@@ -16,12 +16,36 @@ export default class ShoppingKennel extends React.Component {
     let sentRequestUls = sentRequests.map(sentRequest => {
       let { pet, owner } = sentRequest;
       return (
-        <ul className="request-listing">
-          <li>NAME: {pet.name}</li>
-          <li>SPECIES: {pet.species}</li>
-          <li>COLOR: {pet.color}</li>
-          <li>SEX: {pet.sex}</li>
-        </ul>
+        <div className="request-listing">
+          <ul className="pet-show.details">
+            <li>
+              <img href={ pet.image } />
+            </li>
+            <li className="pet-show-name">
+              { pet.name }
+            </li>
+            <li className="pet-show-price">
+              { pet.price }
+            </li>
+            <li className="a-lie">
+              Free shipping to United States
+            </li>
+            <li className="pet-show-color">
+              { pet.color }
+            </li>
+            <li className="pet-show-weight">
+              { pet.weight } lbs
+            </li>
+          </ul>
+          <ul className="request-owner-listing">
+            <li>Owned by: { owner.username }</li>
+          </ul>
+          <button onClick={ () => this.props.deleteRequest(sentRequest.id) } >
+            Cancel Request
+          </button>
+        </div>
+        
+        
       )
     })
     return (
