@@ -18,7 +18,7 @@ export default (state = {}, action) => {
       return newState;
     case DENY_RECEIVED_REQUEST:
       newState = merge({}, state);
-      delete newState[action.deniedRequest]
+      delete newState[Object.keys(action.deniedRequest)[0]];
       return newState;
     default:
       return state;

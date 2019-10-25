@@ -2,16 +2,10 @@ import axios from "axios";
 
 export const requestSentRequests = () => {
   return axios.get("/api/requests/me")
-    .then(response => {
-      return response.data
-    });
 };
 
 export const requestReceivedRequests = () => {
   return axios.get("/api/requests/mypets")
-    .then(response => {
-      return response.data;
-    })
 }
 
 export const sendRequest = petId => {
@@ -23,9 +17,9 @@ export const deleteRequest = petId => {
 }
 
 export const approveReceivedRequest = requestId => {
-  return axios.patch(`/api/requests/${requestId}`)
+  return axios.patch(`/api/requests/${requestId}/approve`)
 }
 
 export const denyReceivedRequest = requestId => {
-  return axios.patch(`/api/requests/${requestId}`)
+  return axios.patch(`/api/requests/${requestId}/deny`)
 }

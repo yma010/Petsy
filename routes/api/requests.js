@@ -44,6 +44,9 @@ router.get("/mypets",
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Request.find({ owner: req.user, status: "pending" })
+      .populate("pet")
+      .populate("requestingUser")
+      .populate("owner")
       .then(requests => {
         let receivedRequests = {};
         receivedRequests.receivedRequests = {};

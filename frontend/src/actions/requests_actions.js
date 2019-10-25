@@ -73,18 +73,27 @@ export const sendRequest = petId => dispatch => {
 
 export const deleteRequest = petId => dispatch => {
   return APIUtil.deleteRequest(petId)
-    .then(sentRequestId => dispatch(removeSentRequest(sentRequestId)))
+    .then(response => {
+      let sentRequestId = response.data.id;
+      dispatch(removeSentRequest(sentRequestId))
+    })
     .catch(err => console.log(err))
 }
 
 export const approveRequest = requestId => dispatch => {
   return APIUtil.approveReceivedRequest(requestId)
-    .then(requests => dispatch(approveReceivedRequest(requests)))
+    .then(response => {
+      let requests = response.data;
+      dispatch(approveReceivedRequest(requests))
+    })
     .catch(err => console.log(err))
 }
 
 export const denyRequest = requestId => dispatch => {
   return APIUtil.denyReceivedRequest(requestId)
-    .then(deniedRequest => dispatch(denyRecievedRequest(deniedRequest)))
+    .then(response => {
+      let deniedRequest = response.data;
+      dispatch(denyRecievedRequest(deniedRequest))
+    })
     .catch(err => console.log(err))
 }
