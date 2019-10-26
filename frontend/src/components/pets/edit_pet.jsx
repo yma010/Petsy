@@ -3,8 +3,7 @@ import React from "react";
 export default class EditPet extends React.Component {
   constructor(props) {
     super(props);
-
-    
+  
     this.state = this.props.pet;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleAdoptable = this.handleAdoptable.bind(this);
