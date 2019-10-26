@@ -48,7 +48,6 @@ export default class CreatePet extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const petData = Object.assign({}, this.state);
 
     let data = new FormData();
     data.append("image", this.state.image);
@@ -56,13 +55,15 @@ export default class CreatePet extends React.Component {
     const config = {
       headers: { 'content-type': 'multipart/form-data' }
     }
-
+  
     axios.post('api/image/image-upload', data, config)
       .then((response) => {
         this.setState({
           image: response.data.imageUrl
         })
-      });
+      }).then((response) => {
+
+    const petData = Object.assign({}, this.state);
 
     if (document.getElementById('adoptCheckbox') && document.getElementById('adoptCheckbox').checked) {
       this.setState({ adoptable: Boolean(true) });
@@ -73,7 +74,7 @@ export default class CreatePet extends React.Component {
       if (response.pet.status === 200) {
         this.props.history.push(`/pets/${response.pet.data._id}`);
       }
-    });
+    })});
   };
 
 

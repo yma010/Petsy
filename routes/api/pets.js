@@ -5,7 +5,6 @@ const passport = require("passport");
 const ObjectID = require('mongodb').ObjectID;
 const formatPetsData = require("./api_util").formatPetsData;
 const validatePetInput = require("../../validations/pet");
-const imageUrl = require("./image_upload").imageUrl;
 
 router.get("/test", (req, res) => res.json({
   msg: "This is the pets route"
@@ -45,7 +44,7 @@ debugger;
     color: req.body.color,
     weight: req.body.weight,
     adoptable: req.body.adoptable,
-    image: imageUrl,
+    image: req.body.image,
     price: req.body.price,
     owner: req.user
   });
