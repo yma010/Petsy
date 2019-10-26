@@ -1,5 +1,6 @@
 import React from "react";
 import './stylesheets/create_pet.css';
+import axios from 'axios';
 // import CurrencyInput from 'react-currency-masked-input'
 
 export default class CreatePet extends React.Component {
@@ -14,29 +15,67 @@ export default class CreatePet extends React.Component {
       sex: '',
       price: '',
       owner: '',
-      image: '',
+      image: null,
       errors: {}
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleAdoptable = this.handleAdoptable.bind(this);
+    this.handleUploadFile = this.handleUploadFile.bind(this);
+    this.updateFile = this.updateFile.bind(this);
     this.clearedErrors = false;
   };
+
+  handleUploadFile = (event) => {
+    event.preventDefault();
+    let data = new FormData();
+    data.append("image", this.state.image);
+
+    const config = {
+      headers: { 'content-type': 'multipart/form-data' }
+    }
+
+    axios.post('api/image/image-upload', data, config)
+      .then((response) => {
+        this.setState({
+          image: response.data.imageUrl
+        })
+      });
+    }
+    
+  updateFile(e) {
+    this.setState({ image: e.target.files[0]});
+  }
 
   handleSubmit(e) {
     e.preventDefault();
     const petData = Object.assign({}, this.state);
+
+    let data = new FormData();
+    data.append("image", this.state.image);
+
+    const config = {
+      headers: { 'content-type': 'multipart/form-data' }
+    }
+
+    axios.post('api/image/image-upload', data, config)
+      .then((response) => {
+        this.setState({
+          image: response.data.imageUrl
+        })
+      });
 
     if (document.getElementById('adoptCheckbox') && document.getElementById('adoptCheckbox').checked) {
       this.setState({ adoptable: Boolean(true) });
     } else {
       this.setState({ adoptable: Boolean(false) });
     }
-    this.props.createPet(petData).then((response) =>  {
+    this.props.createPet(petData).then((response) => {
       if (response.pet.status === 200) {
         this.props.history.push(`/pets/${response.pet.data._id}`);
       }
     });
   };
+
 
   update(field) {
     return (e) => { this.setState({ [field]: e.target.value }) };
@@ -51,7 +90,6 @@ export default class CreatePet extends React.Component {
     }
   }
   
-
   render() {
 
     if (this.props.loggedIn)
@@ -61,48 +99,53 @@ export default class CreatePet extends React.Component {
           <div className="section-form">
             <div className="create-pet-form">
               Splash container or "subway stop" styled progress bar will go here
-          
+
             </div>
 
-          
-          <h1 className="create-header">List on Petsy</h1>
-          <h2 className="create-header-sub">Let's get started! Tell us about your pet.</h2>
+            <h1 className="create-header">List on Petsy</h1>
+            <h2 className="create-header-sub">Let's get started! Tell us about your pet.</h2>
 
-          <form onSubmit={this.handleSubmit} className="create-pet-form">
-            <div className="form-field-row">
-              <h3 className="form-field-title">Name</h3>
-              <input type="text" className="form-field-input" value={this.state.name} onChange={this.update('name')} required />
-              <p className="form-field-description-text">The name of your pet. You don't have to get too creative with the name (although a pet should already have had one by now.) The adopter can always change it later!</p>
-            </div>
+            <form onSubmit={this.handleSubmit} className="create-pet-form">
 
-            <div className="form-field-row">
-              <h3 className="form-field-title">Species</h3>
-              <input type="text" className="form-field-input" value={this.state.species} onChange={this.update('species')} required />
-              <p className="form-field-description-text">What is the species of your animal? If you don't know it, give a rough estimate based on the looks or pick something at random.</p>
-            </div>
+              <div className="form-field-row">
+                <h3 className="form-field-title">Pictures</h3>
+                <input type="file" name="image" onChange={this.updateFile} />
+              </div>
 
-            <div className="form-field-row">
-              <h3 className="form-field-title">Color</h3>
-              <input type="text" className="form-field-input" value={this.state.color} onChange={this.update('color')} required />
-              <p className="form-field-description-text">Self explanatory. If the dog is brown, list it as brown. If you're colorblind, list it as brown.</p>
-            </div>
+              <div className="form-field-row">
+                <h3 className="form-field-title">Name</h3>
+                <input type="text" className="form-field-input" value={this.state.name} onChange={this.update('name')} required />
+                <p className="form-field-description-text">The name of your pet. You don't have to get too creative with the name (although a pet should already have had one by now.) The adopter can always change it later!</p>
+              </div>
 
-            <div className="form-field-row">
-              <h3 className="form-field-title">Weight</h3>
-              <input type="number" className="form-field-input" value={this.state.weight} onChange={this.update('weight')} required />
-              <p className="form-field-description-text">As an estimation, how much does your pet weigh in lbs?</p>
-            </div>
+              <div className="form-field-row">
+                <h3 className="form-field-title">Species</h3>
+                <input type="text" className="form-field-input" value={this.state.species} onChange={this.update('species')} required />
+                <p className="form-field-description-text">What is the species of your animal? If you don't know it, give a rough estimate based on the looks or pick something at random.</p>
+              </div>
 
-            <div className="form-field-row">
-              <h3 className="form-field-title">Sex</h3>
-              <input type="text" className="form-field-input" value={this.state.sex} onChange={this.update('sex')} required />
-              <p className="form-field-description-text">Flip over and check. Or make it a surprise.</p>
-            </div>
+              <div className="form-field-row">
+                <h3 className="form-field-title">Color</h3>
+                <input type="text" className="form-field-input" value={this.state.color} onChange={this.update('color')} required />
+                <p className="form-field-description-text">Self explanatory. If the dog is brown, list it as brown. If you're colorblind, list it as brown.</p>
+              </div>
 
-            <div className="form-spacer"></div>
+              <div className="form-field-row">
+                <h3 className="form-field-title">Weight</h3>
+                <input type="number" className="form-field-input" value={this.state.weight} onChange={this.update('weight')} required />
+                <p className="form-field-description-text">As an estimation, how much does your pet weigh in lbs?</p>
+              </div>
 
-            <div className="form-field-row">
-              <h3 className="form-field-title">Adoptable</h3>
+              <div className="form-field-row">
+                <h3 className="form-field-title">Sex</h3>
+                <input type="text" className="form-field-input" value={this.state.sex} onChange={this.update('sex')} required />
+                <p className="form-field-description-text">Flip over and check. Or make it a surprise.</p>
+              </div>
+
+              <div className="form-spacer"></div>
+
+              <div className="form-field-row">
+                <h3 className="form-field-title">Adoptable</h3>
 
               <label className="container">
               <input type="checkbox" 
@@ -113,28 +156,28 @@ export default class CreatePet extends React.Component {
                 <span className="checkmark"></span>
                 </label>
 
-              
-              <p className="form-field-description-text">Would you like to put this pet up for adoption? If not, you will be creating a listing for people to sponsor the animal.</p>
-            </div>
 
-            <div className="form-field-row">
-              <h3 className="form-field-title">Price</h3>
-              <input type="number" className="form-field-input" value={this.state.price} onChange={this.update('price')} required />
-              <p className="form-field-description-text">What are the adoption fees or sponsorship price?</p>
-            </div>
+                <p className="form-field-description-text">Would you like to put this pet up for adoption? If not, you will be creating a listing for people to sponsor the animal.</p>
+              </div>
 
-            <div className="form-end-spacer"/>
+              <div className="form-field-row">
+                <h3 className="form-field-title">Price</h3>
+                <input type="number" className="form-field-input" value={this.state.price} onChange={this.update('price')} required />
+                <p className="form-field-description-text">What are the adoption fees or sponsorship price?</p>
+              </div>
+
+              <div className="form-end-spacer" />
 
               <div className="form-field-nav-submit">
                 <p className="form-field-description-text submit-text">By clicking Create pet listing, you are agreeing to either put your pet up for adoption or make available for sponsorships. </p>
                 <input className="form-submit" type="submit" value="Create pet listing" />
               </div>
 
-            
 
-          </form>
+
+            </form>
           </div>
-          
+
         </div>
       )
     } else {
@@ -147,7 +190,7 @@ export default class CreatePet extends React.Component {
       )
     }
 
-    
-    
+
+
   }
 }

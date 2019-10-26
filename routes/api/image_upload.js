@@ -16,7 +16,7 @@ router.post('/image-upload', function(req, res){
       }]
     });
   }
-
+  debugger;
     return res.json({
       'imageUrl': req.file.location
     });
