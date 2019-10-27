@@ -18,6 +18,9 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'pets'
   }],
+  image:{
+    type: String,
+  },
   date: {
     type: Date,
     default: Date.now

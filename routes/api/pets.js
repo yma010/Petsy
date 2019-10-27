@@ -36,7 +36,6 @@ router.post("/register",
   if (!isValid) {
     return res.status(400).json(errors);
   }
-debugger;
   const newPet = new Pet({
     name: req.body.name,
     species: req.body.species,
