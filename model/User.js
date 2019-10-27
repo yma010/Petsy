@@ -36,7 +36,7 @@ const UserSchema = new Schema({
   }],
   image:{
     type: String,
-    default: defaultURL[Math.floor(Math.random() * 12)]
+    default: defaultURL[Math.floor(Math.random() * 11)]
   },
   date: {
     type: Date,
