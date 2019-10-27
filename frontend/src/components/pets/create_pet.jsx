@@ -55,7 +55,7 @@ export default class CreatePet extends React.Component {
       }
     }
 
-    axios.post('api/image/image-upload', data, config)
+    axios.post('api/image/pet-upload', data, config)
       .then((response) => {
         console.log(response)
         this.setState({
