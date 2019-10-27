@@ -37,7 +37,11 @@ const PetSchema = new Schema({
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'users'
-  }
+  },
+  comments: [{
+    type: Schema.Types.ObjectId,
+    ref: "comments"
+  }]
 });
 
 const Pet = mongoose.model("pets", PetSchema);
