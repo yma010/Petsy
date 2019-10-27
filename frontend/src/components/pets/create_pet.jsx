@@ -6,6 +6,7 @@ import axios from 'axios';
 export default class CreatePet extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       name: '',
       species: '',
@@ -18,63 +19,60 @@ export default class CreatePet extends React.Component {
       image: null,
       errors: {}
     }
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleAdoptable = this.handleAdoptable.bind(this);
-    this.handleUploadFile = this.handleUploadFile.bind(this);
     this.updateFile = this.updateFile.bind(this);
     this.clearedErrors = false;
+
   };
-
-  handleUploadFile = (event) => {
-    event.preventDefault();
-    let data = new FormData();
-    data.append("image", this.state.image);
-
-    const config = {
-      headers: { 'content-type': 'multipart/form-data' }
-    }
-
-    axios.post('api/image/image-upload', data, config)
-      .then((response) => {
-        this.setState({
-          image: response.data.imageUrl
-        })
-      });
-    }
     
   updateFile(e) {
-    this.setState({ image: e.target.files[0]});
-  }
+    let imageFiles = e.target.files;
+    this.setState({
+      image: imageFiles,
+    })
+  };
 
   handleSubmit(e) {
     e.preventDefault();
-
+    
     let data = new FormData();
-    data.append("image", this.state.image);
+    const images = this.state.image,
+          fileName = this.state.name;
+
+    ;
+    for(let i = 0; i < images.length; i++){
+      data.append("image[]", images[i], fileName[i].name);
+    }
+    console.log(data.getAll("image[]")); //Checks if data is actually populated with the images
 
     const config = {
-      headers: { 'content-type': 'multipart/form-data' }
+      headers: {
+      'accept': 'application/json',
+      'Accept-Language': 'en-US,en;q=0.8',
+      'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
+      }
     }
-  
+
     axios.post('api/image/image-upload', data, config)
       .then((response) => {
+        console.log(response)
         this.setState({
           image: response.data.imageUrl
         })
       }).then((response) => {
+        console.log(response);
+        //Pet creation only occurs if it receives a response from axios
+        const petData = Object.assign({}, this.state);
 
-    const petData = Object.assign({}, this.state);
-
-    if (document.getElementById('adoptCheckbox') && document.getElementById('adoptCheckbox').checked) {
-      this.setState({ adoptable: Boolean(true) });
-    } else {
-      this.setState({ adoptable: Boolean(false) });
-    }
-    this.props.createPet(petData).then((response) => {
-      if (response.pet.status === 200) {
-        this.props.history.push(`/pets/${response.pet.data._id}`);
+        this.props.createPet(petData).then((response) => {
+          if (response.pet.status === 200) {
+            this.props.history.push(`/pets/${response.pet.data._id}`);
+          }
+        });
       }
-    })});
+    );
   };
 
 
@@ -92,7 +90,6 @@ export default class CreatePet extends React.Component {
   }
   
   render() {
-
     if (this.props.loggedIn)
     {
       return (
@@ -110,7 +107,7 @@ export default class CreatePet extends React.Component {
 
               <div className="form-field-row">
                 <h3 className="form-field-title">Pictures</h3>
-                <input type="file" name="image" onChange={this.updateFile} />
+                <input type="file" name="image" onChange={this.updateFile} multiple accept="image/*" />
               </div>
 
               <div className="form-field-row">

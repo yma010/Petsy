@@ -3,11 +3,10 @@ const express = require("express"),
 
 const upload = require('../../services/image_upload');
 
-const singleUpload = upload.single('image');
+const multiUpload = upload;
 
 router.post('/image-upload', function(req, res){
-
-  singleUpload(req, res, function (err) {
+  multiUpload(req, res, function (err) {
   if (err) {
     return res.status(422).send({
       errors: [{
@@ -15,11 +14,19 @@ router.post('/image-upload', function(req, res){
         detail: err.message
       }]
     });
-  }
-  debugger;
+  } else{
+    let imageArray = req.files,
+      fileLocation;
+
+    const imgLocationArray = [];
+      for (let i = 0; i < imageArray.length; i++){
+        fileLocation = imageArray[i].location;
+        imgLocationArray.push(fileLocation) //iterate through the array of files and grab location
+      }
+   
     return res.json({
-      'imageUrl': req.file.location
-    });
+      'imageUrl': imgLocationArray //return the array of location urls from S3
+    })};
   });
 });
 

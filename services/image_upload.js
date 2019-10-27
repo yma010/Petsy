@@ -11,7 +11,7 @@ AWS.config.update({
 });
 
 const s3 = new AWS.S3();
-
+debugger; 
 
 const upload = multer({
   storage: multerS3({
@@ -24,9 +24,10 @@ const upload = multer({
     },
     key: function (req, file, cb) {
       cb(null, Date.now().toString())
-    }
+    },
+    limits:{ fileSize: 10000000 }
   })
-});
+}).array('image[]', 5);
 
 
 module.exports = upload;
