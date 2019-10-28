@@ -54,6 +54,8 @@ export default class CreatePet extends React.Component {
       'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
       }
     }
+    let debugInfo = Object.assign({}, this.state);
+    console.log(debugInfo);
 
     axios.post('api/image/pet-upload', data, config)
       .then((response) => {
@@ -84,7 +86,6 @@ export default class CreatePet extends React.Component {
     if (document.getElementById('adoptCheckbox') && document.getElementById('adoptCheckbox').checked) {
       this.setState({ adoptable: Boolean(true) });
     } else {
-
       this.setState({ adoptable: Boolean(false) });
     }
   }
@@ -118,8 +119,9 @@ export default class CreatePet extends React.Component {
 
               <div className="form-field-row">
                 <h3 className="form-field-title">Species</h3>
-                {/* <input type="text" className="form-field-input" value={this.state.species} onChange={this.update('species')} required /> */}
-                <select className="form-field-input" value={this.state.species} onChange={this.update('species')}>
+
+                <select className="form-field-input" value={this.state.species} onChange={this.update('species')} required>
+                  <option selected>"Please select their species!"</option> 
                   <option value="Dog">Dog</option>
                   <option value="Cat">Cat</option>
                   <option value="Bird">Bird</option>
@@ -127,6 +129,7 @@ export default class CreatePet extends React.Component {
                   <option value="Reptile">Reptile</option>
                   <option value="Other">Other</option>
                 </select>
+
                 <p className="form-field-description-text">What is the species of your animal? If you don't know it, give a rough estimate based on the looks or pick something at random.</p>
               </div>
 

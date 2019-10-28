@@ -1,3 +1,7 @@
+*{
+  background-color: rgb(246, 246, 246);
+}
+
 body {
   margin: 1rem;
   font: 12px system-ui;
@@ -37,6 +41,8 @@ ul>li {
 }
 
 .pets-index-item-photo{
+  overflow: hidden;
+  height: 120px;
   width: 100%;
 }
 
@@ -44,14 +50,18 @@ ul>li {
   font-size: 14px;
   font-weight: 400;
   line-height: 1.6;
-  letter-spacing: normal;
-  
+  letter-spacing: normal; 
 }
 
 .pets-index-item>.pets-index-item-link {
     display: flex;
     padding: 1.5rem;
-    
+}
+
+.pets-index-item-details {
+  border: 1px solid rgb(235, 235, 235);
+  padding: 5px;
+  
 }
 
 .pets-index-item-name{
@@ -70,4 +80,13 @@ ul>li {
   font-size: 16px;
   line-height: 1.6;
   letter-spacing: normal;
+}
+
+.sweet-loading {
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  top: 50%;
+  bottom: 50%;
+  transform: rotate(90deg);
 }

@@ -56,7 +56,7 @@ router.post("/register",
 
 router.put("/edit/:id", (req, res) => {
   let petValues = req.body;
-  let pet_id = req.params.id;
+  let pet_id = req.params._id;
   Pet.updateOne({ _id: pet_id }, petValues, function(err) {
     if (!err) {
       console.log("Pet updated!");
