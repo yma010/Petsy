@@ -55,6 +55,7 @@ export default class EditPet extends React.Component {
             <option value="Rodent">Rodent</option>
             <option value="Reptile">Reptile</option>
             <option value="Other">Other</option>
+            
           </select>
 
           <h3 className="edit-pet-title">Color</h3>
