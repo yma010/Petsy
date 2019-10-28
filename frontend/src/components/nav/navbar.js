@@ -51,7 +51,7 @@ class NavBar extends React.Component {
       // Need to fix the button dropping to the bottom when the window size is too small horizontally
       <form className="nav-search-bar">
         <input type="text" className="nav-search-bar-input" placeholder="Search for pets"/>
-        <button className="nav-search-bar-button" value="testbutton"><span role="img" aria-label="temp">🔍</span></button>
+        <button className="nav-search-bar-button" value="testbutton"><span role="img" className="nav-search-icon" aria-label="temp">🔍</span></button>
       </form>
     )
   }

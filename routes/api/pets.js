@@ -23,7 +23,7 @@ router.get("/:id", (req, res) => {
   let id = req.params.id;
 
   Pet.findById(id, function (err, pet) {
-    console.log(pet);
+    // console.log(pet);
     res.json(formatPetsData(pet))
   });
 });
@@ -56,7 +56,8 @@ router.post("/register",
 
 router.put("/edit/:id", (req, res) => {
   let petValues = req.body;
-  let pet_id = req.params._id;
+  let pet_id = req.body.id;
+  // console.log(req.body)
   Pet.updateOne({ _id: pet_id }, petValues, function(err) {
     if (!err) {
       console.log("Pet updated!");
