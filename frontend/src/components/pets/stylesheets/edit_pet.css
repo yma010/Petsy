@@ -2,13 +2,17 @@
   margin-top: 10px;
   padding: 15px;
   border-radius: 5px;
-  background: rgba(255, 166, 49, 0.144);
+  /* border: 1px solid rgba(0, 0, 0, 0.459); */
+  background: rgb(255, 229, 190);
+  opacity: 0.8;
 }
 
 .edit-pet-title {
   margin-top: 7px;
   font-size: 14px;
   font-weight: 700;
+  background: inherit;
+  opacity: 0.8;
 }
 
 .edit-pet-submit {
@@ -30,6 +34,10 @@
   background: rgba(108, 204, 52, 1);
   cursor: pointer;
   transition: 0.5s;
+}
+
+.edit-pet-submit:focus {
+  outline: none;
 }
 
 .edit-pet-input-field {
