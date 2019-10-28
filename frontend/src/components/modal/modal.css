@@ -167,6 +167,10 @@
   cursor: pointer;
 }
 
+.session-demo-login:focus{
+  outline: none;
+}
+
 .session-demo-text {
   margin-top: 40px;
   font-size: 13px;

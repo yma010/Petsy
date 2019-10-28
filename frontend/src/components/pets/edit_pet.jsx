@@ -14,7 +14,6 @@ export default class EditPet extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const petData = Object.assign({}, this.state);
-    console.log(petData);
     this.props.updatePet(petData).then((response) => {
       if (response.pet.status === 200) {
         // debugger
@@ -49,7 +48,14 @@ export default class EditPet extends React.Component {
           <input type="text" className="edit-pet-input-field" placeholder={this.state.name} value={this.state.name} onChange={this.update('name')} required />
 
           <h3 className="edit-pet-title">Species</h3>
-          <input type="text" className="edit-pet-input-field" placeholder={this.state.species} value={this.state.species} onChange={this.update('species')} required />
+          <select className="edit-pet-input-field" value={this.state.species} onChange={this.update('species')} required>
+            <option value="Dog">Dog</option>
+            <option value="Cat">Cat</option>
+            <option value="Bird">Bird</option>
+            <option value="Rodent">Rodent</option>
+            <option value="Reptile">Reptile</option>
+            <option value="Other">Other</option>
+          </select>
 
           <h3 className="edit-pet-title">Color</h3>
           <input type="text" className="edit-pet-input-field" placeholder={this.state.color} value={this.state.color} onChange={this.update('color')} required />
