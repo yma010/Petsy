@@ -5,7 +5,7 @@ export const RECEIVE_COMMENT = "RECEIVE_NEW_COMMENT";
 export const REMOVE_COMMENT = "REMOVE_COMMENT";
 
 export const receiveComments = ({comments, users}) => ({
-  types: RECEIVE_COMMENTS,
+  type: RECEIVE_COMMENTS,
   comments,
   users
 });

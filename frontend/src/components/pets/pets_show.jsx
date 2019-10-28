@@ -5,6 +5,7 @@ import "./stylesheets/pet_show.css";
 import Slider from "react-slick";
 import { Link } from 'react-router-dom';
 import EditPetContainer from './edit_pet_container'
+import CommentsIndexContainer from "../comments/comments_index_container";
 
 class PetShow extends React.Component {
   constructor(props) {
@@ -52,7 +53,7 @@ class PetShow extends React.Component {
 
 
   render() {
-    const { pet } = this.props;
+    const { pet, petId } = this.props;
 
     const settings = {
       dots: true,
@@ -132,6 +133,7 @@ class PetShow extends React.Component {
           </div>
           {optionalItem}
         </div>
+        <CommentsIndexContainer petId={ petId } />
       </div>
     )
   }
