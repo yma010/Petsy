@@ -100,10 +100,13 @@ class PetShow extends React.Component {
     return (
       <div className="pet-show-container">
 
-        <div>
-          <Carousel width={"500px"} heightMode={"first"} wrapAround={true} dragging={true}>
+        <div className="photo-carousel">
+          <Carousel width={"100%"} heightMode={"first"} wrapAround={true} dragging={true}>
           {carouselImages}
           </Carousel>
+
+          <CommentsIndexContainer petId={petId} />
+
         </div>
 
 
@@ -120,8 +123,6 @@ class PetShow extends React.Component {
             <div className="a-lie">
               Free shipping to <u>United States</u>
             </div>
-
-            
             
             {optionalItem}
 
@@ -150,7 +151,6 @@ class PetShow extends React.Component {
             
           </div>
         </div>
-        <CommentsIndexContainer petId={ petId } />
       </div>
       
     )
