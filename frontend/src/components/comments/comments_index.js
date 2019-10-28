@@ -1,4 +1,5 @@
 import React from "react";
+import CommentShowContainer from "./comment_show_container";
 
 export default class CommentsIndex extends React.Component {
   componentDidMount() {
@@ -14,11 +15,11 @@ export default class CommentsIndex extends React.Component {
         </div>
       )
     }
-    console.log(comments);
+
     let commentLis = comments.map(comment => {
       return (
-        <li>{comment.body}</li>
-      );
+        <CommentShowContainer comment={ comment } />
+      )
     });
 
     return (
