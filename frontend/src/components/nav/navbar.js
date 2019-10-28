@@ -2,12 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import './navbar.css';
+import debounce from "lodash.debounce";
 
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      searchParams: ""
+    }
+    this.searchBar = this.searchBar.bind(this);
     this.logoutUser = this.logoutUser.bind(this);
     this.getLinks = this.getLinks.bind(this);
+    this.search = this.search.bind(this);
+    this.updateSearch = this.updateSearch.bind(this);
   }
 
   logoutUser(e) {
@@ -46,11 +53,64 @@ class NavBar extends React.Component {
     }
   }
 
+  search() {
+    this.props.fetchPets(this.state.searchParams);
+  }
+
+  updateSearch() {
+    return (e) => {
+      const speciesOptions = [
+        "dog",
+        "cat",
+        "bird",
+        "rodent",
+        "reptile",
+        "other"
+      ];
+      const colorsOptions = [
+        "red",
+        "blue",
+        "green",
+        "yellow",
+        "brown",
+        "turtoise",
+        "tuxedo",
+        "calico",
+        "golden",
+        "black",
+        "grey",
+        "gray"
+      ];
+      const sexOptions = [
+        "male",
+        "female",
+        "m",
+        "f"
+      ];
+      let searchWords = e.target.value.split(" ");
+      this.setState({
+        searchParams: searchWords.map(word => {
+          word = word.toUpperCase();
+          if (speciesOptions.includes(word)) {
+            return `species[]=${word}`;
+          } else if (colorsOptions.includes(word.toLowerCase())) {
+            return `colors[]=${word}`;
+          } else if (sexOptions.includes(word)) {
+            return `sexes[]=${word}`;
+          } else {
+            return `names[]=${word}`;
+          }
+      }).join("&")
+      },
+      this.search);
+    }
+  }
+
   searchBar() {
     return (
       // Need to fix the button dropping to the bottom when the window size is too small horizontally
       <form className="nav-search-bar">
-        <input type="text" className="nav-search-bar-input" placeholder="Search for pets"/>
+        <input type="text" onChange={ this.updateSearch() } className="nav-search-bar-input" placeholder="Search for pets"/>
         <button className="nav-search-bar-button" value="testbutton"><span role="img" className="nav-search-icon" aria-label="temp">🔍</span></button>
       </form>
     )
