@@ -20,8 +20,12 @@ export default (state = {}, action) => {
       newState = merge({}, state, action.users);
       return newState;
     case RECEIVE_COMMENT:
-      newState = merge({}, state, {[action.user.id]: action.user});
-      return newState;
+      if (action.user) {
+        newState = merge({}, state, {[action.user.id]: action.user});
+        return newState;
+      } else {
+        return state;
+      }      
     default:
       return state;
   }

@@ -3,6 +3,20 @@ import CommentShowContainer from "./comment_show_container";
 import CreateCommentFormContainer from "./create_comment_form_container";
 
 export default class CommentsIndex extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      editId: undefined
+    };
+    this.changeEdit = this.changeEdit.bind(this);
+  }
+
+  changeEdit(id) {
+    this.setState({
+      editId: id
+    })
+  }
+
   componentDidMount() {
     this.props.fetchComments();
   }
@@ -19,7 +33,11 @@ export default class CommentsIndex extends React.Component {
 
     let commentLis = comments.map(comment => {
       return (
-        <CommentShowContainer comment={ comment } />
+        <CommentShowContainer
+          editId={ this.state.editId }
+          changeEdit={ this.changeEdit }
+          comment={ comment } 
+        />
       )
     });
 

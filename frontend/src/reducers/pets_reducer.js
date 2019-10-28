@@ -24,8 +24,12 @@ export default function( state = {}, action ) {
     newState = merge({}, state, {[action.pet.id]: action.pet});
     return newState;
   case RECEIVE_COMMENT:
-    newState = merge({}, state, {[action.pet.id]: action.pet});
-    return newState;
+    if (action.pet) {
+      newState = merge({}, state, { [action.pet.id]: action.pet });
+      return newState;
+    } else {
+      return state;
+    }
   default:
     return state;
   };

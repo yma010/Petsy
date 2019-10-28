@@ -1,22 +1,9 @@
 import React from "react";
+import EditCommentFormContainer from "./edit_comment_form_container";
 
 export default class CommentShow extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      edit: false
-    };
-    this.toggleEdit = this.toggleEdit.bind(this);
-  }
-
-  toggleEdit() {
-    this.setState({
-      edit: this.state.edit ? false : true
-    })
-  }
-
   render() {
-    let { comment, currentUser } = this.props;
+    let { comment, currentUser, editId, changeEdit, deleteComment } = this.props;
     if (!comment) {
       return (
         <div>
@@ -25,11 +12,11 @@ export default class CommentShow extends React.Component {
       )
     }
 
-    if (this.state.edit) {
+    if (editId === comment.id) {
       return (
         <div>
-          editing...
-          <button onClick={ this.toggleEdit } >Cancel</button>
+          <EditCommentFormContainer comment={ comment } changeEdit={ changeEdit } />
+          <button onClick={ () => changeEdit(undefined) } >Cancel</button>
         </div>
       )
     }
@@ -38,8 +25,8 @@ export default class CommentShow extends React.Component {
 
     if (currentUser === comment.author.id) {
       authorItems = <>
-        <button onClick={ () => this.props.deleteComment(comment.id) } >Remove</button>
-        <button onClick={ this.toggleEdit } >Edit</button>
+        <button onClick={ () => deleteComment(comment.id) } >Remove</button>
+        <button onClick={ () => changeEdit(comment.id) } >Edit</button>
       </>
       
     }
