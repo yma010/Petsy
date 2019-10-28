@@ -9,20 +9,27 @@ const validateCommentInput = require("../../validations/comments");
 
 router.get("/:petId", (req, res) => {
   let { petId } = req.params;
-  Comment.find({pet: petId})
-    .populate("author")
-    .then(commentModels => {
+  Pet.findById(petId)
+    .populate("comments")
+    .then(pet => {
       let users = {};
       let comments = {};
+      let { comments: commentModels } = pet;
+      let promises = [];
       commentModels.map(comment => {
-        let { author } = comment.author;
-        comments[comment.id] = formatCommentsData(comment);
-        users[author.id] = formatUsersData(author);
+        promises.push(User.findById(comment.author)
+          .then(author => {
+            comments[comment.id] = formatCommentsData(comment);
+            users[author.id] = formatUsersData(author);
+          }))        
       });
-      return res.json({
-        comments,
-        users
-      })
+      Promise.all(promises)
+        .then(() => {
+          return res.json({
+            comments,
+            users
+          })
+        })
     })
 });
 
