@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { editComment, deleteComment } from "../../actions/comments_actions";
 import CommentShow from "./comment_show";
 
-const msp = (state, { match: { params: { petId } } }) => ({
+const msp = (state) => ({
   currentUser: state.session.user ? state.session.user.id : undefined
 });
 

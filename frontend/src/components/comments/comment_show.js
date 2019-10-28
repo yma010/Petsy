@@ -11,7 +11,12 @@ export default class CommentShow extends React.Component {
       )
     }
     return (
-      <li>{comment.body}</li>
+      <li>
+      <img className="profile-pic" src={ comment.author.image }/>
+      <p>{ comment.author.username }</p>
+      <p>{ comment.posted }</p>
+      {comment.body}
+      </li>
     );
   }
 }
