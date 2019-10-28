@@ -5,11 +5,13 @@ bodyParser = require('body-parser'),
 mongoose = require("mongoose");
 
 const db = require("./config/keys").mongoURI,
-users = require("./routes/api/users"),
-pets = require("./routes/api/pets"),
-requests = require("./routes/api/requests"),
-passport = require("passport"),
-image_upload = require("./routes/api/image_upload");
+  users = require("./routes/api/users"),
+  pets = require("./routes/api/pets"),
+  requests = require("./routes/api/requests"),
+  passport = require("passport"),
+  image_upload = require("./routes/api/image_upload"),
+  comments = require("./routes/api/comments");
+
 require("./config/passport")(passport);
 
 const router = express.Router();
@@ -29,6 +31,7 @@ app.use("/api/users", users);
 app.use("/api/pets", pets);
 app.use("/api/requests", requests);
 app.use("/api/image", image_upload);
+app.use("/api/comments", comments);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));
