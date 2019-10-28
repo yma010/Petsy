@@ -45,11 +45,13 @@ ul>li {
   font-weight: 400;
   line-height: 1.6;
   letter-spacing: normal;
+  
 }
 
 .pets-index-item>.pets-index-item-link {
     display: flex;
     padding: 1.5rem;
+    
 }
 
 .pets-index-item-name{

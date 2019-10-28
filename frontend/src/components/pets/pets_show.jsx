@@ -1,9 +1,6 @@
 import React from "react";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import "./stylesheets/pet_show.css";
-import Slider from "react-slick";
-import { Link } from 'react-router-dom';
+import Carousel from "nuka-carousel";
 import EditPetContainer from './edit_pet_container'
 
 class PetShow extends React.Component {
@@ -52,37 +49,6 @@ class PetShow extends React.Component {
   render() {
     const { pet } = this.props;
 
-    const settings = {
-      dots: true,
-      infinite: true,
-      centerMode: true,
-      centerPadding: '60px',
-      slidesToShow: 1,
-      responsive: [
-        {
-          breakpoint: 768,
-          settings: {
-            arrows: true,
-            centerMode: true,
-            centerPadding: '40px',
-            slidesToShow: 1
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            arrows: true,
-            centerMode: true,
-            centerPadding: '40px',
-            slidesToShow: 1
-          }
-        }
-      ]
-    }
-
-
-    console.log(this.props.pet);
-
     if (!pet) {
       return <div>Loading...</div>;
     }
@@ -91,7 +57,7 @@ class PetShow extends React.Component {
     let pet_images = pet.image;
 
     const carouselImages = pet_images.map((image, index) => 
-      (<li key={index + 1}><img src={image} alt="" /></li>)
+      (<div key={index + 1}><img src={image} alt="" /></div>)
       );
 
 
@@ -113,9 +79,13 @@ class PetShow extends React.Component {
 
     return (
       <div className="pet-show-container">
-        <Slider {...settings}>
-          <ul>{carouselImages}</ul>
-        </Slider>
+
+        <div>
+          <Carousel width={"500px"} heightMode={"first"} wrapAround={true} dragging={true}>
+          {carouselImages}
+          </Carousel>
+        </div>
+
         <div className="pet-show-details">
           <div className="pet-show-name">
             {pet.name}
@@ -135,7 +105,9 @@ class PetShow extends React.Component {
           {optionalItem}
         </div>
       </div>
+      
     )
+    
   }
 }
 

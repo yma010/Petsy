@@ -5,11 +5,12 @@
   box-sizing: border-box;
 }
 
-.pet-show-detail{
+.pet-show-details{
   color: #222222;
   font-size: 14px;
   text-align: left;
   line-height: 1.4;
+  border: 1px solid black;
 }
 
 .pet-show-name{
@@ -25,4 +26,10 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 26px;
+}
+
+img{
+  height: auto;
+  width: 100%;
+  margin: 0;
 }
