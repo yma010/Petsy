@@ -26,7 +26,7 @@ export default class CommentsIndex extends React.Component {
     if (!comments[0]) {
       return (
         <div>
-          Loading...
+          <CreateCommentFormContainer />
         </div>
       )
     }
