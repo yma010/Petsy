@@ -4,6 +4,7 @@ import PetShow from "./pets_show";
 import { sendRequest, fetchSentRequests } from "../../actions/requests_actions";
 
 const msp = (state, ownProps)=> {
+
   return ({
     petId: ownProps.match.params.petId,
     pet: state.entities.pets[ownProps.match.params.petId],

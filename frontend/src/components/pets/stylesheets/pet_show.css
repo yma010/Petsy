@@ -1,15 +1,19 @@
 .pet-show-container{
+  margin-top: 25px;
   display: grid;
   grid-template-columns: 50% auto;
   grid-gap: 2rem;
   box-sizing: border-box;
 }
 
-.pet-show-detail{
+.pet-show-details{
   color: #222222;
   font-size: 14px;
+  width: 80%;
   text-align: left;
   line-height: 1.4;
+  margin-left: 20px;
+  /* border: 1px solid black; */
 }
 
 .pet-show-name{
@@ -22,7 +26,77 @@
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   display: block;
-  font-weight: 400;
-  font-size: 20px;
+  font-size: 24px;
   line-height: 26px;
+  font-weight: 600;
+}
+
+img{
+  height: auto;
+  width: 100%;
+  margin: 0;
+}
+
+.pet-show-detail-box {
+  padding: 10px;
+}
+
+.pet-show-price {
+  font-size: 18px;
+  font-weight: 600;
+
+}
+
+.a-lie {
+  margin-top: 5px;
+}
+
+.pet-show-submit {
+  margin-top: 25px;
+  margin-left: auto;
+  width: 100%;
+  margin-right: 55px;
+  height: 35px;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  background: rgb(0, 0, 0);
+  border-radius: 5px;
+  border: 1px solid #E1E3DF;
+}
+
+.pet-show-submit:hover {
+  background: rgb(61, 61, 61);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.pet-show-spacer{
+  margin-top: 25px;
+  margin-bottom: 25px;
+  font-size: 10px;
+  border-bottom: 1px solid rgba(34, 34, 34, 0.15);
+}
+
+.pet-show-details-header{
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.pet-show-details-title {
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+.pet-show-carousel {
+  width: 700px;
+}
+
+.sweet-loading {
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  top: 50%;
+  bottom: 50%;
+  transform: rotate(90deg);
 }

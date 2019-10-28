@@ -7,9 +7,11 @@ const formatPetsData = pet => {
   image: pet.image,
   name: pet.name,
   sex: pet.sex,
+  species: pet.species,
   image: pet.image,
   color: pet.color,
   weight: parseFloat(pet.weight.toString()),
+
   owner: ObjectId.isValid(pet.owner) ? pet.owner : pet.owner.id,
   comments: ObjectId.isValid(pet.comments[0]) ?
     pet.comments : pet.comments.map(comment => comment.id)
@@ -18,9 +20,11 @@ const formatPetsData = pet => {
 const formatUsersData = user => ({
   id: user.id,
   username: user.username,
+  image: user.image,
+  pets: user.pets,
   pets: ObjectId.isValid(user.pets) ?
     user.pets : user.pets.map(pet => pet.id),
-  image: user.image
+
 });
 
 const formatCommentsData = comment => ({

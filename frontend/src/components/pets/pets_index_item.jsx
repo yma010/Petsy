@@ -9,7 +9,7 @@ const PetsIndexItem = ({ pets }) => (
       <div className="pets-index-item-details">
 
         <div className="pets-index-item-photo">
-          <img src={pets.image[0]} alt="" />
+          <img src={pets.image[0]} alt="Cute Animal!" />
         </div>
 
         <div className="pets-index-item-name">

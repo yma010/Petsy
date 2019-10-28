@@ -1,4 +1,5 @@
 import React from "react";
+import "./stylesheets/edit_pet.css";
 
 export default class EditPet extends React.Component {
   constructor(props) {
@@ -13,10 +14,15 @@ export default class EditPet extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const petData = Object.assign({}, this.state);
+    console.log(petData);
     this.props.updatePet(petData).then((response) => {
       if (response.pet.status === 200) {
+        // debugger
+        
+        console.log("lkjdlfj")
+        console.log(response)
         window.location.reload();
-        this.props.history.push(`/pets/${response.pet.data._id}`);
+        // this.props.history.push(`/pets/${response.pet.data.id}`);
       }
     });
   };
@@ -38,23 +44,23 @@ export default class EditPet extends React.Component {
 
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <h3>Name</h3>
-          <input type="text" value={this.state.name} onChange={this.update('name')} required />
+        <form className="edit-pet-form" onSubmit={this.handleSubmit}>
+          <h3 className="edit-pet-title">Name</h3>
+          <input type="text" className="edit-pet-input-field" placeholder={this.state.name} value={this.state.name} onChange={this.update('name')} required />
 
-          <h3>Species</h3>
-          <input type="text" value={this.state.species} onChange={this.update('species')} required />
+          <h3 className="edit-pet-title">Species</h3>
+          <input type="text" className="edit-pet-input-field" placeholder={this.state.species} value={this.state.species} onChange={this.update('species')} required />
 
-          <h3>Color</h3>
-          <input type="text" value={this.state.color} onChange={this.update('color')} required />
+          <h3 className="edit-pet-title">Color</h3>
+          <input type="text" className="edit-pet-input-field" placeholder={this.state.color} value={this.state.color} onChange={this.update('color')} required />
 
-          <h3>Weight</h3>
-          <input type="number" value={this.state.weight.$numberDecimal} onChange={this.update('weight')} required />
+          <h3 className="edit-pet-title">Weight</h3>
+          <input type="number" className="edit-pet-input-field" placeholder={this.state.weight} value={this.state.weight} onChange={this.update('weight')} required />
 
-          <h3>Sex</h3>
-          <input type="text" value={this.state.sex} onChange={this.update('sex')} required />
+          <h3 className="edit-pet-title">Sex</h3>
+          <input type="text" className="edit-pet-input-field" placeholder={this.state.sex} value={this.state.sex} onChange={this.update('sex')} required />
 
-          <h3>Adoptable</h3>
+          <h3 className="edit-pet-title">Adoptable</h3>
           <input type="checkbox"
             id="adoptCheckbox"
             value={this.props.adoptable}
@@ -62,10 +68,10 @@ export default class EditPet extends React.Component {
             checked={ (this.state.adoptable) ? "checked" : "" }
             />
 
-          <h3>Price</h3>
-          <input type="number" value={this.state.price.$numberDecimal} onChange={this.update('price')} />
+          <h3 className="edit-pet-title">Price</h3>
+          <input type="number" className="edit-pet-input-field" placeholder={this.state.price} value={this.state.price} onChange={this.update('price')} />
 
-          <input type="submit" value="Edit pet listing" />
+          <input type="submit" className="edit-pet-submit" value="Confirm Changes" />
 
         </form>
 

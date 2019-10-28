@@ -1,11 +1,16 @@
 import React from "react";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import "./stylesheets/pet_show.css";
-import Slider from "react-slick";
-import { Link } from 'react-router-dom';
+import Carousel from "nuka-carousel";
 import EditPetContainer from './edit_pet_container'
+import { css } from '@emotion/core';
+import PulseLoader from 'react-spinners/PulseLoader';
 import CommentsIndexContainer from "../comments/comments_index_container";
+
+const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+`;
 
 class PetShow extends React.Component {
   constructor(props) {
@@ -13,7 +18,8 @@ class PetShow extends React.Component {
 
     this.state = {
       pet: this.props.pets,
-      clicked: false
+      clicked: false,
+      loading: true
     }
 
     this.debugEdit = this.debugEdit.bind(this)
@@ -55,52 +61,37 @@ class PetShow extends React.Component {
   render() {
     const { pet, petId } = this.props;
 
-    const settings = {
-      dots: true,
-      infinite: true,
-      centerMode: true,
-      centerPadding: '60px',
-      slidesToShow: 1,
-      responsive: [
-        {
-          breakpoint: 768,
-          settings: {
-            arrows: true,
-            centerMode: true,
-            centerPadding: '40px',
-            slidesToShow: 1
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            arrows: true,
-            centerMode: true,
-            centerPadding: '40px',
-            slidesToShow: 1
-          }
-        }
-      ]
-    }
+    if (!pet) {
+    return (
+      <div className='sweet-loading'>
+        <PulseLoader
+            css={override}
+            sizeUnit={"px"}
+            size={15}
+            color={'#f1631f'}
+            loading={this.state.loading}/>
+      </div>
+    )};
 
     let optionalItem;
+    let pet_images = pet.image;
 
-    let pet_images;
-    console.log(this.props.pet);
-    if (!pet) {
-      return <div>Loading...</div>;
-    }
+    const carouselImages = pet_images.map((image, index) => 
+      (<div key={index + 1}><img src={image} alt="" /></div>)
+      );
+
+
     if (this.props.loggedIn && this.props.currentUser
       && (this.props.currentUser === this.props.pet.owner)) {
       optionalItem =
         <div>
-          <button onClick={this.handleClick}>Edit Pet Listing</button>
+          <button className="pet-show-submit" onClick={this.handleClick}>Edit Pet Listing</button>
           {this.state.clicked ? <EditPetContainer pet={this.props.pet} /> : null}
         </div>;
     } else if (this.props.loggedIn && this.props.currentUser
       && (this.props.currentUser !== this.props.pet.owner)) {
       if (!this.props.requestedPets.includes(pet.id)) {
-        optionalItem = <button onClick={this.props.requestPet}>Request Pet</button>
+        optionalItem = <button className="pet-show-submit" onClick={this.props.requestPet}>Request Pet</button>
       } else {
         optionalItem = <p>{pet.name} has been added to your shopping kennel, please wait for approval.</p>
       }
@@ -108,34 +99,62 @@ class PetShow extends React.Component {
 
     return (
       <div className="pet-show-container">
-        <Slider {...settings}>
-          <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
-          <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
-          <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
-          <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
-          <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
-        </Slider>
+
+        <div>
+          <Carousel width={"500px"} heightMode={"first"} wrapAround={true} dragging={true}>
+          {carouselImages}
+          </Carousel>
+        </div>
+
+
         <div className="pet-show-details">
-          <div className="pet-show-name">
-            {pet.name}
+          <div className="pet-show-detail-box">
+
+            {pet.owner}
+            <div className="pet-show-name">
+              {pet.name}
+            </div>
+            <div className="pet-show-price">
+              ${pet.price}
+            </div>
+            <div className="a-lie">
+              Free shipping to <u>United States</u>
+            </div>
+
+            
+            
+            {optionalItem}
+
+            <div className="pet-show-spacer"/>
+
+            <span className="pet-show-details-header">
+              Pet Details
+            </span>
+
+            <div className="pet-show-details-title">Species</div>
+            <div className="pet-show-color">
+              {pet.species}
+            </div>
+            
+
+           <div className="pet-show-details-title">Color</div>
+            <div className="pet-show-color">
+              {pet.color.toLowerCase()}
+            </div>
+
+            <div className="pet-show-details-title">Weight</div>
+            <div className="pet-show-weight">
+              {pet.weight} lbs
+            </div>
+
+            
           </div>
-          <div className="pet-show-price">
-            ${pet.price}
-          </div>
-          <div className="a-lie">
-            Free shipping to United States
-          </div>
-          <div className="pet-show-color">
-            Color: {pet.color.toUpperCase()}
-          </div>
-          <div className="pet-show-weight">
-            Weight: {pet.weight} lbs
-          </div>
-          {optionalItem}
         </div>
         <CommentsIndexContainer petId={ petId } />
       </div>
+      
     )
+    
   }
 }
 
