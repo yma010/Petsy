@@ -116,8 +116,7 @@
   cursor: pointer;
   transition: 0.3s;
 }
-
-
+2
 .session-form-submit:focus {
   outline: none;
 }

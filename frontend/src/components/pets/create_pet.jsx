@@ -25,11 +25,11 @@ export default class CreatePet extends React.Component {
     this.clearedErrors = false;
  
   };
- 
+
   componentDidMount() {
     this.setState({adoptable: Boolean(true)})
   }
-   
+    
   updateFile(e) {
     let imageFiles = e.target.files;
     this.setState({
@@ -62,6 +62,7 @@ export default class CreatePet extends React.Component {
  
     axios.post('api/image/pet-upload', data, config)
       .then((response) => {
+        debugger
         console.log(response)
         this.setState({
           image: response.data.imageUrl
@@ -92,7 +93,6 @@ export default class CreatePet extends React.Component {
       }
     ))
   }
- 
   render() {
     if (this.props.loggedIn)
     {

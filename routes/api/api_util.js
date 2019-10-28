@@ -1,6 +1,7 @@
 const ObjectId = require("mongoose").Types.ObjectId;
 
 const formatPetsData = pet => {
+  console.log(pet)
   return {
   id: pet.id,
   price: parseFloat(pet.price.toString()),
@@ -11,8 +12,9 @@ const formatPetsData = pet => {
   image: pet.image,
   color: pet.color,
   weight: parseFloat(pet.weight.toString()),
-
+  adoptable: pet.adoptable,
   owner: ObjectId.isValid(pet.owner) ? pet.owner : pet.owner.id,
+  ownerName: ObjectId.isValid(pet.owner) ? pet.owner : pet.owner.username,
   comments: ObjectId.isValid(pet.comments[0]) ?
     pet.comments : pet.comments.map(comment => comment.id)
 }};

@@ -3,8 +3,9 @@
   padding: 15px;
   border-radius: 5px;
   /* border: 1px solid rgba(0, 0, 0, 0.459); */
-  background: rgb(255, 229, 190);
+  background: rgb(147, 173, 221);
   opacity: 0.8;
+
 }
 
 .edit-pet-title {
@@ -18,16 +19,15 @@
 .edit-pet-submit {
   margin-top: 25px;
   margin-left: auto;
-  width: 60%;
+  width: 80%;
   margin-right: 55px;
   height: 35px;
   font-size: 16px;
   font-weight: 700;
   color: white;
   background: rgba(108, 204, 52, 0.801);
-  
   border-radius: 5px;
-  border: 1px solid #E1E3DF;
+  border: none;
 }
 
 .edit-pet-submit:hover {
@@ -41,10 +41,12 @@
 }
 
 .edit-pet-input-field {
+  margin-top: 8px 0;
   width: 50%;
   height: 25px;
   border-radius: 5px;
-  border: 1px solid #E1E3DF;
+  border: none;
+  /* border: 1px solid #E1E3DF; */
 }
 
 .edit-pet-input-field[type=text] {
