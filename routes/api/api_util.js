@@ -15,6 +15,7 @@ const formatPetsData = pet => {
 const formatUsersData = user => ({
   id: user.id,
   username: user.username,
+  image: user.image,
   pets: user.pets
 });
 

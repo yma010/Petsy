@@ -80,13 +80,21 @@ class PetShow extends React.Component {
       ]
     }
 
-    let optionalItem;
 
-    let pet_images;
     console.log(this.props.pet);
+
     if (!pet) {
       return <div>Loading...</div>;
     }
+
+    let optionalItem;
+    let pet_images = pet.image;
+
+    const carouselImages = pet_images.map((image, index) => 
+      (<li key={index + 1}><img src={image} alt="" /></li>)
+      );
+
+
     if (this.props.loggedIn && this.props.currentUser
       && (this.props.currentUser === this.props.pet.owner)) {
       optionalItem =
@@ -106,11 +114,7 @@ class PetShow extends React.Component {
     return (
       <div className="pet-show-container">
         <Slider {...settings}>
-          <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
-          <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
-          <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
-          <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
-          <div><img src="https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg" alt="" /></div>
+          <ul>{carouselImages}</ul>
         </Slider>
         <div className="pet-show-details">
           <div className="pet-show-name">

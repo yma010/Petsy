@@ -37,8 +37,7 @@ ul>li {
 }
 
 .pets-index-item-photo{
-  height: 100px;
-  width: 100px;
+  width: 100%;
 }
 
 .pets-index-item{

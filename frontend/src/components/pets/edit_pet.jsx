@@ -65,7 +65,7 @@ export default class EditPet extends React.Component {
           <h3>Price</h3>
           <input type="number" value={this.state.price.$numberDecimal} onChange={this.update('price')} />
 
-          <input type="submit" value="Edit pet listing" />
+          <input type="submit" value="Confirm Changes" />
 
         </form>
 
