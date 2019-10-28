@@ -1,8 +1,10 @@
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 import { openModal, closeModal } from '../../actions/modal_actions';
+import { withRouter } from "react-router-dom";
 
 import NavBar from './navbar';
+import { fetchPets } from '../../actions/pets_actions';
 
 const mapStateToProps = state => ({
   loggedIn: state.session.isAuthenticated
@@ -15,4 +17,4 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBar));

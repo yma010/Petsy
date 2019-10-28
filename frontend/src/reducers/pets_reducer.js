@@ -9,7 +9,7 @@ export default function( state = {}, action ) {
   let newState;
   switch (action.type) {
   case RECEIVE_ALL_PETS:
-    return merge({}, state, action.pets)
+    return merge({}, action.pets)
   case RECEIVE_PET:
     newState = merge({}, state);
     newState[action.pet.id] = action.pet;

@@ -1,7 +1,11 @@
 import axios from "axios";
 
-export const fetchPets = () => {
-  return axios.get("/api/pets/index")
+export const fetchPets = (searchParams = "") => {
+  let query = "";
+  if (searchParams.length > 0) {
+    query = `?${searchParams}`
+  }
+  return axios.get(`/api/pets/index${query}`)
     .then(function(response) {
       return response.data;
     })
