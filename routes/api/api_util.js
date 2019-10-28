@@ -6,6 +6,7 @@ const formatPetsData = pet => {
   price: parseFloat(pet.price.toString()),
   name: pet.name,
   sex: pet.sex,
+  image: pet.image,
   color: pet.color,
   weight: parseFloat(pet.weight.toString()),
   owner: ObjectId.isValid(pet.owner)  ? pet.owner : pet.owner.id

@@ -82,6 +82,8 @@ class PetShow extends React.Component {
 
     let optionalItem;
 
+    let pet_images;
+    console.log(this.props.pet);
     if (!pet) {
       return <div>Loading...</div>;
     }
@@ -100,6 +102,7 @@ class PetShow extends React.Component {
         optionalItem = <p>{pet.name} has been added to your shopping kennel, please wait for approval.</p>
       }
     }
+
     return (
       <div className="pet-show-container">
         <Slider {...settings}>

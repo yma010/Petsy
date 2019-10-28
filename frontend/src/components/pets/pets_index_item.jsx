@@ -4,13 +4,12 @@ import "./stylesheets/pets_index.css";
 
 const PetsIndexItem = ({ pets }) => (
   <li className="pets-index-item">
-
     <Link className="pets-index-item-link" to={`/pets/${pets.id}`}>
 
       <div className="pets-index-item-details">
 
         <div className="pets-index-item-photo">
-          Picture Placeholder
+          <img src={pets.image[0]} alt="" />
         </div>
 
         <div className="pets-index-item-name">

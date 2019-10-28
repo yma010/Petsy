@@ -17,6 +17,13 @@ a {
   color: inherit;
 }
 
+img{
+  height: auto;
+  width: 100%;
+  overflow: hidden;
+  object-fit: fill;
+}
+
 ul>li {
   text-decoration: none;
   list-style: none;
@@ -27,6 +34,11 @@ ul>li {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 1rem;
   box-sizing: border-box;
+}
+
+.pets-index-item-photo{
+  height: 100px;
+  width: 100px;
 }
 
 .pets-index-item{
