@@ -15,7 +15,6 @@ export default class CreatePet extends React.Component {
       adoptable: Boolean(true),
       sex: '',
       price: '',
-      owner: '',
       image: null,
       errors: {}
     }

@@ -1,5 +1,6 @@
 import { merge } from "lodash";
 import { RECEIVE_SENT_REQUESTS, RECEIVE_SENT_REQUEST, RECEIVE_RECEIVED_REQUESTS } from "../actions/requests_actions";
+import { RECEIVE_COMMENT, RECEIVE_COMMENTS } from "../actions/comments_actions";
 
 
 export default (state = {}, action) => {
@@ -14,6 +15,12 @@ export default (state = {}, action) => {
       return newState;
     case RECEIVE_RECEIVED_REQUESTS:
       newState = merge({}, state, action.users);
+      return newState;
+    case RECEIVE_COMMENTS:
+      newState = merge({}, state, action.users);
+      return newState;
+    case RECEIVE_COMMENT:
+      newState({}, state, {[action.user.id]: action.user});
       return newState;
     default:
       return state;

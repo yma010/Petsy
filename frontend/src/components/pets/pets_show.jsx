@@ -4,6 +4,7 @@ import Carousel from "nuka-carousel";
 import EditPetContainer from './edit_pet_container'
 import { css } from '@emotion/core';
 import PulseLoader from 'react-spinners/PulseLoader';
+import CommentsIndexContainer from "../comments/comments_index_container";
 
 const override = css`
     display: block;
@@ -27,7 +28,9 @@ class PetShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchPet(this.props.petId);
-    this.props.fetchSentRequests();
+    if (this.props.loggedIn) {
+      this.props.fetchSentRequests();
+    }
     this.setState({
       clicked: false
     });
@@ -56,7 +59,7 @@ class PetShow extends React.Component {
 
 
   render() {
-    const { pet } = this.props;
+    const { pet, petId } = this.props;
 
     if (!pet) {
     return (
@@ -147,6 +150,7 @@ class PetShow extends React.Component {
             
           </div>
         </div>
+        <CommentsIndexContainer petId={ petId } />
       </div>
       
     )
