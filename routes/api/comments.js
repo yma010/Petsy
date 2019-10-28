@@ -76,7 +76,9 @@ router.patch("/:commentId",
       { body: req.body.body},
       {new: true })
       .then(comment => {
-        res.json(formatCommentsData(comment))
+        res.json({
+          comment: formatCommentsData(comment)
+        })
       })
       .catch(() => {
         res.status(404).json({
@@ -89,7 +91,15 @@ router.delete("/:commentId",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Comment.findOneAndRemove({ _id: req.params.commentId, author: req.user.id})
-      .then(comment => res.json(formatCommentsData(comment)))
+      .then(comment => {
+        Pet.findOneAndUpdate(
+          { _id: comment.pet },
+          { $pull: { comments: comment.id } }
+        )
+          .then(() => {
+            res.json(formatCommentsData(comment))
+          })
+      })
       .catch(() => res.status(400).json({
         comment: "You are not the author or this comment does not exist"
       }))
