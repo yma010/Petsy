@@ -96,7 +96,6 @@ class PetShow extends React.Component {
         optionalItem = <p>{pet.name} has been added to your shopping kennel, please wait for approval.</p>
       }
     }
-
     return (
       <div className="pet-show-container">
 
@@ -110,13 +109,15 @@ class PetShow extends React.Component {
         <div className="pet-show-details">
           <div className="pet-show-detail-box">
 
-            {pet.owner}
+            {pet.ownerName}
             <div className="pet-show-name">
               {pet.name}
             </div>
             <div className="pet-show-price">
               ${pet.price}
             </div>
+
+
             <div className="a-lie">
               Free shipping to <u>United States</u>
             </div>
@@ -140,6 +141,11 @@ class PetShow extends React.Component {
            <div className="pet-show-details-title">Color</div>
             <div className="pet-show-color">
               {pet.color.toLowerCase()}
+            </div>
+
+            <div className="pet-show-details-title">Adoptable?</div>
+            <div className="pet-show-color">
+              {pet.adoptable.toString()}
             </div>
 
             <div className="pet-show-details-title">Weight</div>

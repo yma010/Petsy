@@ -1,5 +1,7 @@
 import React from "react";
 import EditCommentFormContainer from "./edit_comment_form_container";
+import './stylesheets/comments.css';
+
 
 export default class CommentShow extends React.Component {
   render() {
@@ -33,11 +35,24 @@ export default class CommentShow extends React.Component {
 
     return (
       <li>
-        <img className="profile-pic" src={ comment.author.image }/>
-        <p>{ comment.author.username }</p>
-        <p>{ comment.formatPosted }</p>
-        {comment.body}
-        { authorItems }
+        <div className="comment-item-container">
+          <div className="comment-header">
+            <img className="comment-profile-picture" src={comment.author.image} />
+            <span className="comment-header-text">Reviewed by {comment.author.username} on {comment.formatPosted}</span>
+
+          </div>
+
+          <div className="comment-body-container"> 
+            {comment.body}
+
+
+          </div>
+
+          <div className="comment-buttons">
+            {authorItems}
+          </div>
+
+        </div>
       </li>
             
     );

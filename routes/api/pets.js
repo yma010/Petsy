@@ -32,7 +32,8 @@ router.post("/register",
   passport.authenticate('jwt', { session: false }), (req, res) => {
   
   const { errors, isValid } = validatePetInput(req.body);
-
+  console.log(req.body)
+  console.log("TEST")
   if (!isValid) {
     return res.status(400).json(errors);
   }
@@ -51,13 +52,14 @@ router.post("/register",
   newPet.save()
   .then(pet => res.json(pet))
   .catch(err => console.log(err))
+
 });
 
 
 router.put("/edit/:id", (req, res) => {
   let petValues = req.body;
   let pet_id = req.body.id;
-  // console.log(req.body)
+  console.log(req.body)
   Pet.updateOne({ _id: pet_id }, petValues, function(err) {
     if (!err) {
       console.log("Pet updated!");

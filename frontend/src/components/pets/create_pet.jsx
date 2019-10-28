@@ -9,7 +9,7 @@ export default class CreatePet extends React.Component {
 
     this.state = {
       name: '',
-      species: '',
+      species: 'Dog',
       color: '',
       weight: '',
       adoptable: Boolean(true),
@@ -25,6 +25,10 @@ export default class CreatePet extends React.Component {
     this.clearedErrors = false;
 
   };
+
+  componentDidMount() {
+    this.setState({adoptable: Boolean(true)})
+  }
     
   updateFile(e) {
     let imageFiles = e.target.files;
@@ -58,6 +62,7 @@ export default class CreatePet extends React.Component {
 
     axios.post('api/image/pet-upload', data, config)
       .then((response) => {
+        debugger
         console.log(response)
         this.setState({
           image: response.data.imageUrl
@@ -82,13 +87,13 @@ export default class CreatePet extends React.Component {
   };
 
   handleAdoptable() {
-    if (document.getElementById('adoptCheckbox') && document.getElementById('adoptCheckbox').checked) {
-      this.setState({ adoptable: Boolean(true) });
-    } else {
-      this.setState({ adoptable: Boolean(false) });
-    }
+    this.setState(({ adoptable }) => (
+      {
+        adoptable: !this.state.adoptable
+      }
+    ))
   }
-  
+
   render() {
     if (this.props.loggedIn)
     {
@@ -120,7 +125,6 @@ export default class CreatePet extends React.Component {
                 <h3 className="form-field-title">Species</h3>
 
                 <select className="form-field-input" value={this.state.species} onChange={this.update('species')} required>
-                  <option selected>"Please select their species!"</option> 
                   <option value="Dog">Dog</option>
                   <option value="Cat">Cat</option>
                   <option value="Bird">Bird</option>
@@ -158,8 +162,9 @@ export default class CreatePet extends React.Component {
               <label className="container">
               <input type="checkbox" 
                 id="adoptCheckbox"
+                checked={ this.state.adoptable }
                 onChange={this.handleAdoptable}
-                checked={(this.state.adoptable) ? "checked" : ""}
+                // checked={(this.state.adoptable) ? "checked" : ""}
                      />
                 <span className="checkmark"></span>
                 </label>
