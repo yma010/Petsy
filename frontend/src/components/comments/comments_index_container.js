@@ -9,7 +9,7 @@ const msp = (state, { match: { params: { petId } } }) => ({
     if (comment) {
       comment = Object.assign({}, comment);
       comment.author = state.entities.users[comment.author];
-      comment.posted = new Date(comment.posted)
+      comment.formatPosted = new Date(comment.posted)
         .toDateString()
         .split(" ")
         .slice(1)

@@ -1,5 +1,6 @@
 import React from "react";
 import CommentShowContainer from "./comment_show_container";
+import CreateCommentFormContainer from "./create_comment_form_container";
 
 export default class CommentsIndex extends React.Component {
   componentDidMount() {
@@ -23,9 +24,13 @@ export default class CommentsIndex extends React.Component {
     });
 
     return (
-      <ul>
-        { commentLis }
-      </ul>
+      <>
+        <CreateCommentFormContainer />
+        <ul>
+          { commentLis }
+        </ul>
+      </>
+      
     )
   }
 }

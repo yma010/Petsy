@@ -2,6 +2,7 @@ import { RECEIVE_ALL_PETS, RECEIVE_PET } from "../actions/pets_actions";
 
 import { merge } from 'lodash';
 import { RECEIVE_RECEIVED_REQUESTS, RECEIVE_SENT_REQUESTS, RECEIVE_SENT_REQUEST } from "../actions/requests_actions";
+import { RECEIVE_COMMENT } from "../actions/comments_actions";
 
 export default function( state = {}, action ) {
   Object.freeze(state)
@@ -20,6 +21,9 @@ export default function( state = {}, action ) {
     newState = merge({}, state, action.pets);
     return newState;
   case RECEIVE_SENT_REQUEST:
+    newState = merge({}, state, {[action.pet.id]: action.pet});
+    return newState;
+  case RECEIVE_COMMENT:
     newState = merge({}, state, {[action.pet.id]: action.pet});
     return newState;
   default:

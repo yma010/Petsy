@@ -10,10 +10,11 @@ export const receiveComments = ({comments, users}) => ({
   users
 });
 
-export const receiveComment = ({comment, user}) => ({
+export const receiveComment = ({comment, user, pet}) => ({
   type: RECEIVE_COMMENT,
   comment,
-  user
+  user,
+  pet
 });
 
 export const removeComment = commentId => ({

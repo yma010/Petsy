@@ -4,7 +4,7 @@ const Comment = require("../../model/Comment");
 const Pet = require("../../model/Pet");
 const User = require("../../model/User");
 const passport = require("passport");
-const { formatCommentsData, formatUsersData } = require("./api_util");
+const { formatCommentsData, formatUsersData, formatPetsData } = require("./api_util");
 const validateCommentInput = require("../../validations/comments");
 
 router.get("/:petId", (req, res) => {
@@ -59,7 +59,8 @@ router.post("/:petId",
                   .then(user => {
                     res.json({
                       comment: formatCommentsData(comment),
-                      user: formatUsersData(user)
+                      user: formatUsersData(user),
+                      pet: formatPetsData(pet)
                     })
                   })
               })
