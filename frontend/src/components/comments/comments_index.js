@@ -1,7 +1,7 @@
 import React from "react";
 import CommentShowContainer from "./comment_show_container";
 import CreateCommentFormContainer from "./create_comment_form_container";
-
+import "./stylesheets/comment.css"
 export default class CommentsIndex extends React.Component {
   constructor(props) {
     super(props);
@@ -42,12 +42,19 @@ export default class CommentsIndex extends React.Component {
     });
 
     return (
-      <>
-        <CreateCommentFormContainer />
-        <ul>
+      <div>
+        <div className="comments-title">
+          Comments
+        </div>
+        <div className="border"></div>
+        <ul className="comments-index-container">
           { commentLis }
         </ul>
-      </>
+        <div className="create-form-container">
+          < CreateCommentFormContainer />
+        </div>
+        
+      </div>
       
     )
   }

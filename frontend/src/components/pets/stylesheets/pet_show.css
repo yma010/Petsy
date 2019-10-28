@@ -1,7 +1,7 @@
 .pet-show-container{
   margin-top: 25px;
   display: grid;
-  grid-template-columns: 50% auto;
+  grid-template-columns: 70% 30% auto;
   grid-gap: 2rem;
   box-sizing: border-box;
 }
@@ -92,8 +92,9 @@ img{
   font-weight: 700;
 }
 
-.pet-show-carousel {
-  width: 700px;
+.photo-carousel {
+  display: flex;
+  flex-direction: column;
 }
 
 .sweet-loading {

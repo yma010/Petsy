@@ -13,8 +13,8 @@ export const receivePet = (pet) => ({
   pet
 });
 
-export const fetchPets = () => dispatch => {
-  APIPetUtil.fetchPets()
+export const fetchPets = (searchParams = "") => dispatch => {
+  APIPetUtil.fetchPets(searchParams)
     .then(pets => dispatch(receiveAllPets(pets)))
 };
 

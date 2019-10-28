@@ -6,12 +6,33 @@ const ObjectID = require('mongodb').ObjectID;
 const formatPetsData = require("./api_util").formatPetsData;
 const validatePetInput = require("../../validations/pet");
 
+const parseSearch = ({names, species, colors, sexes}) => {
+  let searchParams = [];
+  if (names) {
+    searchParams.push({ name: { $regex: new RegExp(names.join("|"), "i") } });
+  }
+  if (species) {
+    searchParams.push({ species: { $regex: new RegExp(species.join("|"), "i") } });
+  }
+  if (colors) {
+    searchParams.push({ color: { $regex: new RegExp(colors.join("|"), "i") } });
+  }
+  if (sexes) {
+    searchParams.push({ sex: { $regex: new RegExp(sexes.join("|"), "i") } });
+  }
+  if (searchParams.length !== 0) {
+    return { $or: searchParams }
+  }
+  return {};
+};
+
 router.get("/test", (req, res) => res.json({
   msg: "This is the pets route"
 }));
 
 router.get("/index", (req, res) => {
-  Pet.find({})
+  let searchParams = parseSearch(req.query);
+  Pet.find(searchParams)
     .then(pets => {
       let petsObj = {};
       pets.forEach(pet => petsObj[pet._id] = formatPetsData(pet));

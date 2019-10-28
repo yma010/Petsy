@@ -7,6 +7,12 @@ export default class PetsIndex extends React.Component {
     this.props.fetchPets()
   }
 
+  componentDidUpdate({ location: { search } }) {
+    if (this.props.location.search !== search) {
+      this.props.fetchPets();
+    }
+  }
+
   render() {
     let petsIndexItem;
 

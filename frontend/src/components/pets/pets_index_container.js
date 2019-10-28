@@ -6,10 +6,11 @@ const msp = state => ({
   pets: Object.values(state.entities.pets)
 });
 
-const mdp = dispatch => ({
-  fetchPets: () => dispatch(fetchPets()),
-  fetchPet: id => dispatch(fetchPet(id))
-});
+const mdp = (dispatch, { location: { search } }) => {
+  return {
+    fetchPets: () => dispatch(fetchPets(search.slice(1))),
+    fetchPet: id => dispatch(fetchPet(id))
+}};
 
 export default connect(
   msp, 
