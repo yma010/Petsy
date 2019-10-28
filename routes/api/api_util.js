@@ -4,6 +4,7 @@ const formatPetsData = pet => {
   return {
   id: pet.id,
   price: parseFloat(pet.price.toString()),
+  image: pet.image,
   name: pet.name,
   sex: pet.sex,
   image: pet.image,
@@ -17,17 +18,21 @@ const formatPetsData = pet => {
 const formatUsersData = user => ({
   id: user.id,
   username: user.username,
-  pets: user.pets
+  pets: ObjectId.isValid(user.pets) ?
+    user.pets : user.pets.map(pet => pet.id),
+  image: user.image
 });
 
 const formatCommentsData = comment => ({
   id: comment.id,
   pet: ObjectId.isValid(comment.pet) ? comment.pet : comment.pet.id,
   author: ObjectId.isValid(comment.author) ? comment.author : comment.author.id,
-  body: comment.body
+  body: comment.body,
+  posted: comment.posted
 })
 
 module.exports = {
   formatPetsData,
-  formatUsersData
+  formatUsersData,
+  formatCommentsData
 };

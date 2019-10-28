@@ -21,7 +21,9 @@ class PetShow extends React.Component {
 
   componentDidMount() {
     this.props.fetchPet(this.props.petId);
-    this.props.fetchSentRequests();
+    if (this.props.loggedIn) {
+      this.props.fetchSentRequests();
+    }
     this.setState({
       clicked: false
     });
