@@ -53,8 +53,13 @@ class NavBar extends React.Component {
     }
   }
 
-  search() {
-    this.props.fetchPets(this.state.searchParams);
+  search(e) {
+    e.preventDefault();
+    let { searchParams } = this.state;
+    if (searchParams.length !== 0) {
+      this.props.history.push(`/index?${searchParams}`);
+    }
+    
   }
 
   updateSearch() {
@@ -90,7 +95,7 @@ class NavBar extends React.Component {
       let searchWords = e.target.value.split(" ");
       this.setState({
         searchParams: searchWords.map(word => {
-          word = word.toUpperCase();
+          word = word.toLowerCase();
           if (speciesOptions.includes(word)) {
             return `species[]=${word}`;
           } else if (colorsOptions.includes(word.toLowerCase())) {
@@ -101,15 +106,14 @@ class NavBar extends React.Component {
             return `names[]=${word}`;
           }
       }).join("&")
-      },
-      this.search);
+      });
     }
   }
 
   searchBar() {
     return (
       // Need to fix the button dropping to the bottom when the window size is too small horizontally
-      <form className="nav-search-bar">
+      <form onSubmit={ this.search } className="nav-search-bar">
         <input type="text" onChange={ this.updateSearch() } className="nav-search-bar-input" placeholder="Search for pets"/>
         <button className="nav-search-bar-button" value="testbutton"><span role="img" className="nav-search-icon" aria-label="temp">🔍</span></button>
       </form>
