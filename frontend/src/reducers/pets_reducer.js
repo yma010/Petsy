@@ -31,8 +31,6 @@ export default function( state = {}, action ) {
     } else {
       return state;
     }
-  case RECEIVE_USER_LOGOUT:
-    return {};
   default:
     return state;
   };

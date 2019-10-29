@@ -88,7 +88,7 @@ class PetShow extends React.Component {
     }
 
     const carouselImages = pet_images.map((image, index) => 
-      (<div key={index + 1}><img src={image} alt="" /></div>)
+      (<div className="carousel-image" key={index + 1}><img src={image} alt="" /></div>)
       );
 
 

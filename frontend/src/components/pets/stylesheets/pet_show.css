@@ -125,3 +125,13 @@ img{
   border: 1px solid rgba(34, 34, 34, 0.15);
   border-radius: 50%;
 }
+
+.carousel-image img {
+  height: 500px;
+  width: auto;
+}
+
+.carousel-image {
+  display: flex;
+  justify-content: center;
+}
