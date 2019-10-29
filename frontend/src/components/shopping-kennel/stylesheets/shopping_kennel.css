@@ -1,0 +1,36 @@
+.request-listing {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgb(235, 235, 235);
+  margin: 1em;
+  padding: 1em;
+}
+
+.request-listing img {
+  height: 300px;
+  width: auto;
+}
+
+.request-listing img.profile-pic {
+  border-radius: 0;
+}
+
+.user-requests {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.request-options .pet-show-submit {
+  margin-right: 5px;
+}
+
+.request-options {
+  display: flex;
+}
+
+.user-requests p {
+  font-size: 20px;
+  font-weight: 500;
+}
