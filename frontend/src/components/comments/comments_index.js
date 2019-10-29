@@ -42,7 +42,7 @@ export default class CommentsIndex extends React.Component {
     });
 
     return (
-      <div>
+      <div className="comment-container">
         <div className="comments-title">
           Comments
         </div>
