@@ -105,13 +105,11 @@ ul>li {
 }
 
 .pets-index-free-blank {
-  margin-top: 2px;
-  background: #fdebd2;
+  margin-top: 5px;
   border-radius: 10px;
   width: 90px;
+  height: 23px;
   color: #f6f6f6;
-  background: #f6f6f6;
-
 }
 
 .pets-index-free-shipping-text {
