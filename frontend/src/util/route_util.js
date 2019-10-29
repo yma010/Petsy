@@ -7,7 +7,7 @@ const Auth = ({ component: Component, path, loggedIn, exact }) => (
     !loggedIn ? (
       <Component {...props} />
     ) : (
-      <Redirect to="/" /> //TODO: Redirect to Listings when done
+      <Redirect to="/" />
     )
   )} />
 );

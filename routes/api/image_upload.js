@@ -22,11 +22,11 @@ router.post('/pet-upload', function(req, res){
     const imgLocationArray = [];
       for (let i = 0; i < imageArray.length; i++){
         fileLocation = imageArray[i].location;
-        imgLocationArray.push(fileLocation) //iterate through the array of files and grab location
+        imgLocationArray.push(fileLocation)
       }
    
     return res.json({
-      'imageUrl': imgLocationArray //return the array of location urls from S3
+      'imageUrl': imgLocationArray
     })};
   });
 });

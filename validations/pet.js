@@ -1,15 +1,6 @@
 const Validator = require('validator');
 const validText = require('./valid-text');
 
-// name
-// species
-// color
-// sex
-// weight
-// adoptable
-// price
-// owner
-
 module.exports = function validatePetInput(data) {
     let errors = {};
 

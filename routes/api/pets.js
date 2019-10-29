@@ -57,8 +57,6 @@ router.post("/register",
   passport.authenticate('jwt', { session: false }), (req, res) => {
   
   const { errors, isValid } = validatePetInput(req.body);
-  console.log(req.body)
-  console.log("TEST")
   if (!isValid) {
     return res.status(400).json(errors);
   }
@@ -88,7 +86,6 @@ router.post("/register",
 router.put("/edit/:id", (req, res) => {
   let petValues = req.body;
   let petId = req.body.id;
-  // console.log(req.body)
   Pet.findByIdAndUpdate(
     petId,
     petValues,

@@ -22,12 +22,10 @@ class NavBar extends React.Component {
     return <Redirect to="/"/>
 
   }
-
-  // Selectively render links dependent on whether the user is logged in (NEED TO ADD WHEN WE DECIDE)
+  
   getLinks() {
     if (this.props.loggedIn) {
       this.props.closeModal()
-       //quick fix
       return (
         <div className="nav-link-container logged-in">
           <Link className="nav-link" to={'/pets/register'}>List on Petsy</Link>
@@ -36,7 +34,6 @@ class NavBar extends React.Component {
           <Link className="nav-link" to={'/cart'}>
             cart
           </Link>
-          {/* Cart icon will be changed to a kennel(?) */}
         </div>
       );
     } else {
@@ -45,8 +42,7 @@ class NavBar extends React.Component {
           <Link className="nav-link" to={'/pets/register'}>List on Petsy</Link>
           <span className="nav-link" onClick={this.props.register}>Register</span>
           <button className="nav-link sign-in" onClick={this.props.login}>Sign In</button>
-          <Link className="nav-link" to={'/cart'}>Cart</Link> 
-          {/* Cart icon will be changed to a kennel(?) */}
+          <Link className="nav-link" to={'/cart'}>Cart</Link>
         </div>
       );
     }
@@ -111,7 +107,6 @@ class NavBar extends React.Component {
 
   searchBar() {
     return (
-      // Need to fix the button dropping to the bottom when the window size is too small horizontally
       <form onSubmit={ this.search } className="nav-search-bar">
         <input type="text" onChange={ this.updateSearch() } className="nav-search-bar-input" placeholder="Search for pets"/>
         <button className="nav-search-bar-button" value="testbutton"><span role="img" className="nav-search-icon" aria-label="temp">🔍</span></button>
@@ -158,7 +153,6 @@ class NavBar extends React.Component {
           {this.getLinks()}
         </div>
         <div>
-          {/* Need to fix so underline hits the underlying bottom border - done with a dropdown menu? */}
           {this.categoriesBar()} 
         </div>
         

@@ -1,7 +1,6 @@
 import React from "react";
 import './stylesheets/create_pet.css';
 import axios from 'axios';
-// import CurrencyInput from 'react-currency-masked-input'
  
 export default class CreatePet extends React.Component {
   constructor(props) {
@@ -48,8 +47,7 @@ export default class CreatePet extends React.Component {
     for(let i = 0; i < images.length; i++){
       data.append("image[]", images[i], fileName[i].name);
     }
-    console.log(data.getAll("image[]")); //Checks if data is actually populated with the images
- 
+    
     const config = {
       headers: {
       'accept': 'application/json',
@@ -64,9 +62,7 @@ export default class CreatePet extends React.Component {
           image: response.data.imageUrl
         })
       }).then((response) => {
-        //Pet creation only occurs if it receives a response from axios
         const petData = Object.assign({}, this.state);
-        console.log(petData);
         this.props.createPet(petData).then((response) => {
           if (response.status === 200) {
             this.props.history.push(`/pets/${response.pet.id}`);
@@ -158,7 +154,6 @@ export default class CreatePet extends React.Component {
                 id="adoptCheckbox"
                 checked={ this.state.adoptable }
                 onChange={this.handleAdoptable}
-                // checked={(this.state.adoptable) ? "checked" : ""}
                      />
                 <span className="checkmark"></span>
                 </label>
