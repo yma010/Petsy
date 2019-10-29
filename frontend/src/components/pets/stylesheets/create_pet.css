@@ -57,7 +57,7 @@
   -moz-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
   -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
-  background-color: #FFF;
+  background-color: inherit;
   border-color: rgba(0, 0, 0, 0.15);
   border-style: solid;
   border-width: 1px;
@@ -68,6 +68,10 @@
   text-overflow: "";
 }
 
+.select-feature {
+  width: 31%;
+}
+
 .form-field-input:hover {
   border-color: rgb(150, 150, 150);
   transition: 0.7s;
@@ -76,6 +80,14 @@
 .form-field-input:focus {
   outline: none;
   border-color: black;
+}
+
+.form-field-input[type=text] {
+  padding-left: 7px;
+}
+
+.form-field-input[type=number] {
+  padding-left: 7px;
 }
 
 .form-field-description-text {
@@ -208,7 +220,7 @@
   left: 0;
   /* height: 70px; */
   width: 100%;
-  background: rgba(255, 255, 255, 0.856);
+  /* background: rgba(255, 255, 255, 0.856); */
 }
 .form-end-spacer {
   margin-top: 50px;

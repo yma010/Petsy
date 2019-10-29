@@ -22,9 +22,7 @@ const msp = (state, { match: { params: { petId } } }) => ({
         })
         .join(" ");
       return comment;
-    } else {
-      return null;
-    }
+    } 
   }).sort((a, b) => Date.parse(b.posted) - Date.parse(a.posted) )
 });
 
