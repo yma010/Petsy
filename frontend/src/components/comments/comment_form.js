@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./stylesheets/comment-form.css";
 export default class CommentForm extends React.Component {
   constructor(props) {
     super(props);
@@ -24,9 +24,9 @@ export default class CommentForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={ this.handleSubmit }>
-        <input type="text" onChange={ this.update("body") } value={ this.state.body }/>
-        <input type="submit" value="Add Comment" />
+      <form className="create-comment-form-body" onSubmit={ this.handleSubmit }>
+        <textarea className="create-text" type="text" onChange={ this.update("body") } value={ this.state.body }/>
+        <input className="onSubmit" type="submit" value="Add Comment" />
       </form>
     )
   }
