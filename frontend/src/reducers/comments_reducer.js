@@ -1,5 +1,6 @@
 import { merge } from "lodash";
 import { RECEIVE_COMMENTS, RECEIVE_COMMENT, REMOVE_COMMENT } from "../actions/comments_actions";
+import { RECEIVE_USER_LOGOUT } from "../actions/session_actions";
 
 const commentsReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -15,6 +16,8 @@ const commentsReducer = (state = {}, action) => {
       newState = merge({}, state);
       delete newState[action.commentId];
       return newState;
+    case RECEIVE_USER_LOGOUT:
+      return {};
     default:
       return state;
   }

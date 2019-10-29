@@ -57,7 +57,6 @@ export default class CreatePet extends React.Component {
       'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
       }
     }
-    let debugInfo = Object.assign({}, this.state);
  
     axios.post('api/image/pet-upload', data, config)
       .then((response) => {

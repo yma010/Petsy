@@ -15,8 +15,18 @@ export default class PetsIndex extends React.Component {
 
   render() {
     let petsIndexItem;
+    let { pets } = this.props;
 
-    petsIndexItem = this.props.pets.map(pets => (<PetsIndexItem key={pets.id} pets={pets} />));
+
+    if (pets.length === 0) {
+      return (
+        <div className="create-pet-form">
+          No pets were found with your criteria
+        </div>
+      )
+    }
+
+    petsIndexItem = pets.map(pets => (<PetsIndexItem key={pets.id} pets={pets} />));
 
 
     return (

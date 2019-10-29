@@ -25,35 +25,36 @@ export default class ShoppingKennelReview extends React.Component {
     }
     let receivedRequestUls = receivedRequests.map(receivedRequest => {
       let { pet, requestingUser } = receivedRequest;
-
+      console.log(pet);
       
       return (
         <div className="request-listing">
-          <ul className="pet-show-details">
-            <li>
-              <img href="" />
-            </li>
-            <li className="pet-show-name">
+          <div className="pet-show-details" >
+            <div>
+              <img src={pet.image[0]} alt={ pet.name } />
+            </div>
+            <p className="pet-show-name" >
               {pet.name}
-            </li>
-            <li className="pet-show-price">
+            </p>
+            <p className="pet-show-price" >
               ${pet.price}
-            </li>
-            <li className="a-lie">
+            </p>
+            <p className="a-lie" >
               Free shipping to United States
-            </li>
-            <li className="pet-show-color">
+            </p>
+            <p className="pet-show-color" >
               {pet.color}
-            </li>
-            <li className="pet-show-weight">
+            </p>
+            <p className="pet-show-weight" >
               {pet.weight} lbs
-            </li>
-          </ul>
-          <ul className="user-show-details">
-            <li className="user-show-username">
+            </p>
+          </div>
+          <div className="user-show-details" >
+            <img className="profile-pic" src={ requestingUser.image } alt={ requestingUser.username }/>
+            <p className="user-show-username">
               { requestingUser.username }
-            </li>
-          </ul>
+            </p>
+          </div>
           <button onClick={ () => approveRequest(receivedRequest.id) }>Approve</button>
           <button onClick={() => denyRequest(receivedRequest.id)}>Deny</button>
         </div>

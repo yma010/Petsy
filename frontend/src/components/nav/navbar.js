@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import './navbar.css';
-import debounce from "lodash.debounce";
 
 class NavBar extends React.Component {
   constructor(props) {
