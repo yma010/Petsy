@@ -89,10 +89,7 @@ export default class CreatePet extends React.Component {
       return (
         <div className="page-container">
           <div className="section-form">
-            <div className="create-pet-form">
-              Splash container or "subway stop" styled progress bar will go here
- 
-            </div>
+
  
             <h1 className="create-header">List on Petsy</h1>
             <h2 className="create-header-sub">Let's get started! Tell us about your pet.</h2>
@@ -113,7 +110,7 @@ export default class CreatePet extends React.Component {
               <div className="form-field-row">
                 <h3 className="form-field-title">Species</h3>
  
-                <select className="form-field-input" value={this.state.species} onChange={this.update('species')} required>
+                <select className="form-field-input select-feature" value={this.state.species} onChange={this.update('species')} required>
                   <option value="Dog">Dog</option>
                   <option value="Cat">Cat</option>
                   <option value="Bird">Bird</option>

@@ -1,0 +1,120 @@
+.page-container{
+  height: auto;
+  width: 100%;
+}
+
+.home-splash-container {
+  width: 100%;
+  display: block;
+  height: 400px;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.home-splash-header {
+  padding-bottom: 30px;
+  text-align: center;
+  font-weight: 100;
+  font-size: 32px;
+  font-family: Guardian-EgypTT, serif;
+}
+
+.home-left-box {
+  width: 100%;
+  height: 400px;
+  overflow-y: hidden;
+  border-radius: 5px;
+}
+
+.home-right-box {
+  width: 40%;
+  float: left;
+}
+
+.home-left-box-info {
+  width: 30%;
+  height: 100%;
+  background: #faa12a;
+  float: left;
+}
+
+.home-left-box-picture {
+  width: 70%;
+  height: 500px;
+  float: left;
+}
+
+.home-splash-picture {
+  background-image: url("https://petsy-cdm-seeds.s3-us-west-1.amazonaws.com/animal-cat-cute-46024.jpg");
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 10%;
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.home-left-box-info-text{
+  width: 70%;
+  background: #faa12a;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  flex-direction: column;
+
+}
+
+.info-text-top {
+  margin-top: 140px;
+  font-size: 28px;
+  text-align: center;
+  background: inherit;  
+  font-family: Guardian-EgypTT, serif;
+  line-height: 33.6px;
+}
+
+.info-text-bottom {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+  background: inherit;
+  font-weight: 700;
+  font-family: "Graphik Webfont", -apple-system, system-ui, Roboto, "Droid Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.home-container-bottom {
+  margin-top: 20px;
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 20px;
+
+}
+
+.box {
+  width: 30.333%;
+  margin-left: 3%;
+}
+
+.bottom-box-header {
+  font-size: 16px;
+  text-align: center;
+}
+
+.bottom-box-text {
+  margin-top: 5px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.check {
+  font-size: 34px;
+  color: red;
+}
