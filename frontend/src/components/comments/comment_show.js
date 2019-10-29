@@ -40,10 +40,10 @@ export default class CommentShow extends React.Component {
 
             <div className="comment-user-info">
              
-              <img className="profile-pic" src={ comment.author.image } alt={ comment.author.username }/>        
-                <strong className="author">{ comment.author.username }&nbsp;</strong> 
-                commented on: { comment.formatPosted }
-            
+              <div><img className="profile-pic" src={ comment.author.image } alt={ comment.author.username }/> </div>
+               <div><strong className="author">{ comment.author.username }&nbsp;</strong> </div>
+                <div> commented on:&nbsp;</div> 
+                <div> { comment.formatPosted } </div>
               <div className="comment-controls">
                 { authorItems }
               </div>
@@ -51,11 +51,11 @@ export default class CommentShow extends React.Component {
             </div>
           
         </div>
-
+        <div className="comment-box">
           <div className="comment-content">
             {comment.body}
           </div>
-
+        </div>
         </div>
       </li>
             

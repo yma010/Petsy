@@ -15,7 +15,7 @@ strong {
   font-size: 24px;
   line-height: 26px;
   font-weight: 600;
-
+  margin-left: 10px;
 }
 
 .comments-index-container {
@@ -44,6 +44,9 @@ margin-bottom: 10px;
 
 .comment-user-info{
   padding: 10px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
 }
 
 .profile-pic{
@@ -54,13 +57,27 @@ margin-bottom: 10px;
   margin-right: 10px;
 }
 
+.comment-box{
+  padding-left: 10px;
+  background-color: #FFFAF1;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
 .comment-content {
-  padding: 20px;  
+  padding-top: 15px;
+  padding-bottom: 15px;  
+  width: inherit;
   min-width: 100%;
   max-width: 100%;
 }
 
+
 .create-form-container {
   margin-top: 10px;
   padding: 10px;
+}
+
+.comment-controls{
+  left: 100;
 }
