@@ -15,11 +15,9 @@ export default class EditPet extends React.Component {
     e.preventDefault();
     const petData = Object.assign({}, this.state);
     this.props.updatePet(petData).then((response) => {
-      if (response.pet.status === 200) {
+      console.log(response);
+      if (response.status === 200) {
         // debugger
-        
-        console.log("lkjdlfj")
-        console.log(response)
         window.location.reload();
         // this.props.history.push(`/pets/${response.pet.data.id}`);
       }

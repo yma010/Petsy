@@ -21,6 +21,7 @@ export const fetchPet = petId => {
 export const createPet = data => {
   return axios.post(`/api/pets/register`, data)
     .then(function(response) {
+      console.log(response);
       return response;
     })
 };
