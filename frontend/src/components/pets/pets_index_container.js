@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { fetchPets, fetchPet } from "../../actions/pets_actions";
 import PetsIndex from "./pets_index";
 import { withRouter } from "react-router-dom";
