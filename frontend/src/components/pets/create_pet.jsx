@@ -38,7 +38,6 @@ export default class CreatePet extends React.Component {
  
   handleSubmit(e) {
     e.preventDefault();
-   
     let data = new FormData();
     const images = this.state.image,
           fileName = this.state.name;

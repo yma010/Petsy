@@ -24,7 +24,7 @@ export default class CommentShow extends React.Component {
 
     let authorItems;
 
-    if (currentUser === comment.author.id) {
+    if (comment.author && (currentUser === comment.author.id)) {
       authorItems = <>
         <button onClick={ () => deleteComment(comment.id) } >Remove</button>
         <button onClick={ () => changeEdit(comment.id) } >Edit</button>

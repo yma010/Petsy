@@ -16,8 +16,6 @@ const commentsReducer = (state = {}, action) => {
       newState = merge({}, state);
       delete newState[action.commentId];
       return newState;
-    case RECEIVE_USER_LOGOUT:
-      return {};
     default:
       return state;
   }
