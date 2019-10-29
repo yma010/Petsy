@@ -1,4 +1,5 @@
 import React from "react";
+import "./stylesheets/shopping_kennel.css";
 
 export default class ShoppingKennel extends React.Component {
   componentDidMount() {
@@ -34,7 +35,7 @@ export default class ShoppingKennel extends React.Component {
       let statusInteraction;
 
       if (sentRequest.status === "pending") {
-        statusInteraction = <button onClick={ () => this.props.deleteRequest(sentRequest.id) } >
+        statusInteraction = <button className="pet-show-submit" onClick={ () => this.props.deleteRequest(sentRequest.id) } >
             Cancel Request
           </button>
       } else {
@@ -42,10 +43,8 @@ export default class ShoppingKennel extends React.Component {
       }
       return (
         <div className="request-listing">
+          <img src={ pet.image[0] } alt={ pet.name }/>
           <ul className="pet-show.details">
-            <li>
-              <img src={ pet.image[0] } alt={ pet.name }/>
-            </li>
             <li className="pet-show-name">
               { pet.name }
             </li>
@@ -61,11 +60,12 @@ export default class ShoppingKennel extends React.Component {
             <li className="pet-show-weight">
               { pet.weight } lbs
             </li>
-          </ul>
-          <ul className="request-owner-listing">
             <li>Owned by: { owner.username }</li>
+            <div className="request-options">
+              { statusInteraction }
+            </div>
+            
           </ul>
-          { statusInteraction }
         </div>
       )
     })

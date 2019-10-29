@@ -50,12 +50,17 @@ export default class ShoppingKennelReview extends React.Component {
           </div>
           <div className="user-show-details" >
             <img className="profile-pic" src={ requestingUser.image } alt={ requestingUser.username }/>
-            <p className="user-show-username">
-              { requestingUser.username }
-            </p>
           </div>
-          <button onClick={ () => approveRequest(receivedRequest.id) }>Approve</button>
-          <button onClick={() => denyRequest(receivedRequest.id)}>Deny</button>
+          <div className="user-requests">
+              <p className="user-show-username">
+                { requestingUser.username }
+              </p>
+              <div className="request-options">
+                <button className="pet-show-submit" onClick={ () => approveRequest(receivedRequest.id) }>Approve</button>
+                <button className="pet-show-submit" onClick={() => denyRequest(receivedRequest.id)}>Deny</button>
+              </div>
+              
+            </div>
         </div>
       )
     })

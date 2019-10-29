@@ -30,8 +30,8 @@ const PetsIndexItem = ({ pets }) => (
           {pets.adoptable === true ? 
            <div className="pets-index-item-adoptable">
              <span className="pets-index-free-shipping-text">🏷️Adoptable</span>
-          </div> : <div className="pets-index-free-blank"></div>}
-          
+
+          </div> : <span className="pets-index-free-blank">fd</span>}
 
       </div>
 
