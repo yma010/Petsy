@@ -1,12 +1,14 @@
-<a href="http://petsy-cdm.herokuapp.com">
-  <img
-    align="center
-    src="https://raw.githubusercontent.com/yma010/Petsy/master/assets/petsy_logo.png"
-    alt="Petsy Logo"
-  />
-</a>
-
-<h2 align="center">When you need a pet</h2>
+<h1 align="center">
+  <a align="center" href="http://petsy-cdm.herokuapp.com">
+    <img
+      align="center"
+      src="https://petsy-cdm-seeds.s3-us-west-1.amazonaws.com/petsy_logo.png"
+      alt="Petsy Logo"
+    />
+    <br>
+    If it's a dog, cat, or other, it might be on Petsy
+  </a>
+</h1>
 
 ## Overview
 Petsy is an etsy clone, meant to help users adopt lovable pets. This is managed through the following steps:
@@ -18,6 +20,7 @@ Petsy is an etsy clone, meant to help users adopt lovable pets. This is managed 
 To manage the site we had to use a combination of the MERN Stack (MongoDB, Express, React, Node.js) for site functionality, and AWS (Amazon Web Services) for image storage.
 
 ## Features
+### Pet Listings
 * Option to make listings for pets you wish to adopt out
   * Ability to upload upto 5 images at a time
   ```js
@@ -46,7 +49,7 @@ To manage the site we had to use a combination of the MERN Stack (MongoDB, Expre
       });
     });
   ```
-* Requests
+### Requests
   * Users wishing to adopt a pet must make a request to the owner
     * The request can be cancelled from the Shopping Kennel
   * The Owner can then review a request and approve or deny it
@@ -87,10 +90,6 @@ To manage the site we had to use a combination of the MERN Stack (MongoDB, Expre
                 }))
         });
     ```
-* Comments
+### Comments
   * Users can add a comment to a pet listing 
     * A User's comments can be edited or removed
-
-
-  
-
