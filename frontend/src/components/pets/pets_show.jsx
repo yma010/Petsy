@@ -80,10 +80,10 @@ class PetShow extends React.Component {
     let ownerInfo;
 
     if (owner) {
-      ownerInfo = <div>
-        <img src={owner.image}
+      ownerInfo = <div className="user-details">
+        <img className="user-profile" src={owner.image}
           alt={owner.username} />
-        <p>{owner.username}</p>
+        <p className="owner-name">{owner.username}</p>
       </div>;
     }
 
@@ -112,7 +112,7 @@ class PetShow extends React.Component {
 
         <div className="photo-carousel">
           <Carousel width={"100%"} heightMode={"first"} wrapAround={true} dragging={true}>
-          {carouselImages}
+            {carouselImages}
           </Carousel>
 
           <CommentsIndexContainer petId={petId} />
@@ -146,7 +146,12 @@ class PetShow extends React.Component {
             <div className="pet-show-color">
               {pet.species}
             </div>
-            
+
+            <div className="pet-show-details-title">Sex</div>
+            <div className="pet-show-color">
+              {pet.sex.toLowerCase()}
+            </div>
+
 
            <div className="pet-show-details-title">Color</div>
             <div className="pet-show-color">
