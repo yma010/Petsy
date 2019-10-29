@@ -15,11 +15,8 @@ export default class EditPet extends React.Component {
     e.preventDefault();
     const petData = Object.assign({}, this.state);
     this.props.updatePet(petData).then((response) => {
-      console.log(response);
       if (response.status === 200) {
-        // debugger
         window.location.reload();
-        // this.props.history.push(`/pets/${response.pet.data.id}`);
       }
     });
   };
@@ -31,14 +28,9 @@ export default class EditPet extends React.Component {
   handleAdoptable(){
     if (document.getElementById('adoptCheckbox') && document.getElementById('adoptCheckbox').checked) {
       this.setState({ adoptable: Boolean(true) });
-      console.log("EDITED ADOPTABLE TRUE");
-      
     } else {
-
       this.setState({ adoptable: Boolean(false) });
-      console.log("EDITED ADOPTABLE FALSE");
     }
-    console.log(this.state.adoptable);
   }
 
   render() {

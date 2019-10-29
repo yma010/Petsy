@@ -38,7 +38,6 @@ export const fetchPet = pet => {
 }
 
 export const createPet = (data) => dispatch => {
-  console.log(data);
   return APIPetUtil.createPet(data)
     .then(pet => dispatch(receivePet(pet)))
     .catch(err => console.log(err))

@@ -1,7 +1,7 @@
 <a href="http://petsy-cdm.herokuapp.com">
   <img
     align="center
-    src="github.com/yma010/Petsy/master/assets/petsy_logo.png"
+    src="https://raw.githubusercontent.com/yma010/Petsy/master/assets/petsy_logo.png"
     alt="Petsy Logo"
   />
 </a>

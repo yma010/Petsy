@@ -1,7 +1,6 @@
 const ObjectId = require("mongoose").Types.ObjectId;
 
 const formatPetsData = pet => {
-  console.log(pet)
   return {
   id: pet.id,
   price: parseFloat(pet.price.toString()),

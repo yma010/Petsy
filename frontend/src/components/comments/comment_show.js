@@ -31,6 +31,7 @@ export default class CommentShow extends React.Component {
       </>
       
     }
+
     return (
       <li className="comment-li" key={comment.id}>
         <div className= "comment-details" >

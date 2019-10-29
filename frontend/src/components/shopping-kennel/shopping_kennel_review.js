@@ -25,7 +25,6 @@ export default class ShoppingKennelReview extends React.Component {
     }
     let receivedRequestUls = receivedRequests.map(receivedRequest => {
       let { pet, requestingUser } = receivedRequest;
-      console.log(pet);
       
       return (
         <div className="request-listing">
