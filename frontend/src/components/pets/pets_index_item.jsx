@@ -13,16 +13,25 @@ const PetsIndexItem = ({ pets }) => (
         </div>
 
         <div className="pets-index-item-name">
-          Name: {pets.name}
+          {pets.name}
         </div>
 
         <div className="pets-index-item-price">
-          Price: {pets.price}
+          ${pets.price}
         </div>
 
-        <div className="pets-index-item-adoptable">
-          Adoptable? : {pets.adoptable === true ? "Yes" : "No"}
+
+
+        <div className="pets-index-free-shipping">
+          <span className="pets-index-free-shipping-text">FREE shipping</span>
         </div>
+
+        
+          {pets.adoptable === true ? 
+           <div className="pets-index-item-adoptable">
+             <span className="pets-index-free-shipping-text">🏷️Adoptable</span>
+          </div> : <span className="pets-index-free-blank">fd</span>}
+          
 
       </div>
 

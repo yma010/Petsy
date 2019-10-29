@@ -158,14 +158,21 @@ class PetShow extends React.Component {
               {pet.color.toLowerCase()}
             </div>
 
-            <div className="pet-show-details-title">Adoptable?</div>
+            <div className="pet-show-details-title">Sex</div>
             <div className="pet-show-color">
-              {pet.adoptable.toString()}
+              {pet.sex}
             </div>
+
+            
 
             <div className="pet-show-details-title">Weight</div>
             <div className="pet-show-weight">
               {pet.weight} lbs
+            </div>
+
+            <div className="pet-show-details-title">Adoptable?</div>
+            <div className="pet-show-color">
+              {pet.adoptable.toString()}
             </div>
           </div>
         </div>

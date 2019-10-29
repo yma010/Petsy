@@ -116,7 +116,7 @@
   cursor: pointer;
   transition: 0.3s;
 }
-2
+
 .session-form-submit:focus {
   outline: none;
 }
@@ -139,7 +139,7 @@
   top: 10px;
   left: calc(50% - 30px);
   padding: 20px;
-  background: white;
+  background: inherit;
   font-size: 15px;
   color: rgba(0, 0, 0, 0.479);
   margin-bottom: 70px;
