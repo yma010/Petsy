@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { createComment } from "../../actions/comments_actions";
 import CommentForm from "./comment_form";
-import { fetchPet } from "../../actions/pets_actions";
 
 const msp = (state) => ({
   comment: {

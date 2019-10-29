@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { fetchPets, fetchPet } from "../../actions/pets_actions";
 import PetsIndex from "./pets_index";
+import { withRouter } from "react-router-dom";
 
 const msp = state => ({
   pets: Object.values(state.entities.pets)
@@ -12,7 +13,7 @@ const mdp = (dispatch, { location: { search } }) => {
     fetchPet: id => dispatch(fetchPet(id))
 }};
 
-export default connect(
+export default withRouter(connect(
   msp, 
   mdp
-)(PetsIndex)
+)(PetsIndex));

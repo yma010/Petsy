@@ -3,6 +3,7 @@ import { RECEIVE_ALL_PETS, RECEIVE_PET } from "../actions/pets_actions";
 import { merge } from 'lodash';
 import { RECEIVE_RECEIVED_REQUESTS, RECEIVE_SENT_REQUESTS, RECEIVE_SENT_REQUEST } from "../actions/requests_actions";
 import { RECEIVE_COMMENT } from "../actions/comments_actions";
+import { RECEIVE_USER_LOGOUT } from "../actions/session_actions";
 
 export default function( state = {}, action ) {
   Object.freeze(state)
@@ -30,6 +31,8 @@ export default function( state = {}, action ) {
     } else {
       return state;
     }
+  case RECEIVE_USER_LOGOUT:
+    return {};
   default:
     return state;
   };

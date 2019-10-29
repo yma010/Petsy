@@ -8,10 +8,22 @@ export const receiveAllPets = (pets) => ({
   pets
 });
 
-export const receivePet = (pet) => ({
+export const receivePet = (data) => {
+  let pet;
+  let user;
+  if (data.data) {
+    pet = data.data.pet;
+    user = data.data.user ? data.data.user : {};
+  } else {
+    pet = data.pet;
+    user = data.user;
+  }
+  return {
   type: RECEIVE_PET,
-  pet
-});
+  pet,
+  user,
+  status: 200
+}};
 
 export const fetchPets = (searchParams = "") => dispatch => {
   APIPetUtil.fetchPets(searchParams)
@@ -21,11 +33,12 @@ export const fetchPets = (searchParams = "") => dispatch => {
 export const fetchPet = pet => {
   return dispatch => {
     APIPetUtil.fetchPet(pet)
-      .then(pet => dispatch(receivePet(pet)));
+      .then(data => dispatch(receivePet(data)));
   };
 }
 
 export const createPet = (data) => dispatch => {
+  console.log(data);
   return APIPetUtil.createPet(data)
     .then(pet => dispatch(receivePet(pet)))
     .catch(err => console.log(err))

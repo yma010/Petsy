@@ -4,7 +4,6 @@ import { openModal, closeModal } from '../../actions/modal_actions';
 import { withRouter } from "react-router-dom";
 
 import NavBar from './navbar';
-import { fetchPets } from '../../actions/pets_actions';
 
 const mapStateToProps = state => ({
   loggedIn: state.session.isAuthenticated
