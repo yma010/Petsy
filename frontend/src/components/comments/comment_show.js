@@ -37,7 +37,7 @@ export default class CommentShow extends React.Component {
         <div className= "comment-details" >
         <div className="comment-user-details">
           <div className="comment-user">
-            <img className="profile-pic" src={ comment.author.image }/>        
+            <img className="profile-pic" src={ comment.author.image } alt={ comment.author.username }/>        
             <p>{ comment.author.username }</p>
             <p>{ comment.formatPosted }</p>
 

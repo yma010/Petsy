@@ -1,5 +1,6 @@
 import { merge } from "lodash";
 import { APPROVE_RECEIVED_REQUEST, DENY_RECEIVED_REQUEST, RECEIVE_RECEIVED_REQUESTS } from "../actions/requests_actions";
+import { RECEIVE_USER_LOGOUT } from "../actions/session_actions";
 
 
 export default (state = {}, action) => {
@@ -20,6 +21,8 @@ export default (state = {}, action) => {
       newState = merge({}, state);
       delete newState[Object.keys(action.deniedRequest)[0]];
       return newState;
+    case RECEIVE_USER_LOGOUT:
+      return {};
     default:
       return state;
   }

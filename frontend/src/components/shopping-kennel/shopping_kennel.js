@@ -22,6 +22,14 @@ export default class ShoppingKennel extends React.Component {
       </div>
     );
 
+    if (sentRequests.length === 0) {
+      return (
+        <div className="create-pet-form">
+          You have not sent any requests
+        </div>
+      )
+    }
+
     let sentRequestUls = sentRequests.map(sentRequest => {
       let { pet, owner } = sentRequest;
       let statusInteraction;
@@ -37,7 +45,7 @@ export default class ShoppingKennel extends React.Component {
         <div className="request-listing">
           <ul className="pet-show.details">
             <li>
-              <img href="" />
+              <img src={ pet.image[0] } alt={ pet.name }/>
             </li>
             <li className="pet-show-name">
               { pet.name }
