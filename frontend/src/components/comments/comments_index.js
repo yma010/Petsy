@@ -46,12 +46,12 @@ export default class CommentsIndex extends React.Component {
         <div className="comments-title">
           Comments
         </div>
+          < CreateCommentFormContainer />
         <div className="border"></div>
         <ul className="comments-index-container">
           { commentLis }
         </ul>
         <div className="create-form-container">
-          < CreateCommentFormContainer />
         </div>
         
       </div>

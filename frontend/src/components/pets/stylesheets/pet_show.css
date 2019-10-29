@@ -105,3 +105,23 @@ img{
   bottom: 50%;
   transform: rotate(90deg);
 }
+
+.user-details{
+  display: flex;
+}
+
+.owner-name{
+  padding-left: 10px;
+  color: #757575;
+  font-family: "Graphik Webfont",-apple-system,BlinkMacSystemFont,"Roboto","Droid Sans","Segoe UI","Helvetica",Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.user-profile{
+  height: 20px;
+  width: 20px;
+  border: 1px solid rgba(34, 34, 34, 0.15);
+  border-radius: 50%;
+}

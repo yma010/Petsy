@@ -127,25 +127,25 @@ export default class CreatePet extends React.Component {
                   <option value="Other">Other</option>
                 </select>
  
-                <p className="form-field-description-text">What is the species of your animal? If you don't know it, give a rough estimate based on the looks or pick something at random.</p>
+                <p className="form-field-description-text">What is the species of your animal?</p>
               </div>
  
               <div className="form-field-row">
                 <h3 className="form-field-title">Color</h3>
                 <input type="text" className="form-field-input" value={this.state.color} onChange={this.update('color')} required />
-                <p className="form-field-description-text">Self explanatory. If the dog is brown, list it as brown. If you're colorblind, list it as brown.</p>
+                <p className="form-field-description-text">What is the main color of your pet?</p>
               </div>
  
               <div className="form-field-row">
                 <h3 className="form-field-title">Weight</h3>
                 <input type="number" className="form-field-input" value={this.state.weight} onChange={this.update('weight')} required />
-                <p className="form-field-description-text">As an estimation, how much does your pet weigh in lbs?</p>
+                <p className="form-field-description-text">How much does your pet weigh?</p>
               </div>
  
               <div className="form-field-row">
                 <h3 className="form-field-title">Sex</h3>
                 <input type="text" className="form-field-input" value={this.state.sex} onChange={this.update('sex')} required />
-                <p className="form-field-description-text">Flip over and check. Or make it a surprise.</p>
+                <p className="form-field-description-text">Is your pet "male" or "female?"</p>
               </div>
  
               <div className="form-spacer"></div>
