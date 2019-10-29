@@ -1,15 +1,18 @@
 .create-comment-form-body {
   display: flex;
   width: 60%;
-  height: 100px;
-  border: 1px solid black;
+  height: 65px;
+  border: 1px solid rgba(0, 0, 0, 0.192);
+  border-radius: 4px;
+  margin-top: 10px;
+  margin-left: 10px;
   border-radius: 4px;
   margin-top: 10px;
 }
 
 .create-text{
   width: 100%;
-  height: 96%;
+  height: 94%;
   border-top: none;
   border-bottom: none;
   border-left: none;
@@ -22,7 +25,20 @@
 .onSubmit {
   flex-direction: flex-end;
   height: inherit;
-  border-left: 1px, solid, black;
+  background-color: black;
+  color: whitesmoke;
+  border: 1px solid black;
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
+  font-weight: 600;
+  font-family: "Graphik Webfont",
+  -apple-system,
+  BlinkMacSystemFont,
+  "Roboto",
+  "Droid Sans",
+  "Segoe UI",
+  "Helvetica",
+  Arial,
+  sans-serif;
+  font-size: 14px;
 }
