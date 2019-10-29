@@ -124,25 +124,25 @@ class NavBar extends React.Component {
     return (
       <div className="categories-bar">
         <Link className="nav-link category" to="/index">
-          All Pets & Animals
+          All Pets
         </Link>
-        <Link className="nav-link category" to="/dogs">
-          Dogs & Canines
+        <Link className="nav-link category" to="/index?species[]=dog">
+          Dogs
         </Link>
-        <Link className="nav-link category" to="/cats">
-          Cats & Felines
+        <Link className="nav-link category" to="/index?species[]=cat">
+          Cats
         </Link>
-        <Link className="nav-link category" to="/pets1">
-          Pets1 & Pets1
+        <Link className="nav-link category" to="/index?species[]=bird">
+          Birds
         </Link>
-        <Link className="nav-link category" to="/pets2">
-          Pets2 & Pets2
+        <Link className="nav-link category" to="/index?species[]=rodent">
+          Rodents
         </Link>
-        <Link className="nav-link category" to="/pets3">
-          Pets3 & Pets3
+        <Link className="nav-link category" to="/index?species[]=reptile">
+          Reptiles
         </Link>
-        <Link className="nav-link category" to="/pets4">
-          Pets4 & Pets4
+        <Link className="nav-link category" to="/index?species[]=other">
+          Others
         </Link>
       </div>
     )

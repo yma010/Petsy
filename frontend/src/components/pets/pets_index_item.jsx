@@ -16,10 +16,6 @@ const PetsIndexItem = ({ pets }) => (
           Name: {pets.name}
         </div>
 
-        <div className="pets-index-item-owner">
-          Owner: {pets.owner}
-        </div>
-
         <div className="pets-index-item-price">
           Price: {pets.price}
         </div>
