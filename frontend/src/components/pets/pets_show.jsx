@@ -59,7 +59,7 @@ class PetShow extends React.Component {
 
 
   render() {
-    const { pet, petId } = this.props;
+    const { pet, petId, users } = this.props;
 
     if (!pet) {
     return (
@@ -75,6 +75,7 @@ class PetShow extends React.Component {
 
     let optionalItem;
     let pet_images = pet.image;
+    let owner = users[pet.owner];
 
     const carouselImages = pet_images.map((image, index) => 
       (<div key={index + 1}><img src={image} alt="" /></div>)
@@ -108,11 +109,13 @@ class PetShow extends React.Component {
 
         </div>
 
-
         <div className="pet-show-details">
           <div className="pet-show-detail-box">
-
-            {pet.ownerName}
+            <div>
+              <img src={owner.image}
+                alt={`${owner.username}'s Profile Picture`} />
+              <p>{ owner.username }</p>
+            </div>
             <div className="pet-show-name">
               {pet.name}
             </div>

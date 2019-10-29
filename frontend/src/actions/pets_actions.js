@@ -8,9 +8,10 @@ export const receiveAllPets = (pets) => ({
   pets
 });
 
-export const receivePet = (pet) => ({
+export const receivePet = ({pet, user}) => ({
   type: RECEIVE_PET,
-  pet
+  pet,
+  user
 });
 
 export const fetchPets = (searchParams = "") => dispatch => {
@@ -21,7 +22,7 @@ export const fetchPets = (searchParams = "") => dispatch => {
 export const fetchPet = pet => {
   return dispatch => {
     APIPetUtil.fetchPet(pet)
-      .then(pet => dispatch(receivePet(pet)));
+      .then(data => dispatch(receivePet(data)));
   };
 }
 

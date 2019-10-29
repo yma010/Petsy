@@ -8,6 +8,7 @@ console.log(state);
   return ({
     petId: ownProps.match.params.petId,
     pet: state.entities.pets[ownProps.match.params.petId],
+    users: state.entities.users,
     loggedIn: state.session.isAuthenticated,
     currentUsername: state.session.user ? state.session.user.username : undefined,
     currentUser: state.session.user ? state.session.user.id : undefined,
