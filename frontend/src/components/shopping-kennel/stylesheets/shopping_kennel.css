@@ -2,9 +2,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid rgb(235, 235, 235);
+  border: 1px solid rgb(200, 200, 200);
   margin: 1em;
   padding: 1em;
+  padding-right: 5em;
+  background: rgb(245, 245, 245);
+  border-radius: 4px;
 }
 
 .request-listing img {
@@ -24,6 +27,7 @@
 
 .request-options .pet-show-submit {
   margin-right: 5px;
+  margin-left: 5px
 }
 
 .request-options {
@@ -33,4 +37,22 @@
 .user-requests p {
   font-size: 20px;
   font-weight: 500;
+}
+
+.request-body {
+  width: 75%;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  background: rgb(235, 235, 235);
+  border: 1px solid rgb(200, 200, 200);
+  border-top: 0;
+}
+
+.request-body h1 {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-decoration: underline;
 }

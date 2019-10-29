@@ -70,7 +70,10 @@ export default class ShoppingKennel extends React.Component {
       )
     })
     return (
-      <div>
+      <div className="request-body">
+        <h1>
+          Shopping Kennel
+        </h1>
         { sentRequestUls }
       </div>
     );

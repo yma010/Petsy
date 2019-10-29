@@ -65,7 +65,10 @@ export default class ShoppingKennelReview extends React.Component {
       )
     })
     return (
-      <div>
+      <div className="request-body">
+        <h1>
+          Review Requests
+        </h1>
         {receivedRequestUls}
       </div>
     );
