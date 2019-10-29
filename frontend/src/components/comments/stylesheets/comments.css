@@ -1,0 +1,43 @@
+.comment-item-container {
+
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.192);
+  margin-bottom: 10px;
+}
+
+.comment-header {
+  height: 42px;
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.192);
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+.comment-profile-picture {
+  margin: 5px;
+  margin-bottom: 10px;
+  float: left;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid rgba(90, 90, 90, 0.486);
+}
+
+.comment-header-text {
+  margin-left: 20px;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.527);
+  line-height: 3;
+}
+
+.comment-body-container {
+  width: 100%;
+  padding: 5px;
+}
+
+.comment-buttons {
+  margin-right: auto;
+  position: relative;
+  padding: 5px;
+}

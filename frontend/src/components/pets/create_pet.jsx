@@ -15,7 +15,7 @@ export default class CreatePet extends React.Component {
       adoptable: Boolean(true),
       sex: '',
       price: '',
-      image: null,
+      image: [],
       errors: {}
     }
  
@@ -25,11 +25,11 @@ export default class CreatePet extends React.Component {
     this.clearedErrors = false;
  
   };
- 
+
   componentDidMount() {
     this.setState({adoptable: Boolean(true)})
   }
-   
+    
   updateFile(e) {
     let imageFiles = e.target.files;
     this.setState({
@@ -57,23 +57,19 @@ export default class CreatePet extends React.Component {
       'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
       }
     }
-    let debugInfo = Object.assign({}, this.state);
-    console.log(debugInfo);
  
     axios.post('api/image/pet-upload', data, config)
       .then((response) => {
-        console.log(response)
         this.setState({
           image: response.data.imageUrl
         })
       }).then((response) => {
-        console.log(response);
         //Pet creation only occurs if it receives a response from axios
         const petData = Object.assign({}, this.state);
- 
+        console.log(petData);
         this.props.createPet(petData).then((response) => {
-          if (response.pet.status === 200) {
-            this.props.history.push(`/pets/${response.pet.data._id}`);
+          if (response.status === 200) {
+            this.props.history.push(`/pets/${response.pet.id}`);
           }
         });
       }
@@ -92,7 +88,6 @@ export default class CreatePet extends React.Component {
       }
     ))
   }
- 
   render() {
     if (this.props.loggedIn)
     {

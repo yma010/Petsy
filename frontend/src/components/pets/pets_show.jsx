@@ -59,7 +59,7 @@ class PetShow extends React.Component {
 
 
   render() {
-    const { pet, petId } = this.props;
+    const { pet, petId, users } = this.props;
 
     if (!pet) {
     return (
@@ -75,6 +75,17 @@ class PetShow extends React.Component {
 
     let optionalItem;
     let pet_images = pet.image;
+    let owner = users[pet.owner];
+
+    let ownerInfo;
+
+    if (owner) {
+      ownerInfo = <div>
+        <img src={owner.image}
+          alt={owner.username} />
+        <p>{owner.username}</p>
+      </div>;
+    }
 
     const carouselImages = pet_images.map((image, index) => 
       (<div key={index + 1}><img src={image} alt="" /></div>)
@@ -96,7 +107,6 @@ class PetShow extends React.Component {
         optionalItem = <p>{pet.name} has been added to your shopping kennel, please wait for approval.</p>
       }
     }
-
     return (
       <div className="pet-show-container">
 
@@ -109,17 +119,17 @@ class PetShow extends React.Component {
 
         </div>
 
-
         <div className="pet-show-details">
           <div className="pet-show-detail-box">
-
-            {pet.owner}
+            { ownerInfo }
             <div className="pet-show-name">
               {pet.name}
             </div>
             <div className="pet-show-price">
               ${pet.price}
             </div>
+
+
             <div className="a-lie">
               Free shipping to <u>United States</u>
             </div>
@@ -143,12 +153,15 @@ class PetShow extends React.Component {
               {pet.color.toLowerCase()}
             </div>
 
+            <div className="pet-show-details-title">Adoptable?</div>
+            <div className="pet-show-color">
+              {pet.adoptable.toString()}
+            </div>
+
             <div className="pet-show-details-title">Weight</div>
             <div className="pet-show-weight">
               {pet.weight} lbs
             </div>
-
-            
           </div>
         </div>
       </div>

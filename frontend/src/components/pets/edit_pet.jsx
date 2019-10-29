@@ -15,11 +15,9 @@ export default class EditPet extends React.Component {
     e.preventDefault();
     const petData = Object.assign({}, this.state);
     this.props.updatePet(petData).then((response) => {
-      if (response.pet.status === 200) {
+      console.log(response);
+      if (response.status === 200) {
         // debugger
-        
-        console.log("lkjdlfj")
-        console.log(response)
         window.location.reload();
         // this.props.history.push(`/pets/${response.pet.data.id}`);
       }
@@ -33,10 +31,14 @@ export default class EditPet extends React.Component {
   handleAdoptable(){
     if (document.getElementById('adoptCheckbox') && document.getElementById('adoptCheckbox').checked) {
       this.setState({ adoptable: Boolean(true) });
+      console.log("EDITED ADOPTABLE TRUE");
+      
     } else {
 
       this.setState({ adoptable: Boolean(false) });
+      console.log("EDITED ADOPTABLE FALSE");
     }
+    console.log(this.state.adoptable);
   }
 
   render() {
@@ -63,6 +65,8 @@ export default class EditPet extends React.Component {
 
           <h3 className="edit-pet-title">Weight</h3>
           <input type="number" className="edit-pet-input-field" placeholder={this.state.weight} value={this.state.weight} onChange={this.update('weight')} required />
+
+
 
           <h3 className="edit-pet-title">Sex</h3>
           <input type="text" className="edit-pet-input-field" placeholder={this.state.sex} value={this.state.sex} onChange={this.update('sex')} required />

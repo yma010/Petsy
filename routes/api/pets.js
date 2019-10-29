@@ -3,7 +3,7 @@ const router = express.Router();
 const Pet = require("../../model/Pet");
 const passport = require("passport");
 const ObjectID = require('mongodb').ObjectID;
-const formatPetsData = require("./api_util").formatPetsData;
+const { formatPetsData, formatUsersData } = require("./api_util");
 const validatePetInput = require("../../validations/pet");
 
 const parseSearch = ({names, species, colors, sexes}) => {
@@ -43,9 +43,13 @@ router.get("/index", (req, res) => {
 router.get("/:id", (req, res) => {
   let id = req.params.id;
 
-  Pet.findById(id, function (err, pet) {
-    // console.log(pet);
-    res.json(formatPetsData(pet))
+  Pet.findById(id)
+    .populate("owner")
+    .then((pet) => {
+    res.json({
+      pet: formatPetsData(pet),
+      user: formatUsersData(pet.owner)
+    })
   });
 });
 
@@ -53,7 +57,8 @@ router.post("/register",
   passport.authenticate('jwt', { session: false }), (req, res) => {
   
   const { errors, isValid } = validatePetInput(req.body);
-
+  console.log(req.body)
+  console.log("TEST")
   if (!isValid) {
     return res.status(400).json(errors);
   }
@@ -70,23 +75,30 @@ router.post("/register",
   });
 
   newPet.save()
-  .then(pet => res.json(pet))
+  .then(pet => {
+    return res.json({
+      pet: formatPetsData(pet),
+      user: formatUsersData(pet.owner)
+  })})
   .catch(err => console.log(err))
+
 });
 
 
 router.put("/edit/:id", (req, res) => {
   let petValues = req.body;
-  let pet_id = req.body.id;
+  let petId = req.body.id;
   // console.log(req.body)
-  Pet.updateOne({ _id: pet_id }, petValues, function(err) {
-    if (!err) {
-      console.log("Pet updated!");
-    } else {
-      console.log("Pet failed to update - check params");
-    }
+  Pet.findByIdAndUpdate(
+    petId,
+    petValues,
+    { new: true }
+  )
+  .then(pet => {
+    return res.json({
+      pet: formatPetsData(pet)
+    });
   })
-  res.json(petValues);
 });
 
 

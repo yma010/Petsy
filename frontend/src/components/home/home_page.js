@@ -10,6 +10,7 @@ class HomePage extends React.Component {
           <div className="create-pet-form">
           <div className="splash-art" > 
             <img src="https://petsy-cdm-seeds.s3-us-west-1.amazonaws.com/animal-cat-cute-46024.jpg"  alt="splash-cat-dog"/>
+          </div >              
           </div >                   
           </div>
           <div className="nav-bar-bottom" />

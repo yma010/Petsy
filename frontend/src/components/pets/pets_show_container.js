@@ -4,11 +4,13 @@ import PetShow from "./pets_show";
 import { sendRequest, fetchSentRequests } from "../../actions/requests_actions";
 
 const msp = (state, ownProps)=> {
-
+console.log(state);
   return ({
     petId: ownProps.match.params.petId,
     pet: state.entities.pets[ownProps.match.params.petId],
+    users: state.entities.users,
     loggedIn: state.session.isAuthenticated,
+    currentUsername: state.session.user ? state.session.user.username : undefined,
     currentUser: state.session.user ? state.session.user.id : undefined,
     requestedPets: Object.values(state.entities.sentRequests).map(request => request.pet)
   });
