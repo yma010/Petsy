@@ -2,7 +2,6 @@ import { merge } from "lodash";
 import { RECEIVE_SENT_REQUESTS, RECEIVE_SENT_REQUEST, RECEIVE_RECEIVED_REQUESTS } from "../actions/requests_actions";
 import { RECEIVE_COMMENT, RECEIVE_COMMENTS } from "../actions/comments_actions";
 import { RECEIVE_PET } from "../actions/pets_actions";
-import { RECEIVE_USER_LOGOUT } from "../actions/session_actions";
 
 
 export default (state = {}, action) => {
@@ -35,8 +34,6 @@ export default (state = {}, action) => {
       } else {
         return state;
       }
-    case RECEIVE_USER_LOGOUT:
-      return {};
     default:
       return state;
   }
