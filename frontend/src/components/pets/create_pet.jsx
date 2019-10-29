@@ -125,7 +125,7 @@ export default class CreatePet extends React.Component {
               <div className="form-field-row">
                 <h3 className="form-field-title">Color</h3>
                 <input type="text" className="form-field-input" value={this.state.color} onChange={this.update('color')} required />
-                <p className="form-field-description-text">What is the main color of your pet?</p>
+                <p className="form-field-description-text">Self explanatory. If the dog is brown, list it as brown.</p>
               </div>
  
               <div className="form-field-row">
