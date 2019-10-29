@@ -82,7 +82,7 @@ class PetShow extends React.Component {
     if (owner) {
       ownerInfo = <div>
         <img src={owner.image}
-          alt={`${owner.username}'s Profile Picture`} />
+          alt={owner.username} />
         <p>{owner.username}</p>
       </div>;
     }
@@ -156,8 +156,6 @@ class PetShow extends React.Component {
             <div className="pet-show-weight">
               {pet.weight} lbs
             </div>
-
-            
           </div>
         </div>
       </div>
