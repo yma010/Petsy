@@ -24,27 +24,32 @@ export default class CommentShow extends React.Component {
 
     let authorItems;
 
-    if (currentUser === comment.author.id) {
+    if (comment.author && (currentUser === comment.author.id)) {
       authorItems = <>
         <button onClick={ () => deleteComment(comment.id) } >Remove</button>
         <button onClick={ () => changeEdit(comment.id) } >Edit</button>
       </>
       
     }
-    console.log(this.props)
+
     return (
       <li className="comment-li" key={comment.id}>
         <div className= "comment-details" >
-        <div className="comment-user-details">
-          <div className="comment-user">
-            <img className="profile-pic" src={ comment.author.image } alt={ comment.author.username }/>        
-            <p>{ comment.author.username }</p>
-            <p>{ comment.formatPosted }</p>
+          
+          <div className="comment-user-details">
 
-            <div className="comment-controls">
-              { authorItems }
+            <div className="comment-user-info">
+             
+              <img className="profile-pic" src={ comment.author.image } alt={ comment.author.username }/>        
+                <strong className="author">{ comment.author.username }&nbsp;</strong> 
+                commented on: { comment.formatPosted }
+            
+              <div className="comment-controls">
+                { authorItems }
+              </div>
+            
             </div>
-          </div>
+          
         </div>
 
           <div className="comment-content">

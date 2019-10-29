@@ -7,7 +7,6 @@ export default class ShoppingKennel extends React.Component {
   
   render() {
     let { sentRequests, loggedIn } = this.props;
-    console.log(this.props);
     if (!loggedIn) {
       return (
         <div className="create-pet-form">
