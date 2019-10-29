@@ -75,10 +75,11 @@ router.post("/register",
   });
 
   newPet.save()
-  .then(pet => res.json({
-    pet: formatPetsData(pet),
-    user: undefined
-  }))
+  .then(pet => {
+    return res.json({
+      pet: formatPetsData(pet),
+      user: formatUsersData(pet.owner)
+  })})
   .catch(err => console.log(err))
 
 });
@@ -86,16 +87,18 @@ router.post("/register",
 
 router.put("/edit/:id", (req, res) => {
   let petValues = req.body;
-  let pet_id = req.body.id;
-  console.log(req.body)
-  Pet.updateOne({ _id: pet_id }, petValues, function(err) {
-    if (!err) {
-      console.log("Pet updated!");
-    } else {
-      console.log("Pet failed to update - check params");
-    }
+  let petId = req.body.id;
+  // console.log(req.body)
+  Pet.findByIdAndUpdate(
+    petId,
+    petValues,
+    { new: true }
+  )
+  .then(pet => {
+    return res.json({
+      pet: formatPetsData(pet)
+    });
   })
-  res.json(petValues);
 });
 
 

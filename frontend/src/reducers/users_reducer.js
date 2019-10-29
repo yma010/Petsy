@@ -28,8 +28,12 @@ export default (state = {}, action) => {
         return state;
       }
     case RECEIVE_PET:
-      newState = merge({}, state, {[action.user.id]: action.user});
-      return newState;
+      if (action.user) {
+        newState = merge({}, state, {[action.user.id]: action.user});
+        return newState;
+      } else {
+        return state;
+      }
     default:
       return state;
   }
