@@ -4,11 +4,11 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm install 
+RUN npm install --silent \
+  && npm run frontend-install --silent \
+  && npm run build --prefix frontend
 
 COPY . .
-
-RUN npm run heroku-postbuild
 
 EXPOSE 5000
 
