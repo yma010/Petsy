@@ -8,9 +8,8 @@ COPY . .
 
 RUN npm install --silent \
   && npm run frontend-install --silent \
-  && npm run build --prefix frontend
-
-
+  && npm run build --prefix frontend \
+  && npm run frontend
 
 EXPOSE 5000
 
