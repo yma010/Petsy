@@ -4,11 +4,13 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
+COPY . .
+
 RUN npm install --silent \
   && npm run frontend-install --silent \
   && npm run build --prefix frontend
 
-COPY . .
+
 
 EXPOSE 5000
 
