@@ -1,0 +1,17 @@
+version: "3"
+services:
+  app:
+    environment:
+      NODE_ENV: production
+    container_name: petsy
+    restart: always
+    build: .
+    ports:
+      - "3000:5000"
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"

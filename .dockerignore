@@ -1,0 +1,11 @@
+.git
+node_module
+npm-debug.log
+*Dockerfile*
+docker-compose.yml
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+.DS_Store
+keys_dev.js
