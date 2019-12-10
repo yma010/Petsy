@@ -46,15 +46,14 @@ export default class CreatePet extends React.Component {
     for(let i = 0; i < images.length; i++){
       data.append("image[]", images[i], fileName[i].name);
     }
-    
     const config = {
       headers: {
       'accept': 'application/json',
       'Accept-Language': 'en-US,en;q=0.8',
-      'Content-Type': `multipart/form-data; boundary=${data._boundary}`,
+      'Content-Type': `multipart/form-data`
       }
     }
- 
+    debugger;
     axios.post('api/image/pet-upload', data, config)
       .then((response) => {
         this.setState({
