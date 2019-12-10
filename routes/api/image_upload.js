@@ -7,6 +7,7 @@ const multiUpload = upload.array('image[]', 5);
 const singleUpload = upload.single('image');
 
 router.post('/pet-upload', function(req, res){
+  debugger;
   multiUpload(req, res, function (err) {
   if (err) {
     return res.status(422).send({
@@ -18,7 +19,7 @@ router.post('/pet-upload', function(req, res){
   } else{
     let imageArray = req.files,
       fileLocation;
-
+    debugger;
     const imgLocationArray = [];
       for (let i = 0; i < imageArray.length; i++){
         fileLocation = imageArray[i].location;
