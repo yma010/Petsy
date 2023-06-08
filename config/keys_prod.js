@@ -1,6 +1,6 @@
 module.exports = {
-  mongoURI: process.env.MONGO_URI,
-  secretOrKey: process.env.SECRET_OR_KEY,
+  MONGO_URI: process.env.MONGO_URI,
+  SECRET_OR_KEY: process.env.SECRET_OR_KEY,
   AWSAccessKey: process.env.AWSAccessKey,
   AWSSecretKey: process.env.AWSSecretKey,
   AWSRegion: process.env.AWSRegion,
